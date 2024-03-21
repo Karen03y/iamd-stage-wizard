@@ -1,0 +1,29 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 30px 50px;
+  gap: 50px;
+  background-color: rgb(228, 228, 228);
+}
+
+.left-container,
+.right-container {
+  height: 90%;
+  padding: 20px;
+  background-color: white;
+}
+
+.left-container {
+  width: 40%;
+}
+
+.right-container {
+  width: 60%;
+}
+
+.left-container article {
+  border: solid black 1px;
+  margin-bottom: 20px;
+}
