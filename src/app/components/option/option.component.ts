@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgxColorsModule } from 'ngx-colors';
 import { Option } from '../../../types';
+import { ColorsComponent } from "../colors/colors.component";
 
 
 @Component({
-  selector: 'app-option',
-  standalone: true,
-  imports: [CommonModule, NgxColorsModule, FormsModule],
-  templateUrl: './option.component.html',
-  styleUrl: './option.component.css',
-  
+    selector: 'app-option',
+    standalone: true,
+    templateUrl: './option.component.html',
+    styleUrl: './option.component.css',
+    imports: [CommonModule, FormsModule, ColorsComponent]
 })
  
 
@@ -30,21 +29,6 @@ export class OptionComponent {
   }
 
 
-/* KLEUREN */
-  colors = [
-    { value: "#42A5F5" },
-    { value: "#d4e157" },
-    { value: "#ffb74d" }
-  ].map((color, index) => ({ ...color, label: (index + 1).toString() }));
-
-  addColor()  {
-    const newIndex = this.colors.length+1;
-    const newColor={value:"#ffffff", label:newIndex.toString()};
-    this.colors.push(newColor)
-  }
-
-
-  
 }
 
 
