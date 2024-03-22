@@ -24,9 +24,11 @@ export class OptionComponent {
 
   ]
 
-  color1:string="#42A5F5";
-  color2:string="#d4e157";
-  color3:string="#ffb74d";
+  colors = [
+    { label: "Achtergrond body", value: "#42A5F5" },
+    { label: "Titels", value: "#d4e157" },
+    { label: "Achtergrond thead", value: "#ffb74d" }
+  ];
 
   toggleContent(option:Option) {
     option.showContent = !option.showContent;

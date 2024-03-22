@@ -12,32 +12,14 @@
   <div class="content" *ngIf="option.showContent">
     <ng-switch [ngSwitch]="option.content.type">
       <ng-container class="kleuren" *ngSwitchCase="'kleuren'">
-        <div class="color-picker">
+        <div class="color-picker" *ngFor="let color of colors">
           <div
             class="color-picker-circle"
             ngx-colors-trigger
-            [(ngModel)]="color1"
-            [style.background-color]="color1"
+            [(ngModel)]="color.value"
+            [style.background-color]="color.value"
           ></div>
-          <p>Achtergrond body</p>
-        </div>
-        <div class="color-picker">
-          <div
-            class="color-picker-circle"
-            ngx-colors-trigger
-            [(ngModel)]="color2"
-            [style.background-color]="color2"
-          ></div>
-          <p>Titels</p>
-        </div>
-        <div class="color-picker">
-          <div
-            class="color-picker-circle"
-            ngx-colors-trigger
-            [(ngModel)]="color3"
-            [style.background-color]="color3"
-          ></div>
-          <p>Achtergrond thead</p>
+          <p>{{ color.label }}</p>
         </div>
       </ng-container>
       <ng-container *ngSwitchCase="'header'">
