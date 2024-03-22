@@ -22,15 +22,18 @@
           *ngFor="let header of headers"
           [attr.id]="'header-' + header.id"
         >
-          Header {{ header.id }}
-          <input
-            type="radio"
-            name="selectedHeader"
-            [value]="header.id"
-            [(ngModel)]="selectedHeader"
-          />
+          <div class="header-content">
+            <div class="header-preview"></div>
+            <input
+              type="radio"
+              name="selectedHeader"
+              [value]="header.id"
+              [(ngModel)]="selectedHeader"
+            />
+          </div>
         </div>
       </ng-container>
+
       <!--------------------------------------------------------->
       <ng-container *ngSwitchCase="'body'">
         <div
