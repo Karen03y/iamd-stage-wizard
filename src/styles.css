@@ -7,3 +7,23 @@
   margin: 0;
   padding: 0;
 }
+
+.btn {
+  cursor: pointer;
+  background-color: #4fb598;
+  border: white 2px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+}
+
+.btn:hover {
+  background-color: #ffffff;
+  border: #4fb598 2px;
+  color: black;
+}
