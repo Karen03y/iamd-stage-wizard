@@ -16,17 +16,44 @@ import { ColorsComponent } from "../colors/colors.component";
 
 export class OptionComponent {
   options:Option[] = [
-    {title:"Kleur", content : {type:"kleuren"}, showContent:true},
+    {title:"Kleur", content : {type:"colors"}, showContent:true},
     {title:"Header", content:{type:"header"}, showContent:false},
     {title:"Body", content:{type:"body"}, showContent:false},
     {title:"Footer", content:{type:"footer"}, showContent:false},
 
   ]
 
-/* TOGGLE CONTENT */
+/* SHOW/HIDE CONTENT */
   toggleContent(option:Option) {
     option.showContent = !option.showContent;
   }
+
+  /* HEADER */
+  headers = [
+    { id: 1 },
+    { id: 2 },
+    { id: 3 }
+  ];
+
+  selectedHeader: number | undefined;
+
+  /* BODY */
+  bodies = [
+    {id:1},
+    {id:2},
+    {id:3}
+  ];
+  
+  selectedBody: number | undefined;
+
+  /* FOOTER */
+  footers = [
+    {id:1},
+    {id:2},
+    {id:3}
+  ];
+  
+  selectedFooter: number | undefined;
 
 
 }

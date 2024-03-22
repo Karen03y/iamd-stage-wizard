@@ -10,20 +10,19 @@
 
 .btn {
   cursor: pointer;
-  background-color: #4fb598;
-  border: white 2px;
+  background-color: #7f7f7f;
   color: white;
+  border: none;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 15px;
   margin: 4px 2px;
-  transition-duration: 0.4s;
+  transition-duration: 0.2s;
 }
 
 .btn:hover {
   background-color: #ffffff;
-  border: #4fb598 2px;
   color: black;
 }

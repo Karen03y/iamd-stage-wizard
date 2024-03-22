@@ -11,26 +11,56 @@
   </h1>
   <div class="content" *ngIf="option.showContent">
     <ng-switch [ngSwitch]="option.content.type">
-      <ng-container class="kleuren" *ngSwitchCase="'kleuren'">
+      <!--------------------------------------------------------->
+      <ng-container class="colors" *ngSwitchCase="'colors'">
         <app-colors></app-colors>
       </ng-container>
+      <!--------------------------------------------------------->
       <ng-container *ngSwitchCase="'header'">
-        header <br />
-        header <br />
-        header <br />
-        header
+        <div
+          class="header"
+          *ngFor="let header of headers"
+          [attr.id]="'header-' + header.id"
+        >
+          Header {{ header.id }}
+          <input
+            type="radio"
+            name="selectedHeader"
+            [value]="header.id"
+            [(ngModel)]="selectedHeader"
+          />
+        </div>
       </ng-container>
+      <!--------------------------------------------------------->
       <ng-container *ngSwitchCase="'body'">
-        body <br />
-        body <br />
-        body <br />
-        body
-      </ng-container>
+        <div
+          class="body"
+          *ngFor="let body of bodies"
+          [attr.id]="'body-' + body.id"
+        >
+          Body {{ body.id }}
+          <input
+            type="radio"
+            name="selectedBody"
+            [value]="body.id"
+            [(ngModel)]="selectedBody"
+          /></div
+      ></ng-container>
+      <!--------------------------------------------------------->
       <ng-container *ngSwitchCase="'footer'">
-        footer <br />
-        footer <br />
-        footer <br />
-        footer
+        <div
+          class="footer"
+          *ngFor="let footer of footers"
+          [attr.id]="'footer-' + footer.id"
+        >
+          Footer {{ footer.id }}
+          <input
+            type="radio"
+            name="selectedFooter"
+            [value]="footer.id"
+            [(ngModel)]="selectedFooter"
+          />
+        </div>
       </ng-container>
     </ng-switch>
   </div>
