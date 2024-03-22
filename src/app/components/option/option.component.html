@@ -13,15 +13,25 @@
     <ng-switch [ngSwitch]="option.content.type">
       <ng-container class="kleuren" *ngSwitchCase="'kleuren'">
         <div class="color-picker" ngx-colors-trigger [(ngModel)]="color1">
-          <div class="color-picker-circle"></div>
+          <div
+            class="color-picker-circle"
+            [style.background-color]="color1"
+          ></div>
+          <p>Achtergrond body</p>
         </div>
-        <div class="color-picker">
-          <div class="color-picker-circle"></div>
-          Titels h1
+        <div class="color-picker" ngx-colors-trigger [(ngModel)]="color2">
+          <div
+            class="color-picker-circle"
+            [style.background-color]="color2"
+          ></div>
+          <p>Titels</p>
         </div>
-        <div class="color-picker">
-          <div class="color-picker-circle"></div>
-          Achtergrond thead
+        <div class="color-picker" ngx-colors-trigger [(ngModel)]="color3">
+          <div
+            class="color-picker-circle"
+            [style.background-color]="color3"
+          ></div>
+          <p>Achtergrond thead</p>
         </div>
       </ng-container>
       <ng-container *ngSwitchCase="'header'">
