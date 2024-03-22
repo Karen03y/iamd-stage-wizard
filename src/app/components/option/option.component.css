@@ -48,3 +48,7 @@ article .content {
 .color-picker-circle:hover {
   border-width: 2px;
 }
+
+.btn {
+  cursor: pointer;
+}
