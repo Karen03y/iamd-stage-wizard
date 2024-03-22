@@ -1,0 +1,50 @@
+article {
+  border: solid grey 1px;
+  border-radius: 3px;
+  background-color: #eeeeee;
+  margin: 20px;
+  padding: 20px;
+}
+
+.arrow {
+  float: right;
+  margin-right: 10px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+
+.arrow-up {
+  border-bottom: 5px solid black;
+}
+
+.arrow-down {
+  border-top: 5px solid black;
+}
+
+article .content {
+  background-color: #ffffff;
+  margin: 10px auto;
+  padding: 20px;
+}
+
+.color-picker {
+  border: solid rgb(145, 145, 145) 1px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.color-picker-circle {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.color-picker-circle:hover {
+  border-width: 2px;
+}

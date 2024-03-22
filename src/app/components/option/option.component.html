@@ -1,1 +1,47 @@
-<p>option works!</p>
+<article *ngFor="let option of options">
+  <h1 (click)="toggleContent(option)">
+    {{ option.title }}
+    <span
+      class="arrow"
+      [ngClass]="{
+        'arrow-down': !option.showContent,
+        'arrow-up': option.showContent
+      }"
+    ></span>
+  </h1>
+  <div class="content" *ngIf="option.showContent">
+    <ng-switch [ngSwitch]="option.content.type">
+      <ng-container class="kleuren" *ngSwitchCase="'kleuren'">
+        <div class="color-picker" ngx-colors-trigger [(ngModel)]="color1">
+          <div class="color-picker-circle"></div>
+        </div>
+        <div class="color-picker">
+          <div class="color-picker-circle"></div>
+          Titels h1
+        </div>
+        <div class="color-picker">
+          <div class="color-picker-circle"></div>
+          Achtergrond thead
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="'header'">
+        header <br />
+        header <br />
+        header <br />
+        header
+      </ng-container>
+      <ng-container *ngSwitchCase="'body'">
+        body <br />
+        body <br />
+        body <br />
+        body
+      </ng-container>
+      <ng-container *ngSwitchCase="'footer'">
+        footer <br />
+        footer <br />
+        footer <br />
+        footer
+      </ng-container>
+    </ng-switch>
+  </div>
+</article>
