@@ -25,11 +25,12 @@ export class OptionComponent {
   ]
 
   colors = [
-    { label: "Achtergrond body", value: "#42A5F5" },
-    { label: "Titels", value: "#d4e157" },
-    { label: "Achtergrond thead", value: "#ffb74d" }
-  ];
+    { value: "#42A5F5" },
+    { value: "#d4e157" },
+    { value: "#ffb74d" }
+  ].map((color, index) => ({ ...color, label: (index + 1).toString() }));
 
+  
   toggleContent(option:Option) {
     option.showContent = !option.showContent;
   }
