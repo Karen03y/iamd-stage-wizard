@@ -19,7 +19,7 @@
             </ng-container>
 
             <ng-container *ngSwitchCase="'header'">
-              <app-header></app-header>
+              <app-header (headerChange)="onHeaderChange($event)"></app-header>
             </ng-container>
 
             <ng-container *ngSwitchCase="'body'">
@@ -37,7 +37,11 @@
 
   <section class="right-container">
     <article class="preview-doc">
-      <div class="preview-header"></div>
+      <div
+        class="preview-doc-header"
+        [innerHTML]="selectedHeader?.headerContent"
+      ></div>
+      <div class="preview-doc-footer"></div>
     </article>
   </section>
 </main>

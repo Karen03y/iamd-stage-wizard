@@ -4,12 +4,13 @@
   [attr.id]="'header-' + header.id"
 >
   <div class="header-content">
-    <div class="header-preview">{{ header.headerContent }}</div>
+    <div class="header-preview" [innerHTML]="header.headerContent"></div>
     <input
       type="radio"
       name="selectedHeader"
       [value]="header"
       [(ngModel)]="selectedHeader"
+      (change)="onHeaderChange(header)"
     />
   </div>
 </div>

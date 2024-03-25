@@ -3,17 +3,20 @@ main {
   justify-content: center;
   align-items: center;
   padding: 30px 50px;
-  gap: 50px;
+  gap: 20px;
   min-height: 100vh;
-  background-color: #f0f3f7;
+  background: rgb(15, 23, 52);
+  background: linear-gradient(90deg, #0f1734 0%, #1f2d6d 100%);
 }
 
 /* Containers */
 .left-container,
 .right-container {
   width: 50%;
-  padding: 20px;
-  background-color: white;
+  padding: 15px;
+  background-color: rgb(235, 235, 235, 0.2);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+  opacity: 1;
   min-height: 700px;
   overflow: hidden;
 }
@@ -31,7 +34,7 @@ main {
 .preview-doc {
   margin: 20px 10px;
   background-color: #ffffff;
-  border: solid black 1px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
   width: 100%;
 }
 
@@ -39,9 +42,14 @@ main {
 article {
   border: solid grey 1px;
   border-radius: 3px;
-  background-color: #eeeeee;
+  background-color: #ffffff;
   margin: 20px;
   padding: 20px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+article h1 {
+  cursor: pointer;
 }
 
 /* Arrows */
@@ -52,6 +60,7 @@ article {
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
+  cursor: pointer;
 }
 
 .arrow-up {

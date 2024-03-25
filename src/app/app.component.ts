@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Header, Option } from '../types';
+import { Footer, Header, Option } from '../types';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ColorsComponent } from './components/colors/colors.component';
@@ -18,7 +18,7 @@ export class AppComponent {
   title = 'iamd-document-wizard';
 
   options: Option[] = [
-    { title: "Kleur", content: { type: "colors" }, showContent: true },
+    { title: "Kleur", content: { type: "colors" }, showContent: false },
     { title: "Header", content: { type: "header" }, showContent: true },
     { title: "Body", content: { type: "body" }, showContent: true },
     { title: "Footer", content: { type: "footer" }, showContent: true },
@@ -28,4 +28,12 @@ export class AppComponent {
   toggleContent(option: Option) {
     option.showContent = !option.showContent;
   }
+
+  headers: Header[] = []; 
+  selectedHeader:Header | undefined;
+
+  onHeaderChange(header: Header) {
+    this.selectedHeader = header;
+  }
+
 }

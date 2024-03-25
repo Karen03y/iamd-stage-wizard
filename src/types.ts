@@ -12,3 +12,8 @@ export interface Header {
     id:number,
     headerContent:string
 }
+
+export interface Footer {
+    id:number,
+    footerContent:string
+}
