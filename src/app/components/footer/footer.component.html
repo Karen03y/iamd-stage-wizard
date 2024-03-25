@@ -1,0 +1,13 @@
+<div
+  class="footer"
+  *ngFor="let footer of footers"
+  [attr.id]="'footer-' + footer.id"
+>
+  Footer {{ footer.id }}
+  <input
+    type="radio"
+    name="selectedFooter"
+    [value]="footer.id"
+    [(ngModel)]="selectedFooter"
+  />
+</div>

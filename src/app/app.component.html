@@ -1,10 +1,43 @@
 <main class="main">
   <section class="left-container">
     <div class="scrollable">
-      <app-option></app-option>
+      <article *ngFor="let option of options">
+        <h1 (click)="toggleContent(option)">
+          {{ option.title }}
+          <span
+            class="arrow"
+            [ngClass]="{
+              'arrow-down': !option.showContent,
+              'arrow-up': option.showContent
+            }"
+          ></span>
+        </h1>
+        <div class="content" *ngIf="option.showContent">
+          <ng-switch [ngSwitch]="option.content.type">
+            <ng-container class="colors" *ngSwitchCase="'colors'">
+              <app-colors></app-colors>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'header'">
+              <app-header></app-header>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'body'">
+              <app-body></app-body>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'footer'">
+              <app-footer></app-footer>
+            </ng-container>
+          </ng-switch>
+        </div>
+      </article>
     </div>
   </section>
+
   <section class="right-container">
-    <article class="preview-doc">preview document</article>
+    <article class="preview-doc">
+      <div class="preview-header"></div>
+    </article>
   </section>
 </main>

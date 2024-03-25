@@ -8,3 +8,7 @@ export interface Content {
     type:string,
 }
 
+export interface Header {
+    id:number,
+    headerContent:string
+}

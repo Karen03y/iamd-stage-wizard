@@ -1,0 +1,9 @@
+<div class="body" *ngFor="let body of bodies" [attr.id]="'body-' + body.id">
+  Body {{ body.id }}
+  <input
+    type="radio"
+    name="selectedBody"
+    [value]="body.id"
+    [(ngModel)]="selectedBody"
+  />
+</div>

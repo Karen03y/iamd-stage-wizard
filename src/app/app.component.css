@@ -8,6 +8,7 @@ main {
   background-color: #f0f3f7;
 }
 
+/* Containers */
 .left-container,
 .right-container {
   width: 50%;
@@ -26,8 +27,65 @@ main {
   display: flex;
 }
 
+/* Preview Document */
 .preview-doc {
   margin: 20px 10px;
+  background-color: #ffffff;
   border: solid black 1px;
   width: 100%;
+}
+
+/* Articles */
+article {
+  border: solid grey 1px;
+  border-radius: 3px;
+  background-color: #eeeeee;
+  margin: 20px;
+  padding: 20px;
+}
+
+/* Arrows */
+.arrow {
+  float: right;
+  margin-right: 10px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+
+.arrow-up {
+  border-bottom: 5px solid black;
+}
+
+.arrow-down {
+  border-top: 5px solid black;
+}
+
+/* Content */
+article .content {
+  background-color: #ffffff;
+  margin: 10px auto;
+  padding: 20px;
+}
+
+/* Color Picker */
+.color-picker {
+  border: solid rgb(145, 145, 145) 1px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.color-picker-circle {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  border: 1px solid #535353;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.color-picker-circle:hover {
+  border-width: 2px;
 }
