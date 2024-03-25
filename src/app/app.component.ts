@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Footer, Header, Option } from '../types';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ColorsComponent } from './components/colors/colors.component';
 import { HeaderComponent } from "./components/header/header.component";
@@ -12,7 +13,7 @@ import { FooterComponent } from "./components/footer/footer.component";
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [CommonModule, FormsModule, ColorsComponent, HeaderComponent, BodyComponent, FooterComponent]
+    imports: [CommonModule, FormsModule, ColorsComponent, HeaderComponent, BodyComponent, FooterComponent, HttpClientModule]
 })
 export class AppComponent {
   title = 'iamd-document-wizard';

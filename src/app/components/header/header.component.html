@@ -8,8 +8,8 @@
     <input
       type="radio"
       name="selectedHeader"
-      [value]="header"
-      [(ngModel)]="selectedHeader"
+      [value]="header.id"
+      [(ngModel)]="selectedHeaderId"
       (change)="onHeaderChange(header)"
     />
   </div>
