@@ -14,8 +14,8 @@
         </h1>
         <div class="content" *ngIf="option.showContent">
           <ng-switch [ngSwitch]="option.content.type">
-            <ng-container class="colors" *ngSwitchCase="'colors'">
-              <app-colors></app-colors>
+            <ng-container class="styling" *ngSwitchCase="'styling'">
+              <app-styling></app-styling>
             </ng-container>
 
             <ng-container *ngSwitchCase="'header'">
@@ -27,7 +27,7 @@
             </ng-container>
 
             <ng-container *ngSwitchCase="'footer'">
-              <app-footer></app-footer>
+              <app-footer (footerChange)="onFooterChange($event)"></app-footer>
             </ng-container>
           </ng-switch>
         </div>
@@ -41,7 +41,10 @@
         class="preview-doc-header"
         [innerHTML]="selectedHeader?.content"
       ></div>
-      <div class="preview-doc-footer"></div>
+      <div
+        class="preview-doc-footer"
+        [innerHTML]="selectedFooter?.content"
+      ></div>
     </article>
   </section>
 </main>
