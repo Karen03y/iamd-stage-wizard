@@ -1,3 +1,5 @@
+import { SafeHtml } from "@angular/platform-browser";
+
 export interface Option {
     title: string;
     content:Content,
@@ -10,7 +12,7 @@ export interface Content {
 
 export interface Header {
     id:number,
-    headerContent:string
+    headerContent:SafeHtml
 }
 
 export interface Footer {
