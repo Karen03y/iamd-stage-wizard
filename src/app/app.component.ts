@@ -20,8 +20,8 @@ export class AppComponent {
 
   options: Option[] = [
     { title: "Kleur", content: { type: "colors" }, showContent: false },
-    { title: "Header", content: { type: "header" }, showContent: true },
-    { title: "Body", content: { type: "body" }, showContent: true },
+    { title: "Header", content: { type: "header" }, showContent: false },
+    { title: "Body", content: { type: "body" }, showContent: false },
     { title: "Footer", content: { type: "footer" }, showContent: true },
   ];
 
@@ -30,6 +30,7 @@ export class AppComponent {
     option.showContent = !option.showContent;
   }
 
+  /* HEADER */
   headers: Header[] = []; 
   selectedHeader:Header | undefined;
 
@@ -37,4 +38,11 @@ export class AppComponent {
     this.selectedHeader = header;
   }
 
+  /* FOOTER */
+  footers:Footer[] = [];
+  selectedFooter:Footer | undefined;
+
+  onFooterChange(footer:Footer) {
+    this.selectedFooter = footer;
+  }
 }

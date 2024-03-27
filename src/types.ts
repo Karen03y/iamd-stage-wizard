@@ -11,11 +11,9 @@ export interface Content {
 }
 
 export interface Header {
-    id:number,
-    headerContent:SafeHtml
+    content:SafeHtml
 }
 
 export interface Footer {
-    id:number,
-    footerContent:string
+    content:SafeHtml
 }

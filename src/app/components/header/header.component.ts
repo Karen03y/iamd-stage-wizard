@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; 
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Header } from '../../../types';
+import { LoadContentService } from '../../services/load-content.service';
 
 @Component({
   selector: 'app-header',
@@ -17,27 +16,25 @@ export class HeaderComponent {
 
   headers: Header[] = [];
 
-  selectedHeaderId: number | undefined;
-
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {} 
+  constructor(private loadContentService: LoadContentService) {}
 
   ngOnInit() {
     this.loadHeaderContent();
   }
 
   loadHeaderContent() {
-    this.http.get('assets/headers/header1.html', { responseType: 'text' }).subscribe(data => {
-      this.headers.push({ id: 1, headerContent: this.sanitizer.bypassSecurityTrustHtml(data) });
-    });
-  
-    this.http.get('assets/headers/header2.html', { responseType: 'text' }).subscribe(data => {
-      this.headers.push({ id: 2, headerContent: this.sanitizer.bypassSecurityTrustHtml(data) });
+    const headerFileNames = ['header1.html', 'header2.html']; 
+
+    headerFileNames.forEach(fileName => {
+      this.loadContentService.loadContent(fileName, 'header').subscribe((header: Header) => {
+        this.headers.push(header);
+      }, error => {
+        console.error(`Error loading header content from ${fileName}:`, error);
+      });
     });
   }
-  
 
   onHeaderChange(header: Header) {
-    this.selectedHeaderId = header.id;
-    this.headerChange.emit(header); 
+    this.headerChange.emit(header);
   }
 }
