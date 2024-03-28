@@ -1,11 +1,11 @@
-/* Bodies */
-.body {
+/* Mains */
+.main {
   height: 175px;
   margin: 5px auto;
   padding: 10px;
 }
 
-.body-content {
+.main-content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -13,7 +13,7 @@
   height: 100%;
 }
 
-.body-preview {
+.main-preview {
   background: white;
   border: black solid 1px;
   width: 100%;

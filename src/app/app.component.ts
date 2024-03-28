@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Footer, Header, Option } from '../types';
+import { Footer, Header, Main, Option } from '../types';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { StylingComponent } from './components/styling/styling.component';
 import { HeaderComponent } from "./components/header/header.component";
-import { BodyComponent } from "./components/body/body.component";
+import { MainComponent } from "./components/main/main.component";
 import { FooterComponent } from "./components/footer/footer.component";
 
 @Component({
@@ -13,7 +13,7 @@ import { FooterComponent } from "./components/footer/footer.component";
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, BodyComponent, FooterComponent, HttpClientModule]
+    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule]
 })
 export class AppComponent {
   title = 'iamd-document-wizard';
@@ -21,7 +21,7 @@ export class AppComponent {
   options: Option[] = [
     { title: "Styling", content: { type: "styling" }, showContent: true },
     { title: "Header", content: { type: "header" }, showContent: true },
-    { title: "Body", content: { type: "body" }, showContent: true },
+    { title: "Main", content: { type: "main" }, showContent: true },
     { title: "Footer", content: { type: "footer" }, showContent: true },
   ];
 
@@ -36,6 +36,14 @@ export class AppComponent {
 
   onHeaderChange(header: Header) {
     this.selectedHeader = header;
+  }
+
+  /* BODY */
+  mains:Main[]=[];
+  selectedMain:Main | undefined;
+
+  onMainChange(main:Main) {
+    this.selectedMain = main;
   }
 
   /* FOOTER */

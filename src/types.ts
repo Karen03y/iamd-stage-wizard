@@ -17,3 +17,7 @@ export interface Header {
 export interface Footer {
     content:SafeHtml
 }
+
+export interface Main {
+    content:SafeHtml
+}
