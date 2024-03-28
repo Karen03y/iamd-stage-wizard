@@ -110,9 +110,6 @@ article .content {
   flex: 0 0 auto; /*neem enkel benodigde ruimte in*/
 }
 
-.preview-doc-main {
-}
-
 .preview-doc-footer {
   margin-top: auto; /*duw naar onderkant*/
 }

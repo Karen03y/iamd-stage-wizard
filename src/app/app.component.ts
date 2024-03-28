@@ -7,6 +7,7 @@ import { StylingComponent } from './components/styling/styling.component';
 import { HeaderComponent } from "./components/header/header.component";
 import { MainComponent } from "./components/main/main.component";
 import { FooterComponent } from "./components/footer/footer.component";
+import { LoadContentService } from './services/load-content.service';
 
 @Component({
     selector: 'app-root',
@@ -19,20 +20,50 @@ export class AppComponent {
   title = 'iamd-document-wizard';
 
   options: Option[] = [
-    { title: "Styling", content: { type: "styling" }, showContent: false },
+    { title: "Styling", content: { type: "styling" }, showContent: true },
     { title: "Header", content: { type: "header" }, showContent: true },
     { title: "Main", content: { type: "main" }, showContent: true },
     { title: "Footer", content: { type: "footer" }, showContent: true },
   ];
 
+  selectedHeader:Header = {content:""};
+  selectedMain:Main = {content:""};
+  selectedFooter:Footer = {content:""}
+
+  constructor(private loadContentService: LoadContentService) {}
+
+  ngOnInit() {
+    this.loadDefaultContent();
+  }
+
+  loadDefaultContent() {
+    this.loadContentService.loadContent('header1.html', 'header').subscribe((header: Header) => {
+      this.selectedHeader = header;
+    }, (error) => {
+      console.error('Error loading default header content:', error);
+    });
+
+    this.loadContentService.loadContent("main1.html", "main").subscribe((main:Main)=> {
+      this.selectedMain = main;
+    }, (error)=>{
+      console.error('Error loading default main content:', error)
+    });
+
+    this.loadContentService.loadContent('footer1.html', 'footer').subscribe((footer:Footer)=>{
+      this.selectedFooter = footer;
+    }, (error)=>{
+      console.error('Error loading default footer content:', error)
+    });
+  }
+
   /* SHOW/HIDE CONTENT */
-  toggleContent(option: Option) {
+  toggleContent(option: Option) { 
     option.showContent = !option.showContent;
   }
 
   /* HEADER */
   headers: Header[] = []; 
-  selectedHeader:Header | undefined;
+
 
   onHeaderChange(header: Header) {
     this.selectedHeader = header;
@@ -40,7 +71,6 @@ export class AppComponent {
 
   /* BODY */
   mains:Main[]=[];
-  selectedMain:Main | undefined;
 
   onMainChange(main:Main) {
     this.selectedMain = main;
@@ -48,9 +78,20 @@ export class AppComponent {
 
   /* FOOTER */
   footers:Footer[] = [];
-  selectedFooter:Footer | undefined;
 
   onFooterChange(footer:Footer) {
     this.selectedFooter = footer;
+  }
+
+
+
+
+
+  backgroundColor: string = '#FFFFFF';
+  textColor: string = '#000000';
+
+  updateColors(event: any) {
+    this.backgroundColor = event.backgroundColor;
+    this.textColor = event.textColor;
   }
 }

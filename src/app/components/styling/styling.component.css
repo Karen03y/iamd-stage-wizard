@@ -22,7 +22,7 @@
 
 .tab-content {
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 10px 0 5px 10px;
 }
 
 .tab-pane {
@@ -41,11 +41,18 @@ select {
   border-radius: 4px;
 }
 
+.color-pickers-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .color-picker {
+  width: calc(50% - 10px);
   border: solid rgb(145, 145, 145) 1px;
   display: flex;
   align-items: center;
   margin-bottom: 5px;
+  margin-right: 10px;
 }
 
 .color-picker-circle {

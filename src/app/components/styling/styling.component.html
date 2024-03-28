@@ -3,22 +3,37 @@
     <li class="nav-item">
       <a
         class="nav-link"
-        [class.active]="selectedTab === 'fonts'"
-        (click)="selectTab('fonts')"
-        >Fonts</a
-      >
-    </li>
-    <li class="nav-item">
-      <a
-        class="nav-link"
         [class.active]="selectedTab === 'colors'"
         (click)="selectTab('colors')"
         >Kleuren</a
       >
     </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [class.active]="selectedTab === 'fonts'"
+        (click)="selectTab('fonts')"
+        >Fonts</a
+      >
+    </li>
   </ul>
 
   <div class="tab-content">
+    <div id="colors" class="tab-pane" [class.active]="selectedTab === 'colors'">
+      <div class="color-pickers-container">
+        <div class="color-picker" *ngFor="let color of colors">
+          <div
+            class="color-picker-circle"
+            ngx-colors-trigger
+            [(ngModel)]="color.value"
+            [style.background-color]="color.value"
+            (click)="updateColor(color.value, color.label)"
+          ></div>
+          <p>{{ color.label }}</p>
+        </div>
+      </div>
+    </div>
+
     <div id="fonts" class="tab-pane" [class.active]="selectedTab === 'fonts'">
       <form>
         <label for="fontSelect">Kies een lettertype:</label>
@@ -28,19 +43,6 @@
           </option>
         </select>
       </form>
-    </div>
-
-    <div id="colors" class="tab-pane" [class.active]="selectedTab === 'colors'">
-      <div class="color-picker" *ngFor="let color of colors">
-        <div
-          class="color-picker-circle"
-          ngx-colors-trigger
-          [(ngModel)]="color.value"
-          [style.background-color]="color.value"
-        ></div>
-        <p>Kleur {{ color.label }}</p>
-      </div>
-      <button class="btn" (click)="addColor()">Voeg kleur toe</button>
     </div>
   </div>
 </div>
