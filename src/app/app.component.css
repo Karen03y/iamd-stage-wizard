@@ -2,7 +2,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px 50px;
+  padding: 10px 50px;
   gap: 20px;
   min-height: 100vh;
   background: #0f1733;
@@ -13,17 +13,15 @@ main {
 .left-container,
 .right-container {
   width: 50%;
-
-  padding: 15px;
   background-color: rgb(235, 235, 235, 0.2);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
   opacity: 1;
-  min-height: 700px;
+  height: 90vh;
   overflow: hidden;
 }
 
 .scrollable {
-  max-height: 650px;
+  height: 90vh;
   overflow-y: auto;
 }
 
@@ -37,7 +35,7 @@ article {
   border: solid grey 1px;
   border-radius: 3px;
   background-color: #ffffff;
-  margin: 15px;
+  margin: 10px;
   padding: 20px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 }
@@ -100,10 +98,19 @@ article .content {
   flex: 1;
   display: flex;
   flex-direction: column;
+  padding: 10px 60px;
+  max-height: 700px;
+}
+
+.preview-doc-wrapper {
+  margin: 0 15px;
 }
 
 .preview-doc-header {
   flex: 0 0 auto; /*neem enkel benodigde ruimte in*/
+}
+
+.preview-doc-main {
 }
 
 .preview-doc-footer {

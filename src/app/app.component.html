@@ -23,7 +23,7 @@
             </ng-container>
 
             <ng-container *ngSwitchCase="'main'">
-              <app-main></app-main>
+              <app-main (mainChange)="onMainChange($event)"></app-main>
             </ng-container>
 
             <ng-container *ngSwitchCase="'footer'">
@@ -37,14 +37,17 @@
 
   <section class="right-container">
     <article class="preview-doc">
-      <div
-        class="preview-doc-header"
-        [innerHTML]="selectedHeader?.content"
-      ></div>
-      <div
-        class="preview-doc-footer"
-        [innerHTML]="selectedFooter?.content"
-      ></div>
+      <div class="preview-doc-wrapper">
+        <div
+          class="preview-doc-header"
+          [innerHTML]="selectedHeader?.content"
+        ></div>
+        <div class="preview-doc-main" [innerHTML]="selectedMain?.content"></div>
+        <div
+          class="preview-doc-footer"
+          [innerHTML]="selectedFooter?.content"
+        ></div>
+      </div>
     </article>
   </section>
 </main>
