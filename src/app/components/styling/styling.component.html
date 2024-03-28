@@ -22,13 +22,11 @@
     <div id="colors" class="tab-pane" [class.active]="selectedTab === 'colors'">
       <div class="color-pickers-container">
         <div class="color-picker" *ngFor="let color of colors">
-          <div
-            class="color-picker-circle"
-            ngx-colors-trigger
+          <input
+            type="color"
             [(ngModel)]="color.value"
-            [style.background-color]="color.value"
-            (click)="updateColor(color.value, color.label)"
-          ></div>
+            (change)="updateColor(color.value, color.label)"
+          />
           <p>{{ color.label }}</p>
         </div>
       </div>

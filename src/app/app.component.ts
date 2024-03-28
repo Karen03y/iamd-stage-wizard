@@ -1,36 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Footer, Header, Main, Option } from '../types';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { StylingComponent } from './components/styling/styling.component';
+import { FormsModule } from '@angular/forms'; 
 import { HeaderComponent } from "./components/header/header.component";
 import { MainComponent } from "./components/main/main.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { LoadContentService } from './services/load-content.service';
+import { StylingComponent } from './components/styling/styling.component';
+import { ColorUpdateService } from './services/color-update.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule]
+    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule] 
 })
 export class AppComponent {
   title = 'iamd-document-wizard';
 
   options: Option[] = [
-    { title: "Styling", content: { type: "styling" }, showContent: true },
-    { title: "Header", content: { type: "header" }, showContent: true },
-    { title: "Main", content: { type: "main" }, showContent: true },
-    { title: "Footer", content: { type: "footer" }, showContent: true },
+    { title: "Styling", content: { type: "styling" }, showContent: false },
+    { title: "Header", content: { type: "header" }, showContent: false, selected:false },
+    { title: "Main", content: { type: "main" }, showContent: false, selected:false },
+    { title: "Footer", content: { type: "footer" }, showContent: false, selected:false },
   ];
 
   selectedHeader:Header = {content:""};
   selectedMain:Main = {content:""};
   selectedFooter:Footer = {content:""}
 
-  constructor(private loadContentService: LoadContentService) {}
+  constructor(private loadContentService: LoadContentService, private colorUpdateService: ColorUpdateService) {} 
 
   ngOnInit() {
     this.loadDefaultContent();
@@ -39,7 +40,7 @@ export class AppComponent {
   loadDefaultContent() {
     this.loadContentService.loadContent('header1.html', 'header').subscribe((header: Header) => {
       this.selectedHeader = header;
-    }, (error) => {
+    }, error => {
       console.error('Error loading default header content:', error);
     });
 
@@ -62,36 +63,19 @@ export class AppComponent {
   }
 
   /* HEADER */
-  headers: Header[] = []; 
-
-
   onHeaderChange(header: Header) {
     this.selectedHeader = header;
   }
 
-  /* BODY */
-  mains:Main[]=[];
-
+  /* MAIN */
   onMainChange(main:Main) {
     this.selectedMain = main;
   }
 
   /* FOOTER */
-  footers:Footer[] = [];
-
   onFooterChange(footer:Footer) {
     this.selectedFooter = footer;
   }
 
 
-
-
-
-  backgroundColor: string = '#FFFFFF';
-  textColor: string = '#000000';
-
-  updateColors(event: any) {
-    this.backgroundColor = event.backgroundColor;
-    this.textColor = event.textColor;
-  }
 }

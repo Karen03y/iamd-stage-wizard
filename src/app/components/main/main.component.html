@@ -1,11 +1,9 @@
 <div class="main" *ngFor="let main of mains">
   <div class="main-content">
-    <div class="main-preview" [innerHTML]="main.content"></div>
-    <input
-      type="radio"
-      name="selectedMain"
-      [value]="main.content"
-      (change)="onMainChange(main)"
-    />
+    <div
+      class="main-preview"
+      [innerHTML]="main.content"
+      (click)="onMainChange(main)"
+    ></div>
   </div>
 </div>

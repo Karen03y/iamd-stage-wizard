@@ -54,16 +54,3 @@ select {
   margin-bottom: 5px;
   margin-right: 10px;
 }
-
-.color-picker-circle {
-  width: 30px;
-  height: 30px;
-  margin: 10px;
-  border: 1px solid #535353;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.color-picker-circle:hover {
-  border-width: 2px;
-}

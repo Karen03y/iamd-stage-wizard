@@ -37,28 +37,21 @@
 
   <section class="right-container">
     <article class="preview-doc">
-      <div
-        class="preview-doc-wrapper"
-        [style.background-color]="backgroundColor"
-      >
-        <div
-          class="preview-doc-header"
-          [style.background-color]="backgroundColor"
-          [style.color]="textColor"
-          [innerHTML]="selectedHeader.content"
-        ></div>
-        <div
-          class="preview-doc-main"
-          [style.background-color]="backgroundColor"
-          [style.color]="textColor"
-          [innerHTML]="selectedMain.content"
-        ></div>
-        <div
-          class="preview-doc-footer"
-          [style.background-color]="backgroundColor"
-          [style.color]="textColor"
-          [innerHTML]="selectedFooter.content"
-        ></div>
+      <div class="scrollable">
+        <div class="preview-doc-wrapper">
+          <div
+            class="preview-doc-header"
+            [innerHTML]="selectedHeader.content"
+          ></div>
+          <div
+            class="preview-doc-main"
+            [innerHTML]="selectedMain.content"
+          ></div>
+          <div
+            class="preview-doc-footer"
+            [innerHTML]="selectedFooter.content"
+          ></div>
+        </div>
       </div>
     </article>
   </section>

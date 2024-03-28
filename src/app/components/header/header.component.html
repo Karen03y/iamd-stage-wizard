@@ -1,11 +1,9 @@
 <div class="header" *ngFor="let header of headers">
   <div class="header-content">
-    <div class="header-preview" [innerHTML]="header.content"></div>
-    <input
-      type="radio"
-      name="selectedHeader"
-      [value]="header.content"
-      (change)="onHeaderChange(header)"
-    />
+    <div
+      class="header-preview"
+      [innerHTML]="header.content"
+      (click)="onHeaderChange(header)"
+    ></div>
   </div>
 </div>
