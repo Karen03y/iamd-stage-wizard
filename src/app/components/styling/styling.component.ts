@@ -16,8 +16,8 @@ export class StylingComponent {
   selectedTab: string = 'colors';
 
   colors = [ 
- /* { value: "#000000", label: "Tekst" },
-  { value: "#000000", label: "Vetgedrukte tekst" }, */
+ // { value: "#000000", label: "Tekst" },
+  { value: "#000000", label: "Vetgedrukte tekst" }, 
   { value: "#FFFFFF", label: "Achtergrond header" },
   { value: "#FFFFFF", label: "Achtergrond main" },
   { value: "#FFFFFF", label: "Achtergrond footer" },
@@ -37,6 +37,7 @@ export class StylingComponent {
       case 'Tekst':
         break;
       case 'Vetgedrukte tekst':
+        this.colorUpdateService.updateStrongText(color,"preview-doc-wrapper")
         break;
       case 'Achtergrond header':  
         this.colorUpdateService.updateBackground(color, "preview-doc-header"); 
