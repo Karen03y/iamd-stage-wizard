@@ -15,44 +15,26 @@ import { Header, Footer, Main } from '../../types';
 
 export class LoadContentService {
 
+  private assetPaths = {
+    'header': 'assets/headers/',
+    'main': 'assets/mains/',
+    'footer': 'assets/footers/'
+  };
+
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 
   loadContent(fileName: string, contentType: 'header' | 'main' | 'footer'): Observable<Header | Main | Footer> {
-    let contentUrl: string;
-
-    switch (contentType) {
-      case 'header':
-        contentUrl = `assets/headers/${fileName}`;
-        break;
-      case 'main':
-        contentUrl = `assets/mains/${fileName}`;
-        break;
-      case 'footer':
-        contentUrl = `assets/footers/${fileName}`;
-        break;
-      default:
-        throw new Error('Invalid content type');
-    }
+    const contentUrl = `${this.assetPaths[contentType]}${fileName}`;
 
     return this.http.get(contentUrl, { responseType: 'text' }).pipe(
       map(contentData => {
-        let sanitizedContent: SafeHtml;
-
-        switch (contentType) {
-          case 'header':
-          case 'main' :
-          case 'footer':
-            sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(contentData);
-            break;
-          default:
-            throw new Error('Invalid content type');
-        }
+        const sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(contentData) as SafeHtml;
 
         switch (contentType) {
           case 'header':
             return { content: sanitizedContent } as Header;
           case 'main' :
-            return {content: sanitizedContent} as Main;
+            return { content: sanitizedContent } as Main;
           case 'footer':
             return { content: sanitizedContent } as Footer;
           default:
@@ -61,5 +43,4 @@ export class LoadContentService {
       })
     );
   }
-
 }
