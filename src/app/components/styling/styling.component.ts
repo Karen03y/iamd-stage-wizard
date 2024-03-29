@@ -18,8 +18,8 @@ export class StylingComponent {
   colors = [ 
  /* { value: "#000000", label: "Tekst" },
   { value: "#000000", label: "Vetgedrukte tekst" }, */
-  { value: "#FFFFFF", label: "Achtergrond main" },
   { value: "#FFFFFF", label: "Achtergrond header" },
+  { value: "#FFFFFF", label: "Achtergrond main" },
   { value: "#FFFFFF", label: "Achtergrond footer" },
  //  { value: "#FFFFFF", label: "Achtergrond titels" },
 ];

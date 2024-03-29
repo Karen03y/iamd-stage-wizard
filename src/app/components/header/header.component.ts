@@ -23,7 +23,7 @@ export class HeaderComponent {
   }
 
   loadHeaderContent() {
-    const headerFileNames = ['header1.html', 'header2.html']; 
+    const headerFileNames = ['header1.html', 'header2.html', 'header3.html']; 
 
     headerFileNames.forEach(fileName => {
       this.loadContentService.loadContent(fileName, 'header').subscribe((header: Header) => {
