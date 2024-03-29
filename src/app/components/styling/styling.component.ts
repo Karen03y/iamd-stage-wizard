@@ -38,14 +38,14 @@ export class StylingComponent {
         break;
       case 'Vetgedrukte tekst':
         break;
-      case 'Achtergrond main':  
-        this.colorUpdateService.updateMainBackground(color); 
+      case 'Achtergrond header':  
+        this.colorUpdateService.updateBackground(color, "preview-doc-header"); 
       break;
-      case 'Achtergrond header' : 
-        this.colorUpdateService.updateHeaderBackground(color);
+      case 'Achtergrond main' : 
+        this.colorUpdateService.updateBackground(color, "preview-doc-main");
         break;
       case 'Achtergrond footer' :
-        this.colorUpdateService.updateFooterBackground(color);
+        this.colorUpdateService.updateBackground(color, "preview-doc-footer");
         break;
       case 'Achtergrond titels' :
       break;
