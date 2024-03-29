@@ -8,6 +8,11 @@ import { Header, Footer, Main } from '../../types';
 @Injectable({
   providedIn: 'root'
 })
+
+// *** inladen van inhoud van versch typen vanuit assets map + maakt inhoud veilig voordat ze w weergegeven *** //
+// constructor : inject HttpClient om verzoeken te maken om inhoud v bestanden in te laden, DomSanitizer maakt inhoud veilig
+// loadContent methode : 2 parameters: filename en contentType, met switch w bepaald welke URL in te laden. Retoureneert "Observable" : bevat geladen inhoud. Gebruik .map om geladen HTML te transformeren nr SafeHTML
+
 export class LoadContentService {
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
