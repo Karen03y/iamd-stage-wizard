@@ -3,14 +3,19 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
+// *** service om de kleuren die geselecteerd worden in "styling" door te geven aan het preview document *** //
+// methode accept één parameter : color in string formaat
+// zoekt DOM element met querySelector -> specifieren as HTMLElement
+// als element/klasse is gevonden : wijzig de achtergrondkleur van het element
+
 export class ColorUpdateService {
 
   constructor() { }
   updateMainBackground(color: string) {
-
-    const previewDocMain = document.querySelector('.preview-doc-main') as HTMLElement;
+    const previewDocMain = document.querySelector('.preview-doc-main') as HTMLElement; 
     if (previewDocMain) {
-      previewDocMain.style.backgroundColor = color;
+      previewDocMain.style.backgroundColor = color; // wijzig kleur v previewDocMain
       console.log(`Achtergrondkleur van preview-doc-main is bijgewerkt naar: ${color}`);
     } else {
       console.error('Element met de klasse "preview-doc-main" kon niet worden gevonden.');
