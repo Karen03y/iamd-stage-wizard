@@ -12,47 +12,67 @@ import { ColorUpdateService } from '../../services/color-update.service';
 })
 
 export class StylingComponent {
-  selectedTab: string = 'colors';
+  headerColors = [
+    { id: "header-text", value: "#000000", label: "Tekst" },
+    { id: "header-strong-text", value: "#000000", label: "Vetgedrukte tekst" },
+    { id: "header-background", value: "#FFFFFF", label: "Achtergrond" }
+  ];
 
-  colors = [ 
- // { value: "#000000", label: "Tekst" },
-  { value: "#000000", label: "Vetgedrukte tekst" }, 
-  { value: "#FFFFFF", label: "Achtergrond header" },
-  { value: "#FFFFFF", label: "Achtergrond main" },
-  { value: "#FFFFFF", label: "Achtergrond footer" },
- //  { value: "#FFFFFF", label: "Achtergrond titels" },
-];
+  mainColors = [
+    { id: "main-text", value: "#000000", label: "Tekst" },
+    { id: "main-strong-text", value: "#000000", label: "Vetgedrukte tekst" },
+    { id: "main-background", value: "#FFFFFF", label: "Achtergrond" },
+    { id: "main-borders", value: "#000000", label: "Tabel borders" },
+    { id: "main-titles-text", value: "#000000", label: "Tabel titels" },
+    { id: "main-titles-background", value: "#FFFFFF", label: "Tabel achtergrond " }
+  ];
 
-  @Output() colorChange: EventEmitter<any> = new EventEmitter<any>();
+  footerColors = [
+    { id: "footer-text", value: "#000000", label: "Tekst" },
+    { id: "footer-strong-text", value: "#000000", label: "Vetgedrukte tekst" },
+    { id: "footer-background", value: "#FFFFFF", label: "Achtergrond" },
+  ];
 
   constructor(private colorUpdateService: ColorUpdateService) {}
 
-  selectTab(tabName: string) {
-    this.selectedTab = tabName;
-  }
-
-  updateColor(color: string, label: string) {
-    switch(label) {
-      case 'Tekst':
+  updateColor(color: string, id: string) {
+    switch(id) {
+      case 'header-text':
+        this.colorUpdateService.updateText(color, 'preview-doc-header');
         break;
-      case 'Vetgedrukte tekst':
-        this.colorUpdateService.updateStrongText(color,"preview-doc-wrapper")
+      case 'header-strong-text':
+        this.colorUpdateService.updateStrongText(color, 'preview-doc-header');
         break;
-      case 'Achtergrond header':  
-        this.colorUpdateService.updateBackground(color, "preview-doc-header"); 
-      break;
-      case 'Achtergrond main' : 
+      case 'header-background':
+        this.colorUpdateService.updateBackground(color, "preview-doc-header");
+        break;
+      case 'main-text':
+        this.colorUpdateService.updateText(color, 'preview-doc-main');
+        break;
+      case 'main-strong-text':
+        this.colorUpdateService.updateStrongText(color, 'preview-doc-main');
+        break;
+      case 'main-background':
         this.colorUpdateService.updateBackground(color, "preview-doc-main");
         break;
-      case 'Achtergrond footer' :
+      case 'main-titles-background' :
+        this.colorUpdateService.updateTableTitlesBackground(color, "preview-doc-main");
+        break;
+      case 'main-titles-text' : 
+        this.colorUpdateService.updateTableTitlesText(color, "preview-doc-main");
+        break;
+      case 'footer-text':
+        this.colorUpdateService.updateText(color, 'preview-doc-footer');
+        break;
+      case 'footer-strong-text':
+        this.colorUpdateService.updateStrongText(color, 'preview-doc-footer');
+        break;
+      case 'footer-background':
         this.colorUpdateService.updateBackground(color, "preview-doc-footer");
         break;
-      case 'Achtergrond titels' :
-      break;
+      default:
+        console.error(`Invalid color id: ${id}`);
     }
   }
 
-  /* fonts */
-  availableFonts: string[] = ['Arial', 'Verdana', 'Helvetica', 'Times New Roman', 'Courier New'];
-  selectedFont: string = '';
 }

@@ -11,7 +11,6 @@
 
   export class ColorUpdateService {
 
-    constructor() { }
     updateBackground(color: string, elementClass: string) {
       const previewElement = document.querySelector(`.${elementClass}`) as HTMLElement;
       if (previewElement) {
@@ -19,6 +18,40 @@
         console.log(`Achtergrondkleur van ${elementClass} is bijgewerkt naar: ${color}`);
       } else {
         console.error(`Element met de klasse "${elementClass}" kon niet worden gevonden.`);
+      }
+    }
+
+    updateText(color: string, elementClass: string) {
+      const previewElement = document.querySelector(`.${elementClass}`) as HTMLElement;
+      if (previewElement) {
+        previewElement.style.color = color;
+        console.log(`Kleur van ${elementClass} is bijgewerkt naar: ${color}`);
+      } else {
+        console.error(`Element met de klasse "${elementClass}" kon niet worden gevonden.`);
+      }
+    }
+
+    updateTableTitlesBackground(color: string, tableClass: string) {
+      const tableTitles = document.querySelectorAll(`.${tableClass} thead th`) as NodeListOf<HTMLElement>;
+      if (tableTitles.length > 0) {
+        tableTitles.forEach(title => {
+          title.style.backgroundColor = color;
+        });
+        console.log(`Achtergrondkleur van de table title in ${tableClass} is bijgewerkt naar: ${color}`);
+      } else {
+        console.error(`Geen table titles gevonden met klasse "${tableClass}".`);
+      }
+    }
+
+    updateTableTitlesText(color: string, tableClass: string) {
+      const tableTitles = document.querySelectorAll(`.${tableClass} thead th`) as NodeListOf<HTMLElement>;
+      if (tableTitles.length > 0) {
+        tableTitles.forEach(title => {
+          title.style.color = color;
+        });
+        console.log(`Kleur van de table title in ${tableClass} is bijgewerkt naar: ${color}`);
+      } else {
+        console.error(`Geen table titles gevonden met klasse "${tableClass}".`);
       }
     }
     

@@ -1,48 +1,46 @@
-<div>
-  <ul class="nav-tabs">
-    <li class="nav-item">
-      <a
-        class="nav-link"
-        [class.active]="selectedTab === 'colors'"
-        (click)="selectTab('colors')"
-        >Kleuren</a
-      >
-    </li>
-    <!--  <li class="nav-item">
-      <a
-        class="nav-link"
-        [class.active]="selectedTab === 'fonts'"
-        (click)="selectTab('fonts')"
-        >Fonts</a
-      >
-    </li>-->
-  </ul>
-
-  <div class="tab-content">
-    <div id="colors" class="tab-pane" [class.active]="selectedTab === 'colors'">
-      <div class="color-pickers-container">
-        <div class="color-picker" *ngFor="let color of colors">
-          <input
-            type="color"
-            id="color"
-            [(ngModel)]="color.value"
-            (change)="updateColor(color.value, color.label)"
-          />
-          <label for="color">{{ color.label }}</label>
-        </div>
-      </div>
-
-      <!--   <div id="fonts" class="tab-pane" [class.active]="selectedTab === 'fonts'">
-      <form>
-        <label for="fontSelect">Kies een lettertype:</label>
-        <select id="fontSelect" name="selectedFont" [(ngModel)]="selectedFont">
-          <option *ngFor="let font of availableFonts" [value]="font">
-            {{ font }}
-          </option>
-        </select>
-      </form>
+<div class="color-pickers-container">
+  <!-- Header -->
+  <div class="color-picker-column">
+    <h2>HEADER</h2>
+    <div class="color-picker" *ngFor="let color of headerColors">
+      <input
+        type="color"
+        class="header-color"
+        id="{{ color.id }}"
+        [(ngModel)]="color.value"
+        (change)="updateColor(color.value, color.id)"
+      />
+      <label for="{{ color.id }}">{{ color.label }}</label>
     </div>
-  </div> -->
+  </div>
+
+  <!-- Main -->
+  <div class="color-picker-column">
+    <h2>MAIN</h2>
+    <div class="color-picker" *ngFor="let color of mainColors">
+      <input
+        type="color"
+        class="main-color"
+        id="{{ color.id }}"
+        [(ngModel)]="color.value"
+        (change)="updateColor(color.value, color.id)"
+      />
+      <label for="{{ color.id }}">{{ color.label }}</label>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="color-picker-column">
+    <h2>FOOTER</h2>
+    <div class="color-picker" *ngFor="let color of footerColors">
+      <input
+        type="color"
+        class="footer-color"
+        id="{{ color.id }}"
+        [(ngModel)]="color.value"
+        (change)="updateColor(color.value, color.id)"
+      />
+      <label for="{{ color.id }}">{{ color.label }}</label>
     </div>
   </div>
 </div>
