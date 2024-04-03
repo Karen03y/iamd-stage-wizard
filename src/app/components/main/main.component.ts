@@ -23,7 +23,7 @@ ngOnInit() {
 }
 
 loadMainContent() {
-  const mainFileNames = ['main1.html'];
+  const mainFileNames = ['main1.html', 'main2.html'];
 
   mainFileNames.forEach(fileName=> {
     this.loadContentService.loadContent(fileName, 'main').subscribe((main:Main)=>{

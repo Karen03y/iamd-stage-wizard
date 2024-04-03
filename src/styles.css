@@ -7,30 +7,6 @@
   padding: 0;
 }
 
-/* Radio Inputs */
-input[type="radio"] {
-  margin: 5px;
-}
-
-.btn {
-  cursor: pointer;
-  background-color: #7f7f7f;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 15px;
-  margin: 4px 2px;
-  transition-duration: 0.2s;
-}
-
-.btn:hover {
-  background-color: #ffffff;
-  color: black;
-}
-
 /* styling voor headers algemeen */
 
 .header-opt-alg {

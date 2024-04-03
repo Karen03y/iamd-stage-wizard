@@ -22,9 +22,9 @@ export class AppComponent {
 
   options: Option[] = [
     { title: "Styling", content: { type: "styling" }, showContent: false },
-    { title: "Header", content: { type: "header" }, showContent: true, selected:false },
-    { title: "Main", content: { type: "main" }, showContent: false, selected:false },
-    { title: "Footer", content: { type: "footer" }, showContent: false, selected:false },
+    { title: "Header", content: { type: "header" }, showContent: false },
+    { title: "Main", content: { type: "main" }, showContent: true},
+    { title: "Footer", content: { type: "footer" }, showContent: true },
   ];
 
   selectedHeader:Header = {content:""};
