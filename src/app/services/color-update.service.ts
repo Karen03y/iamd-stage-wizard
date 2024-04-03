@@ -67,6 +67,18 @@
         console.error(`Container element met de klasse "${containerElementClass}" kon niet worden gevonden.`);
       }
     }
-
+    
+    updateTableBorder(color: string, containerClass: string) {
+      const containerElements = document.querySelectorAll(`.${containerClass} table`) as NodeListOf<HTMLTableElement>;
+      if (containerElements.length > 0) {
+        containerElements.forEach(table => {
+          table.style.borderColor = color;
+        });
+        console.log(`Randkleur van alle tabellen in ${containerClass} is bijgewerkt naar: ${color}`);
+      } else {
+        console.error(`Geen tabelelementen gevonden binnen container met de klasse "${containerClass}".`);
+      }
+    }
+    
     }
 

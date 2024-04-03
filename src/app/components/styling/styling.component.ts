@@ -55,6 +55,9 @@ export class StylingComponent {
       case 'main-background':
         this.colorUpdateService.updateBackground(color, "preview-doc-main");
         break;
+      case 'main-borders': 
+        this.colorUpdateService.updateTableBorder(color,"preview-doc-main");
+      break;
       case 'main-titles-background' :
         this.colorUpdateService.updateTableTitlesBackground(color, "preview-doc-main");
         break;
