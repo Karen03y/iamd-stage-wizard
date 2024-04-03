@@ -21,8 +21,8 @@ export class AppComponent {
   title = 'iamd-document-wizard';
 
   options: Option[] = [
-    { title: "Styling", content: { type: "styling" }, showContent: false },
-    { title: "Header", content: { type: "header" }, showContent: false },
+    { title: "Styling", content: { type: "styling" }, showContent: true },
+    { title: "Header", content: { type: "header" }, showContent: true },
     { title: "Main", content: { type: "main" }, showContent: true},
     { title: "Footer", content: { type: "footer" }, showContent: true },
   ];

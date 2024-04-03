@@ -10,8 +10,6 @@
 
   .main1 h1 {
     font-size: 14px;
-    font-weight: 500;
-    color: black;
     margin: 10px 0 5px 0;
   }
 
@@ -68,7 +66,6 @@
 
   .main1 .factuur-totaal .totaal-incl {
     font-size: 14px;
-    font-weight: bolder;
   }
 
   /* BETALING */
@@ -131,12 +128,14 @@
   <table class="factuur-items">
     <thead>
       <tr>
-        <th style="width: 40%">Omschrijving</th>
-        <th style="width: 10%">Prijs</th>
-        <th style="width: 6.5%">Aantal</th>
-        <th style="width: 16%">Totaal Excl.</th>
-        <th style="width: 9.5%">BTW</th>
-        <th style="text-align: right; width: 18%">Totaal Incl.</th>
+        <th style="width: 40%"><strong>Omschrijving</strong></th>
+        <th style="width: 10%"><strong>Prijs</strong></th>
+        <th style="width: 6.5%"><strong>Aantal</strong></th>
+        <th style="width: 16%"><strong>Totaal excl.</strong></th>
+        <th style="width: 9.5%"><strong>BTW</strong></th>
+        <th style="text-align: right; width: 18%">
+          <strong>Totaal incl.</strong>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -197,8 +196,10 @@
           <!--[BTW_ITEM_#]-->
         </td>
         <td class="totaal-incl">
-          &euro;
-          <!--[VERKOOPFACTUUR_TOTAAL_INCL_BTW]-->
+          <strong>
+            &euro;
+            <!--[VERKOOPFACTUUR_TOTAAL_INCL_BTW]-->
+          </strong>
         </td>
       </tr>
     </tbody>

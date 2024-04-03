@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { NgxColorsModule } from 'ngx-colors';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ColorUpdateService } from '../../services/color-update.service';
@@ -7,7 +6,7 @@ import { ColorUpdateService } from '../../services/color-update.service';
 @Component({
   selector: 'app-styling',
   standalone:true,
-  imports:[NgxColorsModule, CommonModule, FormsModule],
+  imports:[CommonModule, FormsModule],
   templateUrl: './styling.component.html',
   styleUrls: ['./styling.component.css']
 })
