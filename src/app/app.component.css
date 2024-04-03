@@ -70,27 +70,6 @@ article .content {
   padding: 20px;
 }
 
-/* Color Picker */
-.color-picker {
-  border: solid rgb(145, 145, 145) 1px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.color-picker-circle {
-  width: 30px;
-  height: 30px;
-  margin: 10px;
-  border: 1px solid #535353;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.color-picker-circle:hover {
-  border-width: 2px;
-}
-
 /* Preview Document */
 .preview-doc {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);

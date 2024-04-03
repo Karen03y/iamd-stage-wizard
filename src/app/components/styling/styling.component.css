@@ -22,7 +22,6 @@
 
 .tab-content {
   border: 1px solid #ccc;
-  padding: 10px 0 5px 10px;
 }
 
 .tab-pane {
@@ -33,24 +32,28 @@
   display: block;
 }
 
-select {
-  margin: 5px;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.color-pickers-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .color-picker {
-  width: calc(50% - 10px);
-  border: solid rgb(145, 145, 145) 1px;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  margin-bottom: 5px;
-  margin-right: 10px;
+  gap: 10px;
+}
+
+#color {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 34px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+#color::-webkit-color-swatch {
+  border-radius: 50%;
+  border: 2px solid #a9a9a9;
+}
+#color::-moz-color-swatch {
+  border-radius: 50%;
+  border: 2px solid #a9a9a9;
 }

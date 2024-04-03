@@ -24,15 +24,15 @@
         <div class="color-picker" *ngFor="let color of colors">
           <input
             type="color"
+            id="color"
             [(ngModel)]="color.value"
             (change)="updateColor(color.value, color.label)"
           />
-          <p>{{ color.label }}</p>
+          <label for="color">{{ color.label }}</label>
         </div>
       </div>
-    </div>
 
-    <!--   <div id="fonts" class="tab-pane" [class.active]="selectedTab === 'fonts'">
+      <!--   <div id="fonts" class="tab-pane" [class.active]="selectedTab === 'fonts'">
       <form>
         <label for="fontSelect">Kies een lettertype:</label>
         <select id="fontSelect" name="selectedFont" [(ngModel)]="selectedFont">
@@ -43,5 +43,6 @@
       </form>
     </div>
   </div> -->
+    </div>
   </div>
 </div>
