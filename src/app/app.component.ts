@@ -77,6 +77,31 @@ export class AppComponent {
     this.selectedFooter = footer;
   }
 
+  copyHeader() {
+    const header = document.querySelector('.preview-doc-header');
+    if (header) {
+      const htmlCode = header.innerHTML;
+      this.showHTMLDialog(htmlCode);
+    }
+  }
+  
+  copyMain() {
+    const main = document.querySelector('.preview-doc-main');
+    if (main) {
+      const htmlCode = main.innerHTML;
+      this.showHTMLDialog(htmlCode);
+    }
+  }
+  
+  copyFooter() {
+    const footer = document.querySelector('.preview-doc-footer');
+    if (footer) {
+      const htmlCode = footer.innerHTML;
+      this.showHTMLDialog(htmlCode);
+    }
+  }
+  
+
   showHTML() {
     const previewDocWrapper = document.querySelector('.preview-doc-wrapper');
     if (previewDocWrapper) {
