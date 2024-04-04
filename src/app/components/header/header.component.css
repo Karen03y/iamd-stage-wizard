@@ -5,6 +5,10 @@
   border: solid black 1px;
 }
 
+.header:hover {
+  border: solid rgb(74, 74, 74) 2px;
+}
+
 .header-content {
   display: flex;
   flex-direction: column;

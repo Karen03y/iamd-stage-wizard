@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-// Enum voor CSS-stijleigenschappen
 enum StyleProperty {
   BackgroundColor = 'backgroundColor',
   Color = 'color',
@@ -44,8 +43,8 @@ export class ColorUpdateService {
     this.updateTableTitles(color, tableClass, StyleProperty.Color);
   }
 
-  updateStrongText(color: string, containerElementClass: string) {
-    this.updateStyle(color, `.${containerElementClass} strong`, StyleProperty.Color);
+  updateStrongText(color: string, elementClass: string) {
+    this.updateStyle(color, `.${elementClass} strong`, StyleProperty.Color);
   }
 
   updateTableBorder(color: string, containerClass: string) {

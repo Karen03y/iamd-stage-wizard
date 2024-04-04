@@ -77,5 +77,33 @@ export class AppComponent {
     this.selectedFooter = footer;
   }
 
+  showHTML() {
+    const previewDocWrapper = document.querySelector('.preview-doc-wrapper');
+    if (previewDocWrapper) {
+      const htmlCode = previewDocWrapper.innerHTML;
+      this.showHTMLDialog(htmlCode);
+    }
+  }
+  
+  showHTMLDialog(htmlCode: string) {
+    const textarea = document.createElement('textarea');
+    textarea.value = htmlCode;
+  
+    const dialog = document.createElement('div');
+    dialog.className = 'html-dialog';
+    dialog.appendChild(textarea);
+  
+    document.body.appendChild(dialog);
+  
+    textarea.select();
+    textarea.setSelectionRange(0, 99999);
+  
+    document.execCommand('copy');
+  
+    document.body.removeChild(dialog);
+  
+    alert('HTML-code is gekopieerd naar het klembord.');
+  }
+  
 
 }

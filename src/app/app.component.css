@@ -94,3 +94,7 @@ article .content {
 .preview-doc-footer {
   margin-top: auto; /*duw naar onderkant*/
 }
+
+button {
+  cursor: pointer;
+}
