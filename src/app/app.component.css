@@ -81,6 +81,7 @@ article .content {
 }
 
 .preview-doc-wrapper {
+  background-color: #ffffff;
   border: solid 1px #cacaca;
   margin: 10px 20px;
   display: flex;
@@ -95,6 +96,58 @@ article .content {
   margin-top: auto; /*duw naar onderkant*/
 }
 
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
 button {
+  border: none;
+  box-shadow: 0 2px 2px #28b49824, 0 3px 1px -2px #28b49833, 0 1px 5px #28b4981f;
+  width: 100px;
+  height: 30px;
+  font-size: 11px;
+  font-weight: bolder;
+  vertical-align: middle;
+  text-transform: uppercase;
+  background-color: #28b498;
+  color: #fff;
+  text-align: center;
   cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.drag-drop-container {
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.drag-drop-container:hover {
+  border-color: #28b498;
+}
+
+.drag-drop-label {
+  display: block;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.drag-drop-label span {
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  max-height: 200px;
+  margin-top: 10px;
 }

@@ -18,6 +18,16 @@
               <app-styling></app-styling>
             </ng-container>
 
+            <ng-container class="logo" *ngSwitchCase="'logo'">
+              <input type="file" (change)="handleLogoUpload($event)" />
+              <img
+                *ngIf="logoUrl"
+                [src]="logoUrl"
+                alt="Logo"
+                style="width: 100px"
+              />
+            </ng-container>
+
             <ng-container *ngSwitchCase="'header'">
               <app-header (headerChange)="onHeaderChange($event)"></app-header>
             </ng-container>
@@ -38,11 +48,6 @@
   <section class="right-container">
     <article class="preview-doc">
       <div class="scrollable">
-        <button (click)="showHTML()">Kopieer HTML-code</button>
-        <button (click)="copyHeader()">Kopieer header code</button>
-        <button (click)="copyMain()">Kopieer main code</button>
-        <button (click)="copyFooter()">Kopieer footer code</button>
-
         <div class="preview-doc-wrapper">
           <div
             class="preview-doc-header"
@@ -57,6 +62,12 @@
             [innerHTML]="selectedFooter.content"
           ></div>
         </div>
+      </div>
+      <div class="button-container">
+        <button (click)="copyHTML()">Copy HTML</button>
+        <button (click)="copyHeader()">Copy header</button>
+        <button (click)="copyMain()">Copy main</button>
+        <button (click)="copyFooter()">Copy footer</button>
       </div>
     </article>
   </section>

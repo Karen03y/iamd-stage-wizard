@@ -9,6 +9,7 @@
   font-size: 18px;
   font-weight: normal;
   margin-bottom: 5px;
+  text-decoration: underline 3px #28b498;
 }
 
 .color-picker-column {

@@ -22,6 +22,7 @@ export class AppComponent {
 
   options: Option[] = [
     { title: "Styling", content: { type: "styling" }, showContent: true },
+    { title: "Logo", content: {type:"logo"}, showContent:true},
     { title: "Header", content: { type: "header" }, showContent: true },
     { title: "Main", content: { type: "main" }, showContent: true},
     { title: "Footer", content: { type: "footer" }, showContent: true },
@@ -62,6 +63,20 @@ export class AppComponent {
     option.showContent = !option.showContent;
   }
 
+  /* LOGO UPLOAD */
+  logoUrl: string = '';
+
+  handleLogoUpload(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.logoUrl = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  
   /* HEADER */
   onHeaderChange(header: Header) {
     this.selectedHeader = header;
@@ -77,6 +92,7 @@ export class AppComponent {
     this.selectedFooter = footer;
   }
 
+  /* COPY HTML FROM PREVIEW-DOC */
   copyHeader() {
     const header = document.querySelector('.preview-doc-header');
     if (header) {
@@ -101,8 +117,7 @@ export class AppComponent {
     }
   }
   
-
-  showHTML() {
+  copyHTML() {
     const previewDocWrapper = document.querySelector('.preview-doc-wrapper');
     if (previewDocWrapper) {
       const htmlCode = previewDocWrapper.innerHTML;
@@ -113,20 +128,14 @@ export class AppComponent {
   showHTMLDialog(htmlCode: string) {
     const textarea = document.createElement('textarea');
     textarea.value = htmlCode;
-  
     const dialog = document.createElement('div');
     dialog.className = 'html-dialog';
     dialog.appendChild(textarea);
-  
     document.body.appendChild(dialog);
-  
     textarea.select();
     textarea.setSelectionRange(0, 99999);
-  
     document.execCommand('copy');
-  
     document.body.removeChild(dialog);
-  
     alert('HTML-code is gekopieerd naar het klembord.');
   }
   
