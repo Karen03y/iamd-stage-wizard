@@ -9,13 +9,15 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { LoadContentService } from './services/load-content.service';
 import { StylingComponent } from './components/styling/styling.component';
 import { ColorUpdateService } from './services/color-update.service';
+import { HtmlDialogComponent } from './components/html-dialog/html-dialog.component';
+import { MatDialog } from '@angular/material/dialog'; 
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule] 
+    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent] 
 })
 export class AppComponent {
   title = 'iamd-document-wizard';
@@ -32,7 +34,7 @@ export class AppComponent {
   selectedMain:Main = {content:""};
   selectedFooter:Footer = {content:""}
 
-  constructor(private loadContentService: LoadContentService, private colorUpdateService: ColorUpdateService) {} 
+  constructor(private loadContentService: LoadContentService, private colorUpdateService: ColorUpdateService, private dialog: MatDialog) {} 
 
   ngOnInit() {
     this.loadDefaultContent();
@@ -127,18 +129,12 @@ export class AppComponent {
   }
   
   showHTMLDialog(htmlCode: string) {
-    const textarea = document.createElement('textarea');
-    textarea.value = htmlCode;
-    const dialog = document.createElement('div');
-    dialog.className = 'html-dialog';
-    dialog.appendChild(textarea);
-    document.body.appendChild(dialog);
-    textarea.select();
-    textarea.setSelectionRange(0, 99999);
-    document.execCommand('copy');
-    document.body.removeChild(dialog);
-    alert('HTML-code is gekopieerd naar het klembord.');
+    console.log(htmlCode); 
+    const dialogRef = this.dialog.open(HtmlDialogComponent, {
+      data: { htmlCode: htmlCode }
+    });
   }
   
+
 
 }

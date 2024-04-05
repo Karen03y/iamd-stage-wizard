@@ -19,3 +19,8 @@
   height: auto;
   overflow: auto;
 }
+
+.main-preview:hover {
+  border: solid rgb(74, 74, 74) 2px;
+  cursor: pointer;
+}
