@@ -18,7 +18,7 @@
               <app-styling></app-styling>
             </ng-container>
 
-            <ng-container class="logo" *ngSwitchCase="'logo'">
+            <!--   <ng-container class="logo" *ngSwitchCase="'logo'">
               <input type="file" (change)="handleLogoUpload($event)" />
               <img
                 *ngIf="logoUrl"
@@ -27,6 +27,7 @@
                 style="width: 100px"
               />
             </ng-container>
+            -->
 
             <ng-container *ngSwitchCase="'header'">
               <app-header (headerChange)="onHeaderChange($event)"></app-header>

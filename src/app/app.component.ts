@@ -22,7 +22,7 @@ export class AppComponent {
 
   options: Option[] = [
     { title: "Styling", content: { type: "styling" }, showContent: true },
-    { title: "Logo", content: {type:"logo"}, showContent:true},
+  //  { title: "Logo", content: {type:"logo"}, showContent:true},
     { title: "Header", content: { type: "header" }, showContent: true },
     { title: "Main", content: { type: "main" }, showContent: true},
     { title: "Footer", content: { type: "footer" }, showContent: true },
@@ -76,6 +76,7 @@ export class AppComponent {
       reader.readAsDataURL(file);
     }
   }
+  
   
   /* HEADER */
   onHeaderChange(header: Header) {
