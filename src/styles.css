@@ -1,5 +1,15 @@
+:root {
+  --dark-blue-gradient: linear-gradient(90deg, #0f1734 0%, #1f2d6d 100%);
+  --green-color: #28b498;
+  --light-grey-color: #dddddd;
+
+  --brand-primary: #0d1636eb;
+  --brand-accent: #008771;
+  --background-color: #f0f3f7;
+}
+
 * {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: Arial, sans-serif;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
