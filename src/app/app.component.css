@@ -2,33 +2,81 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 50px;
-  gap: 20px;
+  padding: 10px 20px;
+  gap: 5px;
   min-height: 100vh;
-  background: #0f1733;
-  background: linear-gradient(90deg, #0f1734 0%, #1f2d6d 100%);
+  background-color: #f0f3f7;
 }
 
-/* Containers */
+/*********************** CONTAINERS ***********************/
 .left-container,
 .right-container,
 .center-container {
-  width: 42.5%; /* Breedte aangepast naar 40% */
-  background-color: rgb(235, 235, 235, 0.2);
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+  width: 42.5%;
   opacity: 1;
   height: 95vh;
   overflow: hidden;
-}
-
-.left-container {
-  width: 15%; /* Breedte van linkercontainer aangepast naar 20% */
 }
 
 .scrollable {
   height: 93vh;
   overflow-y: auto;
 }
+
+/*********************** LEFT CONTAINER ***********************/
+
+.left-container {
+  width: 15%;
+  padding: 10px 5px;
+}
+
+.left-container .button-wrapper {
+  background-color: #fff;
+  padding: 10px;
+}
+
+.left-container h1 {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.left-container button {
+  border: none;
+  width: 95%;
+  height: 40px;
+  vertical-align: center;
+  text-transform: uppercase;
+  background-color: var(--light-grey-color);
+  text-align: left;
+  cursor: pointer;
+  padding: 0 20px;
+  margin: 4px;
+  color: #000;
+}
+
+.left-container button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  background-color: var(--green-color);
+}
+
+.selected-title {
+  background-color: var(--green-color) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/*********************** CENTER CONTAINER ***********************/
+
+.center-container article {
+  padding: 0;
+}
+
+.center-container article.show-content {
+  padding: 20px;
+}
+
+/*********************** RIGHT CONTAINER ***********************/
 
 .right-container {
   display: flex;
@@ -37,35 +85,10 @@ main {
 
 /* Articles */
 article {
-  border: solid grey 1px;
   border-radius: 3px;
   background-color: #ffffff;
   margin: 10px;
   padding: 20px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
-}
-
-article h1 {
-  cursor: pointer;
-}
-
-/* Arrows */
-.arrow {
-  float: right;
-  margin-right: 10px;
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  cursor: pointer;
-}
-
-.arrow-up {
-  border-bottom: 5px solid black;
-}
-
-.arrow-down {
-  border-top: 5px solid black;
 }
 
 /* Content */
@@ -77,7 +100,6 @@ article .content {
 
 /* Preview Document */
 .preview-doc {
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -87,7 +109,7 @@ article .content {
 
 .preview-doc-wrapper {
   background-color: #ffffff;
-  border: solid 2px #939393;
+  border: solid 1px #939393;
   margin: 10px 20px;
   display: flex;
   flex-direction: column;

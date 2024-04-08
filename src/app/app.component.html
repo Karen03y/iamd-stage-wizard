@@ -1,46 +1,34 @@
 <main class="main">
   <section class="left-container">
-    <div class="scrollable">
-      <article *ngFor="let option of options">
-        <h1 (click)="toggleContent(option)">
-          {{ option.title }}
-        </h1>
-      </article>
+    <div class="button-wrapper">
+      <button
+        *ngFor="let option of options; let i = index"
+        (click)="toggleContent(i)"
+        [ngClass]="{ 'selected-title': selectedOptionIndex === i }"
+      >
+        <h1>{{ option.title }}</h1>
+      </button>
     </div>
   </section>
 
   <section class="center-container">
     <div class="scrollable">
-      <article *ngFor="let option of options">
-        <div class="content" *ngIf="option.showContent">
-          <ng-switch [ngSwitch]="option.content.type">
-            <ng-container class="styling" *ngSwitchCase="'styling'">
+      <article *ngFor="let option of options; let i = index">
+        <div class="content" *ngIf="selectedOptionIndex === i">
+          <ng-container [ngSwitch]="options[selectedOptionIndex].content.type">
+            <ng-container *ngSwitchCase="'styling'">
               <app-styling></app-styling>
             </ng-container>
-
-            <!--   <ng-container class="logo" *ngSwitchCase="'logo'">
-              <input type="file" (change)="handleLogoUpload($event)" />
-              <img
-                *ngIf="logoUrl"
-                [src]="logoUrl"
-                alt="Logo"
-                style="width: 100px"
-              />
-            </ng-container>
-            -->
-
             <ng-container *ngSwitchCase="'header'">
               <app-header (headerChange)="onHeaderChange($event)"></app-header>
             </ng-container>
-
             <ng-container *ngSwitchCase="'main'">
               <app-main (mainChange)="onMainChange($event)"></app-main>
             </ng-container>
-
             <ng-container *ngSwitchCase="'footer'">
               <app-footer (footerChange)="onFooterChange($event)"></app-footer>
             </ng-container>
-          </ng-switch>
+          </ng-container>
         </div>
       </article>
     </div>

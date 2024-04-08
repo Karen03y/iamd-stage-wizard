@@ -24,7 +24,7 @@ export class AppComponent {
 
   options: Option[] = [
     { title: "Styling", content: { type: "styling" }, showContent: true },
-  //  { title: "Logo", content: {type:"logo"}, showContent:true},
+    { title: "Logo", content: {type:"logo"}, showContent:true},
     { title: "Header", content: { type: "header" }, showContent: true },
     { title: "Main", content: { type: "main" }, showContent: true},
     { title: "Footer", content: { type: "footer" }, showContent: true },
@@ -61,8 +61,14 @@ export class AppComponent {
   }
 
   /* SHOW/HIDE CONTENT */
-  toggleContent(option: Option) { 
-    option.showContent = !option.showContent;
+  selectedOptionIndex: number = -1;
+
+  toggleContent(index: number) {
+    if (this.selectedOptionIndex === index) {
+      this.selectedOptionIndex = -1; // verberg de content als dezelfde optie wordt geselecteerd
+    } else {
+      this.selectedOptionIndex = index; // toon de content van de geselecteerde optie
+    }
   }
 
   /* LOGO UPLOAD */
