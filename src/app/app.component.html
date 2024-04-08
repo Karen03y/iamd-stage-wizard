@@ -4,14 +4,14 @@
       <article *ngFor="let option of options">
         <h1 (click)="toggleContent(option)">
           {{ option.title }}
-          <span
-            class="arrow"
-            [ngClass]="{
-              'arrow-down': !option.showContent,
-              'arrow-up': option.showContent
-            }"
-          ></span>
         </h1>
+      </article>
+    </div>
+  </section>
+
+  <section class="center-container">
+    <div class="scrollable">
+      <article *ngFor="let option of options">
         <div class="content" *ngIf="option.showContent">
           <ng-switch [ngSwitch]="option.content.type">
             <ng-container class="styling" *ngSwitchCase="'styling'">
