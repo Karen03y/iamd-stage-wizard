@@ -1,15 +1,17 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Main } from '../../../types';
 import { LoadContentService } from '../../services/load-content.service';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, MatTabsModule],
   templateUrl: './main.component.html',
-  styleUrl: './main.component.css'
+  styleUrl: './main.component.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class MainComponent {
 @Output() mainChange: EventEmitter<Main> = new EventEmitter<Main>();

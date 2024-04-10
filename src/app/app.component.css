@@ -3,7 +3,6 @@ main {
   justify-content: center;
   align-items: center;
   padding: 10px 20px;
-  gap: 5px;
   min-height: 100vh;
   background-color: #f0f3f7;
 }
