@@ -1,0 +1,4 @@
+<div class="logo-upload">
+  <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+  <img *ngIf="selectedImage" [src]="getImageUrl()" class="preview" />
+</div>

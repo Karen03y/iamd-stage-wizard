@@ -10,14 +10,15 @@ import { LoadContentService } from './services/load-content.service';
 import { StylingComponent } from './components/styling/styling.component';
 import { ColorUpdateService } from './services/color-update.service';
 import { HtmlDialogComponent } from './components/html-dialog/html-dialog.component';
-import { MatDialog } from '@angular/material/dialog'; 
+import { MatDialog } from '@angular/material/dialog';
+import { LogoUploadComponent } from "./components/logo-upload/logo-upload.component"; 
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent] 
+    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent]
 })
 export class AppComponent {
   title = 'iamd-document-wizard';
@@ -142,5 +143,9 @@ export class AppComponent {
   }
   
 
-
+  handleImageUploaded(image: File): void {
+    // Doe hier iets met de geüploade afbeelding, bijvoorbeeld opslaan of tonen.
+  }
+  
 }
+

@@ -19,6 +19,11 @@
             <ng-container *ngSwitchCase="'styling'">
               <app-styling></app-styling>
             </ng-container>
+            <ng-container *ngSwitchCase="'logo'">
+              <app-logo-upload
+                (imageUploaded)="handleLogoUpload($event)"
+              ></app-logo-upload>
+            </ng-container>
             <ng-container *ngSwitchCase="'header'">
               <app-header (headerChange)="onHeaderChange($event)"></app-header>
             </ng-container>
