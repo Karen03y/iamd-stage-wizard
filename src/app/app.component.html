@@ -21,7 +21,7 @@
             </ng-container>
             <ng-container *ngSwitchCase="'logo'">
               <app-logo-upload
-                (imageUploaded)="handleLogoUpload($event)"
+                (logoUploaded)="handleLogoUploaded($event)"
               ></app-logo-upload>
             </ng-container>
             <ng-container *ngSwitchCase="'header'">
@@ -47,6 +47,7 @@
             class="preview-doc-header"
             [innerHTML]="selectedHeader.content"
           ></div>
+
           <div
             class="preview-doc-main"
             [innerHTML]="selectedMain.content"

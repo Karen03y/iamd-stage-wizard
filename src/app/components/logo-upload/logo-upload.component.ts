@@ -11,8 +11,9 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 })
 
 export class LogoUploadComponent {
-  @Output() imageUploaded = new EventEmitter<File>();
+  @Output() logoUploaded = new EventEmitter<string>(); 
   selectedImage: File | undefined;
+  imageUrl: SafeUrl | string = '';
 
   constructor(private sanitizer: DomSanitizer) {}
 
@@ -20,14 +21,13 @@ export class LogoUploadComponent {
     const file: File = event.target.files[0];
     if (file) {
       this.selectedImage = file;
-      this.imageUploaded.emit(file);
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imageUrl = reader.result as string;
+        this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(imageUrl); 
+        this.logoUploaded.emit(imageUrl); 
+      };
+      reader.readAsDataURL(file);
     }
-  }
-
-  getImageUrl(): SafeUrl | string {
-    if (this.selectedImage) {
-      return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(this.selectedImage));
-    }
-    return '';
   }
 }

@@ -5,6 +5,6 @@
     &plus;&nbsp;&nbsp;Uploaden
     <input type="file" (change)="onFileSelected($event)" accept="image/*" />
   </label>
-  <div *ngIf="!selectedImage" class="preview">Geen afbeelding geüpload</div>
-  <img *ngIf="selectedImage" [src]="getImageUrl()" class="preview" />
+  <div *ngIf="!imageUrl" class="preview">Geen afbeelding geüpload</div>
+  <img *ngIf="imageUrl" [src]="imageUrl" class="preview" />
 </div>

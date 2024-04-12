@@ -12,6 +12,7 @@ import { ColorUpdateService } from './services/color-update.service';
 import { HtmlDialogComponent } from './components/html-dialog/html-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoUploadComponent } from "./components/logo-upload/logo-upload.component"; 
+import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-root',
@@ -35,7 +36,7 @@ export class AppComponent {
   selectedMain:Main = {content:""};
   selectedFooter:Footer = {content:""}
 
-  constructor(private loadContentService: LoadContentService, private colorUpdateService: ColorUpdateService, private dialog: MatDialog) {} 
+  constructor(private loadContentService: LoadContentService, private colorUpdateService: ColorUpdateService, private dialog: MatDialog, private sanitizer:DomSanitizer) {} 
 
   ngOnInit() {
     this.loadDefaultContent();
@@ -66,24 +67,18 @@ export class AppComponent {
 
   toggleContent(index: number) {
     if (this.selectedOptionIndex === index) {
-      this.selectedOptionIndex = -1; // verberg de content als dezelfde optie wordt geselecteerd
+      this.selectedOptionIndex = -1; 
     } else {
-      this.selectedOptionIndex = index; // toon de content van de geselecteerde optie
+      this.selectedOptionIndex = index; 
     }
   }
 
   /* LOGO UPLOAD */
   logoUrl: string = '';
 
-  handleLogoUpload(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.logoUrl = reader.result as string;
-      };
-      reader.readAsDataURL(file);
-    }
+  handleLogoUploaded(url: string): void {
+    this.logoUrl = url;
+    this.selectedHeader.content = `<img src="${url}" alt="Logo" style="max-width: 200px; max-height: 200px;">`;
   }
   
   
@@ -141,11 +136,4 @@ export class AppComponent {
       data: { htmlCode: htmlCode }
     });
   }
-  
-
-  handleImageUploaded(image: File): void {
-    // Doe hier iets met de geüploade afbeelding, bijvoorbeeld opslaan of tonen.
-  }
-  
 }
-
