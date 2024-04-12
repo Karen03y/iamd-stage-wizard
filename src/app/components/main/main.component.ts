@@ -3,41 +3,62 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Main } from '../../../types';
 import { LoadContentService } from '../../services/load-content.service';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-main',
   standalone: true,
   imports: [FormsModule, CommonModule, MatTabsModule],
   templateUrl: './main.component.html',
-  styleUrl: './main.component.css',
+  styleUrls: ['./main.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
 export class MainComponent {
-@Output() mainChange: EventEmitter<Main> = new EventEmitter<Main>();
+  @Output() mainChange: EventEmitter<Main> = new EventEmitter<Main>();
 
-mains: Main[] = [];
+  mains: Main[] = [];
 
-constructor(private loadContentService:LoadContentService) {}
+  constructor(private loadContentService: LoadContentService, private http: HttpClient) {}
 
-ngOnInit() {
-  this.loadMainContent();
-}
+  ngOnInit() {
+    this.loadMainContent();
+  }
 
-loadMainContent() {
-  const mainFileNames = ['main1.html', 'main2.html'];
-
-  mainFileNames.forEach(fileName=> {
-    this.loadContentService.loadContent(fileName, 'main').subscribe((main:Main)=>{
-      this.mains.push(main);
-    }, error => {
-      console.error(`Error loading main content from ${fileName}:`, error);
+  loadMainContent() {
+    const mainFileNames = ['main1.html', 'main2.html'];
+    const tabLabels = ['Verkoopfactuur', 'Aankoopfactuur', 'Offerte'];
+  
+    tabLabels.forEach((label, index) => {
+      const folderName = this.getMainFolderName(label);
+      mainFileNames.forEach((fileName) => {
+        this.loadContentService.loadContent(fileName, 'main', folderName).subscribe(
+          (main: Main) => {
+            this.mains.push(main);
+          },
+          (error) => {
+            console.error(`Error loading main content from ${fileName} in folder ${folderName}:`, error);
+          }
+        );
+      });
     });
-  });
-}
+  }
+  
 
-onMainChange(main:Main) {
-  this.mainChange.emit(main);
-}
+  getMainFolderName(tabLabel: string): string {
+    switch (tabLabel) {
+      case 'Verkoopfactuur':
+        return 'VF';
+      case 'Aankoopfactuur':
+        return 'AF';
+      case 'Offerte':
+        return 'Offertes';
+      default:
+        return '';
+    }
+  }
 
+  onMainChange(main: Main) {
+    this.mainChange.emit(main);
+  }
 }

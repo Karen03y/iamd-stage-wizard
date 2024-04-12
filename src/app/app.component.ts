@@ -59,12 +59,13 @@ export class AppComponent {
       console.error('Error loading default header content:', error);
     });
 
-    this.loadContentService.loadContent("main1.html", "main").subscribe((main:Main)=> {
+    this.loadContentService.loadContent('main1.html', 'main', 'VF').subscribe((main: Main) => {
       console.log('Default main content loaded:', main);
       this.selectedMain = main;
-    }, (error)=>{
-      console.error('Error loading default main content:', error)
+    }, error => {
+      console.error('Error loading default main content:', error);
     });
+    
 
     this.loadContentService.loadContent('footer1.html', 'footer').subscribe((footer:Footer)=>{
       console.log('Default footer content loaded:', footer);

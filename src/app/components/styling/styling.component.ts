@@ -78,4 +78,13 @@ export class StylingComponent {
     }
   }
 
+  selectedFont: string = 'Arial'; 
+
+  selectFont(event: Event): void {
+    const selectedFont = (event.target as HTMLSelectElement).value;
+    if (selectedFont) {
+      this.selectedFont = selectedFont;
+    }
+  }
+
 }
