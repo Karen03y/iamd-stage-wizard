@@ -1,0 +1,223 @@
+<style>
+  .main1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    text-align: left;
+    line-height: 1.2;
+    width: 95%;
+    margin: 20px auto;
+  }
+
+  .main1 h1 {
+    font-size: 14px;
+    margin: 10px 0 5px 0;
+  }
+
+  .main1 table {
+    border-collapse: collapse;
+    width: 95%;
+    margin: auto;
+  }
+
+  /* FACTUUR INFO */
+  .main1 .factuur-info {
+    margin: 20px 0;
+    border-collapse: collapse;
+  }
+
+  .main1 .factuur-info td {
+    width: 50%;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+
+  /* FACTUUR ITEMS */
+
+  .main1 .factuur-items {
+    border: solid 2px transparent;
+  }
+
+  .main1 .factuur-items thead th {
+    background-color: #c9c9c9;
+    color: black;
+    font-weight: bolder;
+    text-align: left;
+    padding: 5px;
+  }
+
+  .main1 .factuur-items .item-omschr {
+    border-top: solid 1px black;
+  }
+
+  .main1 .item-samenstelling ul {
+    margin: 0 0 0 10px;
+  }
+
+  /* BTW BEREKENING EN FACTUUR TOTAAL */
+  .main1 .factuur-totaal {
+    margin-top: 20px;
+    break-inside: avoid;
+  }
+
+  .main1 .factuur-totaal th {
+    border-bottom: solid black 1px;
+    font-weight: 400;
+  }
+
+  .main1 .factuur-totaal td,
+  .main1 .factuur-totaal th {
+    padding: 10px 3px 10px 0;
+    border-top: solid black 1px;
+    text-align: right;
+  }
+
+  .main1 .factuur-totaal .totaal-incl {
+    font-size: 14px;
+  }
+
+  /* BETALING */
+
+  .main1 .betaling {
+    width: 60%;
+    text-align: left;
+    padding: 10px;
+    margin: 20px 0 30px 0;
+    position: relative;
+    border-radius: 10px;
+    break-inside: avoid;
+  }
+</style>
+
+<main class="main1">
+  DIT IS EEN AANKOOPFACTUUR
+
+  <table class="factuur-info">
+    <tbody>
+      <tr>
+        <td style="width: 55%">
+          <table>
+            <tbody>
+              <tr>
+                <td style="max-width: 30%"><strong>Betreft:</strong></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><strong>Klant Nr.:</strong></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><strong>Datum:</strong></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><strong>Vervaldag:</strong></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><strong>IBAN:</strong></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><strong>BIC:</strong></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td style="vertical-align: center; width: 45%">
+          [VERKOOPFACTUUR_KLANTNAAM]
+          <br />[VERKOOPFACTUUR_ADRESREGEL] <br />[VERKOOPFACTUUR_POSTCODE]
+          [VERKOOPFACTUUR_STAD] <br />[VERKOOPFACTUUR_BTWNUMMER]
+          <br />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="factuur-items">
+    <thead>
+      <tr>
+        <th style="width: 40%">Omschrijving</th>
+        <th style="width: 10%">Prijs</th>
+        <th style="width: 6.5%">Aantal</th>
+        <th style="width: 16%">Totaal excl.</th>
+        <th style="width: 9.5%">BTW</th>
+        <th style="text-align: right; width: 18%">Totaal incl.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="7" style="padding-top: 20px">
+          <strong>[ITEM_TITEL]</strong>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="7">[ITEM_TEKST]</td>
+      </tr>
+      <tr class="item-omschr">
+        <td style="width: 50%"><!--[ITEM_OMSCHRIJVING] [PARAMETERS]--></td>
+        <td style="width: 10%">&euro;<!--[&euro;PRIJS]--></td>
+        <td style="width: 6%"><!--[#]--></td>
+        <td style="width: 10%">&euro;<!--[&euro;TOTAAL]--></td>
+        <td style="width: 6%">&percnt;<!--[BTW%]--></td>
+        <td style="text-align: right; width: 12%">
+          &euro;<!--[&euro;TOTAAL_INCL]-->
+        </td>
+      </tr>
+      <tr class="item-samenstelling">
+        <td colspan="7">
+          <ul>
+            <li>[ITEM_SAMENSTELLING]: [#] [EH]</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="7">[ITEM_SAMENSTELLING_SUM_TITEL]Materiaal</td>
+      </tr>
+      <tr class="item-samenstelling">
+        <td colspan="7">
+          <ul>
+            <li><!--[ITEM_SAMENSTELLING_SUM] [#] [EH]--></li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="factuur-totaal">
+    <tbody>
+      <tr>
+        <td>BTW &percnt;</td>
+        <td>BTW excl.</td>
+        <td>BTW bedrag</td>
+        <td>BTW incl.</td>
+      </tr>
+      <tr>
+        <td>&percnt;<!--[BTW%]--></td>
+        <td>
+          &euro;
+          <!--[VERKOOPFACTUUR_TOTAAL_EXCL_BTW]-->
+        </td>
+        <td>
+          &euro;
+          <!--[BTW_ITEM_#]-->
+        </td>
+        <td class="totaal-incl">
+          <strong>
+            &euro;
+            <!--[VERKOOPFACTUUR_TOTAAL_INCL_BTW]-->
+          </strong>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- BETALING -->
+  <div class="betaling">
+    <p>
+      <strong>Mededeling te vermelden bij betaling:&nbsp;<br /></strong>
+    </p>
+    <br />De algemene voorwaarden zijn van toepassing.
+  </div>
+</main>

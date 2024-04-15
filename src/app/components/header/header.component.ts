@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   constructor(private loadContentService: LoadContentService, private sanitizer: DomSanitizer) {} 
 
   ngOnInit() {
-    // laad headers bij initialiseren v component
+    // laad headers bij init component
     this.loadHeaderContent();
   }
 

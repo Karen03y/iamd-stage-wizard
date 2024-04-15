@@ -17,7 +17,9 @@ import { HttpClient } from '@angular/common/http';
 export class MainComponent {
   @Output() mainChange: EventEmitter<Main> = new EventEmitter<Main>();
 
-  mains: Main[] = [];
+  verkoopfactuurMains: Main[] = [];
+  aankoopfactuurMains: Main[] = [];
+  offerteMains: Main[] = [];
 
   constructor(private loadContentService: LoadContentService, private http: HttpClient) {}
 
@@ -26,38 +28,47 @@ export class MainComponent {
   }
 
   loadMainContent() {
-    const mainFileNames = ['main1.html', 'main2.html'];
     const tabLabels = ['Verkoopfactuur', 'Aankoopfactuur', 'Offerte'];
   
-    tabLabels.forEach((label, index) => {
-      mainFileNames.forEach((fileName) => {
-        this.loadContentService.loadContent(fileName, 'main').subscribe(
-          (main: Main) => {
-            this.mains.push(main);
+    tabLabels.forEach((label) => {
+      let folderName: 'VF' | 'AF' | 'Offertes';
+      switch (label) {
+        case 'Verkoopfactuur':
+          folderName = 'VF';
+          break;
+        case 'Aankoopfactuur':
+          folderName = 'AF';
+          break;
+        case 'Offerte':
+          folderName = 'Offertes';
+          break;
+        default:
+          return;
+      }
+      if (folderName) {
+        const contentType = `main_${folderName}` as "main_VF" | "main_AF" | "main_Offertes"; // contentType expliciet casten
+        this.loadContentService.loadAllContent(folderName, contentType).subscribe(
+          (mains: Main[]) => {
+            switch (label) {
+              case 'Verkoopfactuur':
+                this.verkoopfactuurMains.push(...mains);
+                break;
+              case 'Aankoopfactuur':
+                this.aankoopfactuurMains.push(...mains);
+                break;
+              case 'Offerte':
+                this.offerteMains.push(...mains);
+                break;
+            }
           },
           (error) => {
-            console.error(`Error loading main content from ${fileName}:`, error);
+            console.error(`Error loading main content for ${folderName}:`, error);
           }
         );
-      });
+      }
     });
   }
   
-  
-
-  getMainFolderName(tabLabel: string): string {
-    switch (tabLabel) {
-      case 'Verkoopfactuur':
-        return 'VF';
-      case 'Aankoopfactuur':
-        return 'AF';
-      case 'Offerte':
-        return 'Offertes';
-      default:
-        return '';
-    }
-  }
-
   onMainChange(main: Main) {
     this.mainChange.emit(main);
   }

@@ -52,7 +52,7 @@ export class AppComponent {
       console.error('Error loading default header content:', error);
     });
   
-    this.loadContentService.loadContent('main1.html', 'main').subscribe((main: Main) => {
+    this.loadContentService.loadContent('main1.html', 'main_VF').subscribe((main: Main) => {
       console.log('Default main content loaded:', main);
       this.selectedMain = main;
     }, error => {

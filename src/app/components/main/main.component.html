@@ -2,7 +2,7 @@
 
 <mat-tab-group animationDuration="0ms">
   <mat-tab label="Verkoopfactuur">
-    <div class="mains" *ngFor="let main of mains">
+    <div class="mains" *ngFor="let main of verkoopfactuurMains">
       <div class="main-content">
         <div
           class="main-preview"
@@ -13,8 +13,7 @@
     </div>
   </mat-tab>
   <mat-tab label="Aankoopfactuur">
-    Aankoopfactuur
-    <div class="mains" *ngFor="let main of mains">
+    <div class="mains" *ngFor="let main of aankoopfactuurMains">
       <div class="main-content">
         <div
           class="main-preview"
@@ -24,9 +23,8 @@
       </div>
     </div>
   </mat-tab>
-  <mat-tab label="Offerte"
-    >Offerte
-    <div class="mains" *ngFor="let main of mains">
+  <mat-tab label="Offerte">
+    <div class="mains" *ngFor="let main of offerteMains">
       <div class="main-content">
         <div
           class="main-preview"
