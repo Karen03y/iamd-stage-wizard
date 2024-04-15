@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ColorUpdateService } from '../../services/color-update.service';
@@ -79,6 +79,11 @@ export class StylingComponent {
   }
 
   selectedFont: string = 'Arial'; 
+
+  fontOptions: {key:string, value:string}[] = [
+    { key : 'Arial',value : "font-family:Arial, Helvetica, sans-serif"},
+    
+  ]
 
   selectFont(event: Event): void {
     const selectedFont = (event.target as HTMLSelectElement).value;

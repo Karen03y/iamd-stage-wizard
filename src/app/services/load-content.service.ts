@@ -12,22 +12,14 @@ export class LoadContentService {
 
   private assetPaths = {
     'header': 'assets/headers/',
-    'footer': 'assets/footers/'
+    'footer': 'assets/footers/',
+    'main': 'assets/mains/VF/'
   };
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 
-  loadContent(fileName: string, contentType: 'header' | 'main' | 'footer', mainCategory?: string): Observable<Header | Main | Footer> {
-    let contentUrl: string;
-
-    if (contentType === 'main') {
-      if (!mainCategory) {
-        throw new Error('Main category must be provided when loading main content');
-      }
-      contentUrl = `assets/mains/${mainCategory}/${fileName}`;
-    } else {
-      contentUrl = `${this.assetPaths[contentType]}${fileName}`;
-    }
+  loadContent(fileName: string, contentType: 'header' | 'main' | 'footer'): Observable<Header | Main | Footer> {
+    const contentUrl = `${this.assetPaths[contentType]}${fileName}`;
 
     return this.http.get(contentUrl, { responseType: 'text' }).pipe(
       map(contentData => {

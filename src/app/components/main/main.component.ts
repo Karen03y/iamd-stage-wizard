@@ -30,19 +30,19 @@ export class MainComponent {
     const tabLabels = ['Verkoopfactuur', 'Aankoopfactuur', 'Offerte'];
   
     tabLabels.forEach((label, index) => {
-      const folderName = this.getMainFolderName(label);
       mainFileNames.forEach((fileName) => {
-        this.loadContentService.loadContent(fileName, 'main', folderName).subscribe(
+        this.loadContentService.loadContent(fileName, 'main').subscribe(
           (main: Main) => {
             this.mains.push(main);
           },
           (error) => {
-            console.error(`Error loading main content from ${fileName} in folder ${folderName}:`, error);
+            console.error(`Error loading main content from ${fileName}:`, error);
           }
         );
       });
     });
   }
+  
   
 
   getMainFolderName(tabLabel: string): string {

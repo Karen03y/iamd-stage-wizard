@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, SecurityContext } from '@angular/core';
+import { Component, SecurityContext } from '@angular/core';
 import { Footer, Header, Main, Option } from '../types';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,7 +12,7 @@ import { ColorUpdateService } from './services/color-update.service';
 import { HtmlDialogComponent } from './components/html-dialog/html-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoUploadComponent } from "./components/logo-upload/logo-upload.component"; 
-import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
 @Component({
     selector: 'app-root',
@@ -41,13 +41,6 @@ export class AppComponent {
   ngOnInit() {
     console.log('AppComponent initialized');
     this.loadDefaultContent();
-  
-    // Controleren op opgeslagen logo URL in lokale opslag
-    const storedLogoUrl = localStorage.getItem('logoUrl');
-    if (storedLogoUrl) {
-      console.log('Retrieved logo URL from local storage:', storedLogoUrl);
-      this.logoUrl = storedLogoUrl;
-    }
   }
 
   loadDefaultContent() {
@@ -58,15 +51,14 @@ export class AppComponent {
     }, error => {
       console.error('Error loading default header content:', error);
     });
-
-    this.loadContentService.loadContent('main1.html', 'main', 'VF').subscribe((main: Main) => {
+  
+    this.loadContentService.loadContent('main1.html', 'main').subscribe((main: Main) => {
       console.log('Default main content loaded:', main);
       this.selectedMain = main;
     }, error => {
       console.error('Error loading default main content:', error);
     });
-    
-
+  
     this.loadContentService.loadContent('footer1.html', 'footer').subscribe((footer:Footer)=>{
       console.log('Default footer content loaded:', footer);
       this.selectedFooter = footer;
@@ -74,6 +66,7 @@ export class AppComponent {
       console.error('Error loading default footer content:', error)
     });
   }
+  
 
   /* SHOW/HIDE CONTENT */
   selectedOptionIndex: number = -1;
