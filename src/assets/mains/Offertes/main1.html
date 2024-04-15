@@ -91,7 +91,6 @@
 </style>
 
 <main class="main1">
-  DIT IS EEN OFFERTE
   <table class="factuur-info">
     <tbody>
       <tr>
@@ -99,36 +98,28 @@
           <table>
             <tbody>
               <tr>
-                <td style="max-width: 30%"><strong>Betreft:</strong></td>
-                <td></td>
+                <td><strong>Uw referentie:</strong></td>
+                <td><!--[OFFERTE_PONUMMER]--></td>
               </tr>
               <tr>
                 <td><strong>Klant Nr.:</strong></td>
-                <td></td>
+                <td><!--[KLANT_NUMMER]--></td>
               </tr>
               <tr>
                 <td><strong>Datum:</strong></td>
-                <td></td>
+                <td><!--[VERSIE_DATUM]--></td>
               </tr>
               <tr>
                 <td><strong>Vervaldag:</strong></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><strong>IBAN:</strong></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td><strong>BIC:</strong></td>
-                <td></td>
+                <td><!--[VERSIE_VERVALDATUM]--></td>
               </tr>
             </tbody>
           </table>
         </td>
         <td style="vertical-align: center; width: 45%">
-          [VERKOOPFACTUUR_KLANTNAAM]
-          <br />[VERKOOPFACTUUR_ADRESREGEL] <br />[VERKOOPFACTUUR_POSTCODE]
-          [VERKOOPFACTUUR_STAD] <br />[VERKOOPFACTUUR_BTWNUMMER]
+          [OFFERTE_KLANTNAAM]
+          <br />[OFFERTE_ADRESREGEL] <br />[OFFERTE_POSTCODE] [OFFERTE_STAD]
+          <br />[OFFERTE_BTWNUMMER]
           <br />
         </td>
       </tr>
@@ -138,12 +129,13 @@
   <table class="factuur-items">
     <thead>
       <tr>
-        <th style="width: 40%">Omschrijving</th>
-        <th style="width: 10%">Prijs</th>
-        <th style="width: 6.5%">Aantal</th>
-        <th style="width: 16%">Totaal excl.</th>
-        <th style="width: 9.5%">BTW</th>
-        <th style="text-align: right; width: 18%">Totaal incl.</th>
+        <th style="width: 39.2962%">Omschrijving</th>
+        <th style="width: 10.4517%">Prijs</th>
+        <th style="width: 6.6964%">Aantal</th>
+        <th style="width: 6.7043%">Eenh</th>
+        <th style="width: 12.7574%">Totaal Excl.</th>
+        <th style="width: 10.1733%">BTW</th>
+        <th style="text-align: right; width: 15.2049%">Totaal Incl.</th>
       </tr>
     </thead>
     <tbody>
@@ -156,14 +148,13 @@
         <td colspan="7">[ITEM_TEKST]</td>
       </tr>
       <tr class="item-omschr">
-        <td style="width: 50%"><!--[ITEM_OMSCHRIJVING] [PARAMETERS]--></td>
-        <td style="width: 10%">&euro;<!--[&euro;PRIJS]--></td>
-        <td style="width: 6%"><!--[#]--></td>
-        <td style="width: 10%">&euro;<!--[&euro;TOTAAL]--></td>
-        <td style="width: 6%">&percnt;<!--[BTW%]--></td>
-        <td style="text-align: right; width: 12%">
-          &euro;<!--[&euro;TOTAAL_INCL]-->
-        </td>
+        <td style="width: 50%">[ITEM_OMSCHRIJVING] [PARAMETERS]</td>
+        <td style="width: 10%">[&euro;PRIJS]</td>
+        <td style="width: 6%">[#]</td>
+        <td style="width: 6%">[EH]</td>
+        <td style="width: 10%">[&euro;TOTAAL]</td>
+        <td style="width: 6%">[BTW%]</td>
+        <td style="text-align: right; width: 12%">[&euro;TOTAAL_INCL]</td>
       </tr>
       <tr class="item-samenstelling">
         <td colspan="7">
@@ -178,7 +169,7 @@
       <tr class="item-samenstelling">
         <td colspan="7">
           <ul>
-            <li><!--[ITEM_SAMENSTELLING_SUM] [#] [EH]--></li>
+            <li>[ITEM_SAMENSTELLING_SUM] [#] [EH]</li>
           </ul>
         </td>
       </tr>
@@ -197,7 +188,7 @@
         <td>&percnt;<!--[BTW%]--></td>
         <td>
           &euro;
-          <!--[VERKOOPFACTUUR_TOTAAL_EXCL_BTW]-->
+          <!--[OFFERTE_TOTAAL_EXCL_BTW]-->
         </td>
         <td>
           &euro;
@@ -206,17 +197,30 @@
         <td class="totaal-incl">
           <strong>
             &euro;
-            <!--[VERKOOPFACTUUR_TOTAAL_INCL_BTW]-->
+            <!--[OFFERTE_TOTAAL_INCL_BTW]-->
           </strong>
         </td>
       </tr>
     </tbody>
   </table>
-  <!-- BETALING -->
-  <div class="betaling">
-    <p>
-      <strong>Mededeling te vermelden bij betaling:&nbsp;<br /></strong>
-    </p>
-    <br />De algemene voorwaarden zijn van toepassing.
-  </div>
+  <table>
+    <tr>
+      <td colspan="2">[OFFERTE_OPMERKING_BIJ_OFFERTE]</td>
+    </tr>
+    <tr>
+      <td colspan="2" style="height: 60px; vertical-align: top">
+        Voor akkoord,
+      </td>
+    </tr>
+    <tr>
+      <td>
+        [OFFERTE_KLANTNAAM]<br />
+        Datum, naam en handtekening
+      </td>
+      <td>
+        Demo bedrijf<br />
+        Naam en handtekening
+      </td>
+    </tr>
+  </table>
 </main>

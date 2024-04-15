@@ -119,47 +119,15 @@ export class AppComponent {
     this.selectedFooter = footer;
   }
 
-  /* COPY HTML FROM PREVIEW-DOC */
-  copyHeader() {
-    const header = document.querySelector('.preview-doc-header');
-    if (header) {
-      const htmlCode = header.innerHTML;
-      console.log('Copied header HTML:', htmlCode);
-      this.showHTMLDialog(htmlCode);
-    }
-  }
-  
-  copyMain() {
-    const main = document.querySelector('.preview-doc-main');
-    if (main) {
-      const htmlCode = main.innerHTML;
-      console.log('Copied main HTML:', htmlCode);
-      this.showHTMLDialog(htmlCode);
-    }
-  }
-  
-  copyFooter() {
-    const footer = document.querySelector('.preview-doc-footer');
-    if (footer) {
-      const htmlCode = footer.innerHTML;
-      console.log('Copied footer HTML:', htmlCode);
-      this.showHTMLDialog(htmlCode);
-    }
-  }
-  
-  copyHTML() {
-    const previewDocWrapper = document.querySelector('.preview-doc-wrapper');
-    if (previewDocWrapper) {
-      const htmlCode = previewDocWrapper.innerHTML;
-      console.log('Copied full HTML:', htmlCode);
-      this.showHTMLDialog(htmlCode);
-    }
-  }
-  
-  showHTMLDialog(htmlCode: string) {
-    console.log('Show HTML dialog:', htmlCode); 
+  /* SHOW DIALOG TO COPY CODE */
+
+  showHTMLDialog() {
     const dialogRef = this.dialog.open(HtmlDialogComponent, {
-      data: { htmlCode: htmlCode }
+      data: {
+        headerCode: this.selectedHeader.content,
+        mainCode: this.selectedMain.content,
+        footerCode: this.selectedFooter.content
+      }
     });
   }
 }

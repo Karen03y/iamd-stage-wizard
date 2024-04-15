@@ -6,29 +6,27 @@
   border-radius: 5px;
 }
 
-.close-btn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-textarea {
-  min-height: 500px;
-  min-width: 500px;
-  margin-bottom: 10px;
-}
-
 button {
-  cursor: pointer;
-  padding: 5px 10px;
   background-color: var(--brand-primary);
   color: #fff;
   border: none;
-  border-radius: 5px;
+  width: 130px;
+  height: 35px;
+  font-size: 13px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  margin: 0 5px;
 }
 
 button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.confirmation-message {
+  margin-top: 20px; /* Afstand van de knoppen */
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
 }

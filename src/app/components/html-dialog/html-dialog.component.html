@@ -1,5 +1,16 @@
 <div class="html-dialog">
   <div class="close-btn" (click)="closeDialog()"></div>
-  <textarea readonly>{{ data.htmlCode }}</textarea>
-  <button (click)="copyHtmlCode(data.htmlCode)">Kopiëren</button>
+  <button (click)="copyHtmlCode(data.fullHtmlCode, 'volledige')">
+    Full HTML code
+  </button>
+  <button (click)="copyHtmlCode(data.headerCode, 'header')">Header code</button>
+  <button (click)="copyHtmlCode(data.mainCode, 'main')">Main code</button>
+  <button (click)="copyHtmlCode(data.footerCode, 'footer')">Footer code</button>
+
+  <!-- <textarea readonly>{{ data.headerCode }}</textarea>  -->
+
+  <!-- Confirmation message -->
+  <div *ngIf="copied" class="confirmation-message">
+    De {{ copiedType }} code werd gekopieerd naar het klembord!
+  </div>
 </div>
