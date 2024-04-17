@@ -39,16 +39,13 @@ export class HeaderComponent implements OnInit {
   loadHeaderContent() {
     const headerFileNames = ['header1.html', 'header2.html', 'header3.html']; 
       headerFileNames.forEach(fileName => {
-      this.loadContentService.loadContent(fileName, 'header').subscribe((header: Header) => {
-        console.log(`Header content loaded from ${fileName}:`, header);
-        
+      this.loadContentService.loadContent(fileName, 'header').subscribe((header: Header) => {        
         // vervang logo in nieuw logo
         const updatedHeaderContent = this.replaceLogoInHeader(header.content);
         header.content = updatedHeaderContent;
   
         // push bijgewerkte header naar lijst
         this.headers.push(header);
-        console.log(`Header with updated logo:`, header);
       }, error => {
         console.error(`Error loading header content from ${fileName}:`, error);
       });
