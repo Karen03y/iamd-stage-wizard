@@ -21,3 +21,9 @@ h1 {
   font-weight: 400;
   margin-bottom: 20px;
 }
+
+h2 {
+  font-weight: 400;
+  font-size: 18px;
+  color: #666666;
+}

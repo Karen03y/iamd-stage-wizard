@@ -6,6 +6,14 @@
   border-radius: 5px;
 }
 
+h2 {
+  color: black;
+}
+
+.buttons {
+  margin: 15px 5px;
+}
+
 button {
   background-color: var(--brand-primary);
   color: #fff;

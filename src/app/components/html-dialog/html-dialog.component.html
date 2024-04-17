@@ -1,12 +1,17 @@
 <div class="html-dialog">
-  <div class="close-btn" (click)="closeDialog()"></div>
-  <button (click)="copyHtmlCode(data.fullHtmlCode, 'volledige')">
-    Full HTML code
-  </button>
-  <button (click)="copyHtmlCode(data.headerCode, 'header')">Header code</button>
-  <button (click)="copyHtmlCode(data.mainCode, 'main')">Main code</button>
-  <button (click)="copyHtmlCode(data.footerCode, 'footer')">Footer code</button>
-
+  <h2>Welke code wil je kopiëren?</h2>
+  <div class="buttons">
+    <button (click)="copyHtmlCode(data.fullHtmlCode, 'volledige')">
+      Full HTML code
+    </button>
+    <button (click)="copyHtmlCode(data.headerCode, 'header')">
+      Header code
+    </button>
+    <button (click)="copyHtmlCode(data.mainCode, 'main')">Main code</button>
+    <button (click)="copyHtmlCode(data.footerCode, 'footer')">
+      Footer code
+    </button>
+  </div>
   <!-- <textarea readonly>{{ data.headerCode }}</textarea>  -->
 
   <!-- Confirmation message -->

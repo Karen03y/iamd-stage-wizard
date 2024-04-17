@@ -126,7 +126,7 @@ export class AppComponent {
       data: {
         headerCode: this.selectedHeader.content,
         mainCode: this.selectedMain.content,
-        footerCode: this.selectedFooter.content
+        footerCode: this.selectedFooter.content,
       }
     });
   }
