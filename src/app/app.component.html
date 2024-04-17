@@ -1,5 +1,6 @@
 <main class="main">
   <section class="left-container">
+    <h2 class="container-title">Opties</h2>
     <div class="button-wrapper">
       <button
         *ngFor="let option of options; let i = index"
@@ -12,6 +13,9 @@
   </section>
 
   <section class="center-container">
+    <h2 class="container-title" *ngIf="selectedOptionIndex != -1">
+      {{ options[selectedOptionIndex].title }}
+    </h2>
     <div class="scrollable">
       <div class="no-option-text" *ngIf="selectedOptionIndex === -1">
         Selecteer een optie in de linkerkolom.
@@ -43,6 +47,7 @@
   </section>
 
   <section class="right-container">
+    <h2 class="container-title">Preview</h2>
     <article class="preview-doc">
       <div class="scrollable">
         <div class="preview-doc-wrapper">

@@ -17,6 +17,13 @@ main {
   overflow: hidden;
 }
 
+.container-title {
+  font-weight: 400;
+  font-size: 18px;
+  color: #666666;
+  margin-left: 10px;
+}
+
 .scrollable {
   height: 93vh;
   overflow-y: auto;
@@ -26,12 +33,12 @@ main {
 
 .left-container {
   width: 15%;
-  padding: 10px 5px;
 }
 
 .left-container .button-wrapper {
   background-color: #fff;
   padding: 10px;
+  margin: 10px;
 }
 
 .left-container p {
