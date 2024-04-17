@@ -9,9 +9,20 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   selector: 'app-header',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './header.component.html',
+  template: `
+    <h1>Kies een header</h1>
+    <div class="header" *ngFor="let header of headers">
+      <div class="header-content">
+        <div
+          class="header-preview"
+          [innerHTML]="header.content"
+          (click)="onHeaderChange(header)"
+        ></div>
+      </div>
+    </div>`,
   styleUrl: './header.component.css'
 })
+
 export class HeaderComponent implements OnInit { 
   @Output() headerChange: EventEmitter<Header> = new EventEmitter<Header>();
   @Output() logoUploaded = new EventEmitter<string>(); 
@@ -21,15 +32,13 @@ export class HeaderComponent implements OnInit {
   constructor(private loadContentService: LoadContentService, private sanitizer: DomSanitizer) {} 
 
   ngOnInit() {
-    // laad headers bij init component
     this.loadHeaderContent();
+    console.log("Header Component initialized")
   }
 
   loadHeaderContent() {
     const headerFileNames = ['header1.html', 'header2.html', 'header3.html']; 
-  
-    // loop door elke header en laad de inhoud
-    headerFileNames.forEach(fileName => {
+      headerFileNames.forEach(fileName => {
       this.loadContentService.loadContent(fileName, 'header').subscribe((header: Header) => {
         console.log(`Header content loaded from ${fileName}:`, header);
         

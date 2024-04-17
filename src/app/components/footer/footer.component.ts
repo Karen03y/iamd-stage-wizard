@@ -21,6 +21,8 @@ import { LoadContentService } from '../../services/load-content.service';
     </div>`,
   styleUrl: './footer.component.css'
 })
+
+
 export class FooterComponent {
   @Output() footerChange: EventEmitter<Footer> = new EventEmitter<Footer>();
 
