@@ -1,0 +1,30 @@
+p {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+button {
+  border: none;
+  width: 95%;
+  height: 40px;
+  vertical-align: center;
+  text-transform: uppercase;
+  background-color: var(--light-grey-color);
+  text-align: left;
+  cursor: pointer;
+  padding: 0 20px;
+  margin: 4px;
+  color: #000;
+}
+
+button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  background-color: var(--green-color);
+}
+
+.selected-title {
+  background-color: var(--green-color) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

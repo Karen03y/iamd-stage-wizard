@@ -2,7 +2,10 @@
   <section class="left-container">
     <h2 class="container-title">Opties</h2>
     <div class="button-wrapper">
-      <app-option-button></app-option-button>
+      <app-option-button
+        [options]="options"
+        (toggle)="toggleContent($event)"
+      ></app-option-button>
     </div>
   </section>
 
