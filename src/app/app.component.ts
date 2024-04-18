@@ -13,13 +13,14 @@ import { HtmlDialogComponent } from './components/html-dialog/html-dialog.compon
 import { MatDialog } from '@angular/material/dialog';
 import { LogoUploadComponent } from "./components/logo-upload/logo-upload.component"; 
 import { DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import { OptionButtonComponent } from "./components/option-button/option-button.component";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent]
+    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent, OptionButtonComponent]
 })
 export class AppComponent {
   title = 'iamd-document-wizard';

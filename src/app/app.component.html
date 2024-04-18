@@ -2,13 +2,7 @@
   <section class="left-container">
     <h2 class="container-title">Opties</h2>
     <div class="button-wrapper">
-      <button
-        *ngFor="let option of options; let i = index"
-        (click)="toggleContent(i)"
-        [ngClass]="{ 'selected-title': selectedOptionIndex === i }"
-      >
-        <p>{{ option.title }}</p>
-      </button>
+      <app-option-button></app-option-button>
     </div>
   </section>
 
