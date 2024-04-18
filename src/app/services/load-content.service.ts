@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, forkJoin, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Header, Footer, Main } from '../../types';
 
 @Injectable({
@@ -23,19 +23,24 @@ export class LoadContentService {
   loadContent(fileName: string, contentType: 'header' | 'footer' | 'main_VF' | 'main_AF' | 'main_Offertes'): Observable<Header | Main | Footer> {
     const contentUrl = `${this.assetPaths[contentType as keyof typeof this.assetPaths]}${fileName}`;
 
-    return this.http.get(contentUrl, { responseType: 'text' }).pipe(
-      map(contentData => {
-        const sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(contentData) as SafeHtml;
+    return this.http.get(contentUrl, { responseType: 'text' })
+      .pipe(
+        map(contentData => {
+          const sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(contentData) as SafeHtml;
 
-        switch (contentType) {
-          case 'header':
-          case 'footer':
-            return { content: sanitizedContent } as Header | Footer;
-          default:
-            return { content: sanitizedContent } as Main;
-        }
-      })
-    );
+          switch (contentType) {
+            case 'header':
+            case 'footer':
+              return { content: sanitizedContent } as Header | Footer;
+            default:
+              return { content: sanitizedContent } as Main;
+          }
+        }),
+        catchError(error => {
+          console.error('Failed to load content:', error);
+          return throwError(new Error('Failed to load content'));
+        })
+      );
   }
 
   loadAllContent(folderName: 'VF' | 'AF' | 'Offertes', contentType: 'header' | 'footer' | 'main_VF' | 'main_AF' | 'main_Offertes'): Observable<(Header | Main | Footer)[]> {
@@ -47,7 +52,11 @@ export class LoadContentService {
       contentObservables.push(contentObservable);
     });
 
-    return forkJoin(contentObservables);
+    return forkJoin(contentObservables).pipe(
+      catchError(error => {
+        console.error('Failed to load all content:', error);
+        return throwError(new Error('Failed to load all content'));
+      })
+    );
   }
 }
-
