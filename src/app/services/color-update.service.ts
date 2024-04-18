@@ -3,24 +3,24 @@ import { Injectable } from '@angular/core';
 enum StyleProperty {
   BackgroundColor = 'backgroundColor',
   Color = 'color',
-  BorderColor = 'borderColor'
+  BorderColor = 'borderColor',
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ColorUpdateService {
 
   updateStyle(color: string, selector: string, styleProperty: StyleProperty) {
     const elements = document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
-    if (elements.length > 0) {
-      elements.forEach(element => {
-        element.style[styleProperty] = color;
-      });
-      console.log(`Stijl ${styleProperty} van alle elementen met selector ${selector} is bijgewerkt naar: ${color}`);
-    } else {
-      console.error(`Geen elementen gevonden met de selector "${selector}".`);
+    if (elements.length === 0) {
+      throw new Error(`Geen elementen gevonden met selector "${selector}".`);
     }
+
+    elements.forEach((element) => {
+      element.style[styleProperty] = color;
+    });
+    console.log(`Stijl ${styleProperty} van alle elementen met selector ${selector} gewijzigd naar : ${color}`);
   }
 
   updateBackground(color: string, elementClass: string) {
@@ -50,5 +50,4 @@ export class ColorUpdateService {
   updateTableBorder(color: string, containerClass: string) {
     this.updateStyle(color, `.${containerClass} table`, StyleProperty.BorderColor);
   }
-
 }
