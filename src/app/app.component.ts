@@ -124,10 +124,33 @@ export class AppComponent {
   showHTMLDialog() {
     const dialogRef = this.dialog.open(HtmlDialogComponent, {
       data: {
-        headerCode: this.selectedHeader.content,
-        mainCode: this.selectedMain.content,
-        footerCode: this.selectedFooter.content,
+        fullHtml: this.generateFullHtml(),
+        headerHtml: this.generateHeaderHtml(),
+        mainHtml: this.generateMainHtml(),
+        footerHtml: this.generateFooterHtml()
       }
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  private generateFullHtml(): string {
+    return this.selectedHeader.content.toString() 
+    + this.selectedMain.content.toString() 
+    + this.selectedFooter.content.toString();
+  }
+
+  private generateHeaderHtml():string {
+    return this.selectedHeader.content.toString()
+  }
+
+  private generateMainHtml():string {
+    return this.selectedMain.content.toString()
+  }
+
+  private generateFooterHtml():string {
+    return this.selectedFooter.content.toString()
   }
 }

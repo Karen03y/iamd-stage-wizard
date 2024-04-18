@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -6,45 +6,53 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-html-dialog',
-  templateUrl: './html-dialog.component.html',
+  template: `
+    <div class="html-dialog">
+    <h2>Welke code wil je kopiëren?</h2>
+      <div class="buttons">
+        <button (click)="copyToClipboard(fullHtml)">Volledige code</button>
+        <button (click)="copyToClipboard(headerHtml)">Header code</button>
+        <button (click)="copyToClipboard(mainHtml)">Main code</button>
+        <button (click)="copyToClipboard(footerHtml)">Footer code</button>
+      </div>
+      <div *ngIf="copied" class="confirmation-message">
+        De code werd gekopieerd naar het klembord!
+      </div>
+    </div>
+
+  `,
   styleUrls: ['./html-dialog.component.css'],
   standalone: true,
   imports:[MatButtonModule, MatIconModule, CommonModule]
 })
 
-export class HtmlDialogComponent {
-  copied: boolean = false; 
-  copiedType: string = ''; 
+export class HtmlDialogComponent implements OnInit {
+
+  copied: boolean = false;
+  fullHtml: string;
+  headerHtml: string;
+  mainHtml: string;
+  footerHtml: string;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: {
-      headerCode: string,
-      mainCode: string,
-      footerCode: string,
-      fullHtmlCode: string
-    },
-    public dialogRef: MatDialogRef<HtmlDialogComponent>
-  ) {}
-  
-  copyHtmlCode(htmlCode: string, type: string) {
-    const textarea = document.createElement('textarea');
-    textarea.value = htmlCode;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textarea);
-    this.copiedType = type; 
-    this.copied = true; 
-    setTimeout(() => { 
-      this.copied = false;
-    }, 10000);
+    private dialogRef: MatDialogRef<HtmlDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { 
+    this.fullHtml = data.fullHtml;
+    this.headerHtml = data.headerHtml;
+    this.mainHtml = data.mainHtml;
+    this.footerHtml = data.footerHtml;
   }
 
-  closeDialog() {
-    this.dialogRef.close();
+  ngOnInit(): void {
+  }
+
+  copyToClipboard(html: string) {
+    navigator.clipboard.writeText(html).then(() => {
+      this.copied = true;
+      setTimeout(() => this.copied = false, 10000); 
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
   }
 }
-
-
-
-
