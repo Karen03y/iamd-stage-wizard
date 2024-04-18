@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { LogoService } from '../../services/logo.service';
 
 @Component({
   selector: 'app-logo-upload',
@@ -10,37 +11,19 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   styleUrl: './logo-upload.component.css'
 })
 
-export class LogoUploadComponent implements OnInit {
-  @Output() logoUploaded = new EventEmitter<string>(); 
-  selectedImage: File | undefined;
-  imageUrl: SafeUrl | string = '';
+export class LogoUploadComponent {
+  imageUrl: string | undefined;
 
-  constructor(private sanitizer: DomSanitizer) {}
-
-  ngOnInit() {
-    console.log('LogoUploadComponent initialized');
-    // Controleer of er een opgeslagen logo-URL is en gebruik deze indien beschikbaar
-    const storedLogoUrl = localStorage.getItem('logoUrl');
-    if (storedLogoUrl) {
-      console.log('Retrieved logo URL from local storage:', storedLogoUrl);
-      this.imageUrl = storedLogoUrl;
-      // Geef de opgeslagen logo-URL door aan de AppComponent
-      this.logoUploaded.emit(storedLogoUrl);
-    }
-  }
+  constructor(private logoService: LogoService) {}
 
   onFileSelected(event: any): void {
-    console.log('File selected:', event.target.files[0]);
     const file: File = event.target.files[0];
     if (file) {
-      this.selectedImage = file;
       const reader = new FileReader();
       reader.onload = () => {
         const imageUrl = reader.result as string;
-        console.log('Image URL loaded:', imageUrl);
-        this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(imageUrl); 
-        // Geef de URL van het geüploade logo door aan de AppComponent
-        this.logoUploaded.emit(imageUrl); 
+        this.imageUrl = imageUrl;
+        this.logoService.uploadLogo(imageUrl); 
       };
       reader.readAsDataURL(file);
     }
