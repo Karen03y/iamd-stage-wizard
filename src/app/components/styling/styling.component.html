@@ -1,52 +1,26 @@
 <h1>Kies de kleuren</h1>
 
 <div class="color-pickers-container">
-  <!-- Header -->
-  <div class="color-picker-column">
-    <h2>Header</h2>
-    <div class="color-picker" *ngFor="let color of headerColors">
-      <input
-        type="color"
-        class="header-color"
-        id="{{ color.id }}"
-        [(ngModel)]="color.value"
-        (change)="updateColor(color.value, color.id)"
-      />
-      <label for="{{ color.id }}">{{ color.label }}</label>
-    </div>
-  </div>
+  <app-color-picker-column
+    section="Header"
+    [colors]="headerColors"
+    (updateColorPicker)="updateColor($event)"
+  ></app-color-picker-column>
 
-  <!-- Main -->
-  <div class="color-picker-column">
-    <h2>Main</h2>
-    <div class="color-picker" *ngFor="let color of mainColors">
-      <input
-        type="color"
-        class="main-color"
-        id="{{ color.id }}"
-        [(ngModel)]="color.value"
-        (change)="updateColor(color.value, color.id)"
-      />
-      <label for="{{ color.id }}">{{ color.label }}</label>
-    </div>
-  </div>
+  <app-color-picker-column
+    section="Main"
+    [colors]="mainColors"
+    (updateColorPicker)="updateColor($event)"
+  ></app-color-picker-column>
 
-  <!-- Footer -->
-  <div class="color-picker-column">
-    <h2>Footer</h2>
-    <div class="color-picker" *ngFor="let color of footerColors">
-      <input
-        type="color"
-        class="footer-color"
-        id="{{ color.id }}"
-        [(ngModel)]="color.value"
-        (change)="updateColor(color.value, color.id)"
-      />
-      <label for="{{ color.id }}">{{ color.label }}</label>
-    </div>
-  </div>
+  <app-color-picker-column
+    section="Footer"
+    [colors]="footerColors"
+    (updateColorPicker)="updateColor($event)"
+  ></app-color-picker-column>
 </div>
 
+<!--
 <div class="font-picker">
   <label for="font-select"><h1>Kies een font</h1></label>
   <select id="font-select" (change)="selectFont($event)">
@@ -54,3 +28,4 @@
     <option value="Roboto">Roboto</option>
   </select>
 </div>
+-->

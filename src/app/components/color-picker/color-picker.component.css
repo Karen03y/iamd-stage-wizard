@@ -1,0 +1,7 @@
+.color-picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  border: solid blue;
+}

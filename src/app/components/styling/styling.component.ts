@@ -2,13 +2,14 @@ import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ColorUpdateService } from '../../services/color-update.service';
+import { ColorPickerColumnComponent } from "../color-picker-column/color-picker-column.component";
 
 @Component({
-  selector: 'app-styling',
-  standalone:true,
-  imports:[CommonModule, FormsModule],
-  templateUrl: './styling.component.html',
-  styleUrls: ['./styling.component.css']
+    selector: 'app-styling',
+    standalone: true,
+    templateUrl: './styling.component.html',
+    styleUrls: ['./styling.component.css'],
+    imports: [CommonModule, FormsModule, ColorPickerColumnComponent]
 })
 
 export class StylingComponent {
@@ -35,7 +36,8 @@ export class StylingComponent {
 
   constructor(private colorUpdateService: ColorUpdateService) {}
 
-  updateColor(color: string, id: string) {
+  updateColor(data: { color: string, id: string }) {
+    const { color, id } = data; 
     switch(id) {
       case 'header-text':
         this.colorUpdateService.updateText(color, 'preview-doc-header');
