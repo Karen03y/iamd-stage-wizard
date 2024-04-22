@@ -1,0 +1,26 @@
+{
+    "footers": [
+      "footer1.html",
+      "footer2.html",
+      "footer3.html"
+    ],
+    "headers": [
+      "header1.html",
+      "header2.html"
+    ],
+    "mains": {
+      "VF": [
+        "main1.html",
+        "main2.html"
+      ],
+      "AF": [
+        "main1.html",
+        "main2.html"
+      ],
+      "Offertes": [
+        "main1.html",
+        "main2.html"
+      ]
+    }
+  }
+  
