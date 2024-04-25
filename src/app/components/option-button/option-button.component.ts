@@ -1,13 +1,15 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Option } from '../../../types';
 import { CommonModule } from '@angular/common';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @Component({
   selector: 'app-option-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule],
   template: `
-    <button
+    <button mat-button 
       *ngFor="let option of options; let i = index"
       (click)="toggleOption(i)"
       [ngClass]="{ 'selected-title': selectedOptionIndex === i }"

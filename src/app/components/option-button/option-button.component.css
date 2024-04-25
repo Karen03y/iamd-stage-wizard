@@ -3,16 +3,21 @@ p {
   font-size: 14px;
 }
 
+.mdc-button {
+  justify-content: flex-start;
+  border-radius: 0px;
+}
+
 button {
   border: none;
   width: 95%;
   height: 40px;
   vertical-align: center;
+  text-align: left;
   text-transform: uppercase;
   background-color: var(--light-grey-color);
-  text-align: left;
   cursor: pointer;
-  padding: 0 20px;
+  padding: 0 10px;
   margin: 4px;
   color: #000;
 }
