@@ -14,13 +14,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { LogoUploadComponent } from "./components/logo-upload/logo-upload.component"; 
 import { DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import { OptionButtonComponent } from "./components/option-button/option-button.component";
+import { CalculatietabelComponent } from "./components/calculatietabel/calculatietabel.component";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent, OptionButtonComponent]
+    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent, OptionButtonComponent, CalculatietabelComponent]
 })
 export class AppComponent {
   title = 'iamd-document-wizard';
@@ -30,6 +31,7 @@ export class AppComponent {
     { title: "Logo", content: {type:"logo"}},
     { title: "Header", content: { type: "header" }},
     { title: "Main", content: { type: "main" }},
+    { title: "Calculatietabel", content: {type:"calculatietabel"}},
     { title: "Footer", content: { type: "footer" }},
   /**  extra optie bedrijfsgegevens - weglaten want gegevens w in omgeving ingevuld
    *  { title: "Bedrijfsgegevens", content: {type: "bedrijfsgegevens"}}

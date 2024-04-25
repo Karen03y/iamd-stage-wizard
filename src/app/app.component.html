@@ -32,6 +32,9 @@
             <ng-container *ngSwitchCase="'main'">
               <app-main (mainChange)="onMainChange($event)"></app-main>
             </ng-container>
+            <ng-container *ngSwitchCase="'calculatietabel'">
+              <app-calculatietabel></app-calculatietabel>
+            </ng-container>
             <ng-container *ngSwitchCase="'footer'">
               <app-footer (footerChange)="onFooterChange($event)"></app-footer>
             </ng-container>

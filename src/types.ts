@@ -21,3 +21,7 @@ export interface Footer {
 export interface Main {
     content:SafeHtml
 }
+
+export interface Calculatietabel {
+    content: SafeHtml
+}

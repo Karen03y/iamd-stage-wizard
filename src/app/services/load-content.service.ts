@@ -3,7 +3,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Header, Footer, Main } from '../../types';
+import { Header, Footer, Main, Calculatietabel } from '../../types';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +15,13 @@ export class LoadContentService {
     'footer': 'assets/footers/',
     'main_VF': 'assets/mains/VF/',
     'main_AF': 'assets/mains/AF/',
-    'main_Offertes': 'assets/mains/Offertes/'
+    'main_Offertes': 'assets/mains/Offertes/',
+    'calculatietabel': 'assets/calculatietabel/'
   };
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 
-  loadContent(fileName: string, contentType: 'header' | 'footer' | 'main_VF' | 'main_AF' | 'main_Offertes'): Observable<Header | Main | Footer> {
+  loadContent(fileName: string, contentType: 'header' | 'footer' | 'main_VF' | 'main_AF' | 'main_Offertes' | 'calculatietabel'): Observable<Header | Main | Footer | Calculatietabel> {
     const contentUrl = `${this.assetPaths[contentType as keyof typeof this.assetPaths]}${fileName}`;
 
     return this.http.get(contentUrl, { responseType: 'text' })
@@ -31,7 +32,8 @@ export class LoadContentService {
           switch (contentType) {
             case 'header':
             case 'footer':
-              return { content: sanitizedContent } as Header | Footer;
+            case 'calculatietabel' :  
+              return { content: sanitizedContent } as Header | Footer | Calculatietabel;
             default:
               return { content: sanitizedContent } as Main;
           }
@@ -43,9 +45,9 @@ export class LoadContentService {
       );
   }
 
-  loadAllContent(folderName: 'VF' | 'AF' | 'Offertes', contentType: 'header' | 'footer' | 'main_VF' | 'main_AF' | 'main_Offertes'): Observable<(Header | Main | Footer)[]> {
+  loadAllContent(folderName: 'VF' | 'AF' | 'Offertes', contentType: 'header' | 'footer' | 'main_VF' | 'main_AF' | 'main_Offertes' | 'calculatietabel'): Observable<(Header | Main | Footer | Calculatietabel)[]> {
     const mainFileNames = ['main1.html', 'main2.html']; 
-    const contentObservables: Observable<Header | Main | Footer>[] = [];
+    const contentObservables: Observable<Header | Main | Footer | Calculatietabel>[] = [];
 
     mainFileNames.forEach((fileName) => {
       const contentObservable = this.loadContent(fileName, contentType);
