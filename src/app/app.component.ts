@@ -14,23 +14,26 @@ import { MatDialog } from '@angular/material/dialog';
 import { LogoUploadComponent } from "./components/logo-upload/logo-upload.component"; 
 import { DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import { OptionButtonComponent } from "./components/option-button/option-button.component";
+import { BedrijfsgegevensComponent } from "./components/bedrijfsgegevens/bedrijfsgegevens.component";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent, OptionButtonComponent]
+    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent, OptionButtonComponent, BedrijfsgegevensComponent]
 })
 export class AppComponent {
   title = 'iamd-document-wizard';
 
   options: Option[] = [
-    { title: "Styling", content: { type: "styling" }, showContent: true },
-    { title: "Logo", content: {type:"logo"}, showContent:true},
-    { title: "Header", content: { type: "header" }, showContent: true },
-    { title: "Main", content: { type: "main" }, showContent: true},
-    { title: "Footer", content: { type: "footer" }, showContent: true },
+    { title: "Styling", content: { type: "styling" } },
+    { title: "Logo", content: {type:"logo"}},
+    { title: "Header", content: { type: "header" }},
+    { title: "Main", content: { type: "main" }},
+    { title: "Footer", content: { type: "footer" }},
+    { title: "Bedrijfsgegevens", content: {type: "bedrijfsgegevens"}}
+
   ];
 
   selectedHeader:Header = {content:""};

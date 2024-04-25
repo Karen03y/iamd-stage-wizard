@@ -3,7 +3,6 @@ import { SafeHtml } from "@angular/platform-browser";
 export interface Option {
     title: string;
     content:Content,
-    showContent:boolean,
     selected?:boolean
 }
 

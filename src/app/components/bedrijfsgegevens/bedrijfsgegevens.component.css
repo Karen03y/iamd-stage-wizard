@@ -1,0 +1,19 @@
+button {
+  border: none;
+  width: 120px;
+  height: 30px;
+  font-size: 13px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+}
+
+.blue-btn {
+  background-color: var(--brand-primary);
+  background: var(--dark-blue-gradient);
+  color: #fff;
+}
+
+.blue-btn:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
