@@ -21,12 +21,14 @@
     </div>
   </mat-tab>
   <mat-tab label="Fonts">
-    <div class="font-picker">
-      <label for="font-select">Kies een font</label>
-      <select id="font-select" (change)="selectFont($event)">
-        <option value="Arial">Arial</option>
-        <option value="Roboto">Roboto</option>
-      </select>
-    </div>
+    <mat-form-field class="fontTab">
+      <mat-label>Selecteer een font</mat-label>
+      <mat-select [(value)]="selectedFont">
+        <mat-option>Arial</mat-option>
+        <mat-option value="roboto">Roboto</mat-option>
+        <mat-option value="ubuntu">Ubuntu</mat-option>
+        <mat-option value="rubik">Rubik</mat-option>
+      </mat-select>
+    </mat-form-field>
   </mat-tab>
 </mat-tab-group>
