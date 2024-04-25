@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ColorUpdateService } from '../../services/color-update.service';
 import { ColorPickerColumnComponent } from "../color-picker-column/color-picker-column.component";
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 @Component({
     selector: 'app-styling',
     standalone: true,
     templateUrl: './styling.component.html',
     styleUrls: ['./styling.component.css'],
-    imports: [CommonModule, FormsModule, ColorPickerColumnComponent]
+    imports: [CommonModule, FormsModule, ColorPickerColumnComponent, MatTabsModule]
 })
 
 export class StylingComponent {
