@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
     <div class="html-dialog">
     <h2>Welke code wil je kopiëren?</h2>
       <div class="buttons">
-        <button (click)="copyToClipboard(fullHtml)">Volledige code</button>
         <button (click)="copyToClipboard(headerHtml)">Header code</button>
         <button (click)="copyToClipboard(mainHtml)">Main code</button>
         <button (click)="copyToClipboard(footerHtml)">Footer code</button>
@@ -29,7 +28,6 @@ import { CommonModule } from '@angular/common';
 export class HtmlDialogComponent implements OnInit {
 
   copied: boolean = false;
-  fullHtml: string;
   headerHtml: string;
   mainHtml: string;
   footerHtml: string;
@@ -38,7 +36,6 @@ export class HtmlDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<HtmlDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { 
-    this.fullHtml = data.fullHtml;
     this.headerHtml = data.headerHtml;
     this.mainHtml = data.mainHtml;
     this.footerHtml = data.footerHtml;

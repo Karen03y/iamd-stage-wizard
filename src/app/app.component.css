@@ -2,7 +2,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 20px;
+  padding: 8px 24px;
   min-height: 100vh;
   background-color: #f0f3f7;
 }
@@ -18,7 +18,7 @@ main {
 }
 
 .container-title {
-  margin-left: 10px;
+  margin-left: 8px;
 }
 
 .scrollable {
@@ -29,13 +29,13 @@ main {
 /*********************** LEFT CONTAINER ***********************/
 
 .left-container {
-  width: 17%;
+  width: 15%;
 }
 
 .button-wrapper {
   background-color: #fff;
-  padding: 10px;
-  margin: 10px;
+  padding: 8px;
+  margin: 8px;
 }
 
 /*********************** CENTER CONTAINER ***********************/
@@ -54,7 +54,7 @@ main {
 }
 
 .center-container article.show-content {
-  padding: 20px;
+  padding: 24px;
 }
 
 /*********************** RIGHT CONTAINER ***********************/
@@ -68,15 +68,15 @@ main {
 article {
   border-radius: 3px;
   background-color: #ffffff;
-  margin: 10px;
-  padding: 20px;
+  margin: 8px;
+  padding: 24px;
 }
 
 /* Content */
 article .content {
   background-color: #ffffff;
-  margin: 10px auto;
-  padding: 20px;
+  margin: 8px auto;
+  padding: 24px;
 }
 
 /* Preview Document */
@@ -84,14 +84,14 @@ article .content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 8px;
   max-height: 92vh;
 }
 
 .preview-doc-wrapper {
   background-color: #ffffff;
   border: solid 1px #939393;
-  margin: 10px 20px;
+  margin: 8px 16px;
   display: flex;
   flex-direction: column;
 }
@@ -110,14 +110,14 @@ article .content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 button {
   border: none;
   width: 120px;
-  height: 30px;
-  font-size: 11px;
+  height: 32px;
+  font-size: 12px;
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;

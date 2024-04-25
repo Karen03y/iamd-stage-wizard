@@ -14,14 +14,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { LogoUploadComponent } from "./components/logo-upload/logo-upload.component"; 
 import { DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import { OptionButtonComponent } from "./components/option-button/option-button.component";
-import { BedrijfsgegevensComponent } from "./components/bedrijfsgegevens/bedrijfsgegevens.component";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent, OptionButtonComponent, BedrijfsgegevensComponent]
+    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent, OptionButtonComponent]
 })
 export class AppComponent {
   title = 'iamd-document-wizard';
@@ -32,7 +31,9 @@ export class AppComponent {
     { title: "Header", content: { type: "header" }},
     { title: "Main", content: { type: "main" }},
     { title: "Footer", content: { type: "footer" }},
-    { title: "Bedrijfsgegevens", content: {type: "bedrijfsgegevens"}}
+  /**  extra optie bedrijfsgegevens - weglaten want gegevens w in omgeving ingevuld
+   *  { title: "Bedrijfsgegevens", content: {type: "bedrijfsgegevens"}}
+   **/
 
   ];
 
@@ -128,7 +129,6 @@ export class AppComponent {
   showHTMLDialog() {
     const dialogRef = this.dialog.open(HtmlDialogComponent, {
       data: {
-        fullHtml: this.generateFullHtml(),
         headerHtml: this.generateHeaderHtml(),
         mainHtml: this.generateMainHtml(),
         footerHtml: this.generateFooterHtml()
@@ -138,12 +138,6 @@ export class AppComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
-  }
-
-  private generateFullHtml(): string {
-    return this.selectedHeader.content.toString() 
-    + this.selectedMain.content.toString() 
-    + this.selectedFooter.content.toString();
   }
 
   private generateHeaderHtml():string {
