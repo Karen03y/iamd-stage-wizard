@@ -1,0 +1,110 @@
+<style>
+  #calculatietabel2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    text-align: left;
+    width: 95%;
+    margin: 20px auto;
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    table td {
+      padding: 3px;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul li {
+      margin-bottom: 5px;
+      padding-left: 20px;
+      list-style-type: none;
+    }
+
+    .factuur-items {
+      margin-top: 20px;
+      table-layout: fixed;
+      border: solid 2px transparent;
+    }
+
+    .factuur-items thead {
+      text-align: left;
+    }
+
+    .factuur-items thead th {
+      padding: 8px 5px;
+    }
+
+    .factuur-items tr td:first-child {
+      width: 50%;
+    }
+
+    .factuur-items thead th:last-child,
+    .factuur-items tr td:last-child {
+      text-align: right;
+    }
+  }
+</style>
+
+<table
+  id="calculatietabel2"
+  class="factuur-items"
+  style="margin-right: calc(0%); width: 100%"
+>
+  <thead>
+    <tr>
+      <th style="width: 60%">Omschrijving</th>
+      <th style="width: 12%">Prijs</th>
+      <th style="width: 12%; text-align: left">Aantal</th>
+      <!--  <th style="width: 7%; text-align: left">EH</th> -->
+      <th style="width: 16%">Totaal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="3">
+        <strong><u>[ITEM_TITEL]</u></strong>
+      </td>
+      <td>
+        <br />
+      </td>
+      <td>
+        <br />
+      </td>
+    </tr>
+    <tr>
+      <td>[ITEM_OMSCHRIJVING] <br />[PARAMETERS]</td>
+      <td>
+        &euro;
+        <!--[PRIJS]-->
+      </td>
+      <td><!--[#]--></td>
+      <!--  <td>[EH]</td>-->
+      <td>
+        &euro;
+        <!--[TOTAAL]-->
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3" style="text-align: left; padding-bottom: 10px">
+        <ul>
+          <li>
+            [ITEM_SAMENSTELLING]
+            <!--[#] [EH]-->
+          </li>
+        </ul>
+      </td>
+      <td>
+        <br />
+      </td>
+      <td>
+        <br />
+      </td>
+    </tr>
+  </tbody>
+</table>
