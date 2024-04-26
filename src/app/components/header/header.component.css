@@ -6,7 +6,8 @@
 }
 
 .header:hover {
-  border: solid rgb(74, 74, 74) 2px;
+  border: solid var(--brand-accent) 2px;
+  cursor: pointer;
 }
 
 .header-content {
@@ -20,6 +21,5 @@
 .header-preview {
   background: white;
   width: 100%;
-  cursor: pointer;
   align-items: center;
 }
