@@ -40,11 +40,6 @@ export class HeaderComponent implements OnInit {
     const headerFileNames = ['header1.html', 'header2.html', 'header3.html']; 
       headerFileNames.forEach(fileName => {
       this.loadContentService.loadContent(fileName, 'header').subscribe((header: Header) => {        
-        // vervang logo in nieuw logo
-        const updatedHeaderContent = this.replaceLogoInHeader(header.content);
-        header.content = updatedHeaderContent;
-  
-        // push bijgewerkte header naar lijst
         this.headers.push(header);
       }, error => {
         console.error(`Error loading header content from ${fileName}:`, error);
@@ -52,31 +47,7 @@ export class HeaderComponent implements OnInit {
     });
   }
   
-  replaceLogoInHeader(content: SafeHtml): SafeHtml {
-    //haal opgeslagen logo-URL op uit lokale opslag
-    const storedLogoUrl = localStorage.getItem('logoUrl');
-    if (storedLogoUrl) {
-      // html voor het nieuwe logo
-      const logoHtml = `<img src="${storedLogoUrl}" alt="Logo" style="max-width: 100px; max-height: 80px;">`;
-      
-      // convert SafeHtml naar string voor bewerking
-      let updatedContentString = this.sanitizer.sanitize(SecurityContext.HTML, content) || '';
-      
-      // manipuleer string om logo te vervangen
-      updatedContentString = updatedContentString.replace(/<div class="logo">.*?<\/div>/, `<div class="logo">${logoHtml}</div>`);
-      
-      // convert bewerkte string terug naar SafeHtml
-      const updatedContent = this.sanitizer.bypassSecurityTrustHtml(updatedContentString);
-      
-      // log bijgewerkte header
-      console.log(`Updated header content with replaced logo:`, updatedContent);
-      
-      return updatedContent;
-    }
-    
-    // geen opgeslagen logo gevonden : return originele inhoud
-    return content;
-  }
+
   
   onHeaderChange(header: Header) {
     // Emit event wanneer header wordt gewijzigd
