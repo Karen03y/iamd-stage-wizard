@@ -15,13 +15,14 @@ import { LogoUploadComponent } from "./components/logo-upload/logo-upload.compon
 import { DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import { OptionButtonComponent } from "./components/option-button/option-button.component";
 import { CalculatietabelComponent } from "./components/calculatietabel/calculatietabel.component";
+import { AlgemeneVoorwaardenComponent } from "./components/algemene-voorwaarden/algemene-voorwaarden.component";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent, OptionButtonComponent, CalculatietabelComponent]
+    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent, OptionButtonComponent, CalculatietabelComponent, AlgemeneVoorwaardenComponent]
 })
 export class AppComponent {
   title = 'iamd-document-wizard';
@@ -33,6 +34,7 @@ export class AppComponent {
     { title: "Main", content: { type: "main" }},
     { title: "Calculatietabel", content: {type:"calculatietabel"}},
     { title: "Footer", content: { type: "footer" }},
+    { title: "Algemene Voorwaarden", content: {type:"algemene-voorwaarden"}}
   /**  extra optie bedrijfsgegevens - weglaten want gegevens w in omgeving ingevuld
    *  { title: "Bedrijfsgegevens", content: {type: "bedrijfsgegevens"}}
    **/
