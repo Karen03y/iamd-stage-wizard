@@ -7,17 +7,20 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-html-dialog',
   template: `
-    <div class="html-dialog">
+   <div class="html-dialog">
     <h2>Welke code wil je kopiëren?</h2>
       <div class="buttons">
         <button (click)="copyToClipboard(headerHtml)">Header code</button>
         <button (click)="copyToClipboard(mainHtml)">Main code</button>
         <button (click)="copyToClipboard(footerHtml)">Footer code</button>
+        <button id="cssOnly" (click)="copyToClipboard(css)">enkel CSS</button>
       </div>
+      
       <div *ngIf="copied" class="confirmation-message">
         De code werd gekopieerd naar het klembord!
       </div>
     </div>
+
 
   `,
   styleUrls: ['./html-dialog.component.css'],
@@ -26,11 +29,12 @@ import { CommonModule } from '@angular/common';
 })
 
 export class HtmlDialogComponent implements OnInit {
-
   copied: boolean = false;
   headerHtml: string;
   mainHtml: string;
   footerHtml: string;
+  fullHtml:string;
+  css: string;
 
   constructor(
     private dialogRef: MatDialogRef<HtmlDialogComponent>,
@@ -39,6 +43,8 @@ export class HtmlDialogComponent implements OnInit {
     this.headerHtml = data.headerHtml;
     this.mainHtml = data.mainHtml;
     this.footerHtml = data.footerHtml;
+    this.fullHtml = data.fullHtml;
+    this.css = data.css;
   }
 
   ngOnInit(): void {
@@ -52,4 +58,7 @@ export class HtmlDialogComponent implements OnInit {
       console.error('Failed to copy: ', err);
     });
   }
+
+  
+  
 }

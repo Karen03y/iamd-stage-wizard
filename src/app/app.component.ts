@@ -129,18 +129,24 @@ export class AppComponent {
   /* SHOW DIALOG TO COPY CODE */
 
   showHTMLDialog() {
+    const fullHtml = this.generateFullHtml();
+    const css = this.generateCSS(fullHtml);
+    
     const dialogRef = this.dialog.open(HtmlDialogComponent, {
       data: {
         headerHtml: this.generateHeaderHtml(),
         mainHtml: this.generateMainHtml(),
-        footerHtml: this.generateFooterHtml()
+        footerHtml: this.generateFooterHtml(),
+        fullHtml: fullHtml, 
+        css: css 
       }
     });
-
+  
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }
+  
 
   private generateHeaderHtml():string {
     return this.selectedHeader.content.toString()
@@ -153,4 +159,30 @@ export class AppComponent {
   private generateFooterHtml():string {
     return this.selectedFooter.content.toString()
   }
+
+  private generateFullHtml(): string {
+    return this.selectedHeader.content.toString() 
+    + this.selectedMain.content.toString() 
+    + this.selectedFooter.content.toString();
+  }
+
+  private generateCSS(html: string): string {
+    const startTag = '<style>';
+    const endTag = '</style>';
+    let css = '';
+  
+    let startIndex = html.indexOf(startTag);
+    while (startIndex !== -1) {
+      const endIndex = html.indexOf(endTag, startIndex);
+      if (endIndex !== -1) {
+        css += html.substring(startIndex + startTag.length, endIndex) + '\n'; 
+        startIndex = html.indexOf(startTag, endIndex + endTag.length); 
+      } else {
+        break; 
+      }
+    }
+    return css.trim();
+  }
+  
+  
 }
