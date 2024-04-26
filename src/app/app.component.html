@@ -38,7 +38,7 @@
             <ng-container *ngSwitchCase="'footer'">
               <app-footer (footerChange)="onFooterChange($event)"></app-footer>
             </ng-container>
-            <ng-container>
+            <ng-container *ngSwitchCase="'algemene-voorwaarden'">
               <app-algemene-voorwaarden></app-algemene-voorwaarden>
             </ng-container>
             <!--    <ng-container *ngSwitchCase="'bedrijfsgegevens'">
