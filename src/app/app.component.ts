@@ -33,10 +33,6 @@ export class AppComponent {
     { title: "Main", content: { type: "main" }},
     { title: "Calculatietabel", content: {type:"calculatietabel"}},
     { title: "Footer", content: { type: "footer" }},
-  /**  extra optie bedrijfsgegevens - weglaten want gegevens w in omgeving ingevuld
-   *  { title: "Bedrijfsgegevens", content: {type: "bedrijfsgegevens"}}
-   **/
-
   ];
 
   selectedHeader:Header = {content:""};
