@@ -1,5 +1,27 @@
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+input::-webkit-color-swatch {
+  border-radius: 15%;
+  border: 1px solid #666;
+}
+input::-moz-color-swatch {
+  border-radius: 15%;
+  border: 1px solid #666;
+}
+
 .color-picker {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   gap: 8px;
+  margin: 8px 0;
 }

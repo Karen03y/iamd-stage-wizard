@@ -53,5 +53,12 @@ html {
 }
 
 .fontTab {
-  padding: 24px;
+  padding-top: 24px;
+}
+
+.color-pickers-container {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
