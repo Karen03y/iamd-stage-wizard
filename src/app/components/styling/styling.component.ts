@@ -3,13 +3,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ColorUpdateService } from '../../services/color-update.service';
 import { ColorPickerColumnComponent } from "../color-picker-column/color-picker-column.component";
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 @Component({
     selector: 'app-styling',
     standalone: true,
     templateUrl: './styling.component.html',
     styleUrls: ['./styling.component.css'],
-    imports: [CommonModule, FormsModule, ColorPickerColumnComponent]
+    imports: [CommonModule, FormsModule, ColorPickerColumnComponent, MatTabsModule, MatFormFieldModule, MatSelectModule]
 })
 
 export class StylingComponent {
@@ -80,18 +84,7 @@ export class StylingComponent {
     }
   }
 
-  selectedFont: string = 'Arial'; 
+  selectedFont: string = ''; 
 
-  fontOptions: {key:string, value:string}[] = [
-    { key : 'Arial',value : "font-family:Arial, Helvetica, sans-serif"},
-    
-  ]
-
-  selectFont(event: Event): void {
-    const selectedFont = (event.target as HTMLSelectElement).value;
-    if (selectedFont) {
-      this.selectedFont = selectedFont;
-    }
-  }
 
 }
