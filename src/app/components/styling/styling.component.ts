@@ -3,13 +3,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ColorUpdateService } from '../../services/color-update.service';
 import { ColorPickerColumnComponent } from "../color-picker-column/color-picker-column.component";
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule} from '@angular/material/form-field';
+
 
 @Component({
     selector: 'app-styling',
     standalone: true,
     templateUrl: './styling.component.html',
     styleUrls: ['./styling.component.css'],
-    imports: [CommonModule, FormsModule, ColorPickerColumnComponent]
+    imports: [CommonModule, FormsModule, ColorPickerColumnComponent, MatTabsModule, MatFormFieldModule, MatSelectModule]
 })
 
 export class StylingComponent {
@@ -22,11 +26,14 @@ export class StylingComponent {
   mainColors = [
     { id: "main-text", value: "#000000", label: "Tekst" },
     { id: "main-strong-text", value: "#000000", label: "Vetgedrukte tekst" },
-    { id: "main-background", value: "#FFFFFF", label: "Achtergrond" },
-    { id: "main-borders", value: "#000000", label: "Tabel borders" },
-    { id: "main-titles-text", value: "#000000", label: "Tabel titels" },
-    { id: "main-titles-background", value: "#FFFFFF", label: "Tabel achtergrond " }
+    { id: "main-background", value: "#FFFFFF", label: "Achtergrond" }
   ];
+
+  calculatietabelColors = [
+    { id: "calculatietabel-borders", value: "#000000", label: "Tabel borders" },
+    { id: "calculatietabel-titles-text", value: "#000000", label: "Tabel titels" },
+    { id: "calculatietabel-titles-background", value: "#FFFFFF", label: "Tabel achtergrond " }
+  ]
 
   footerColors = [
     { id: "footer-text", value: "#000000", label: "Tekst" },
@@ -57,14 +64,14 @@ export class StylingComponent {
       case 'main-background':
         this.colorUpdateService.updateBackground(color, "preview-doc-main");
         break;
-      case 'main-borders': 
-        this.colorUpdateService.updateTableBorder(color,"preview-doc-main");
+      case 'calculatietabel-borders': 
+        this.colorUpdateService.updateTableBorder(color,"preview-doc-calculatietabel");
       break;
-      case 'main-titles-background' :
-        this.colorUpdateService.updateTableTitlesBackground(color, "preview-doc-main");
+      case 'calculatietabel-titles-background' :
+        this.colorUpdateService.updateTableTitlesBackground(color, "preview-doc-calculatietabel");
         break;
-      case 'main-titles-text' : 
-        this.colorUpdateService.updateTableTitlesText(color, "preview-doc-main");
+      case 'calculatietabel-titles-text' : 
+        this.colorUpdateService.updateTableTitlesText(color, "preview-doc-calculatietabel");
         break;
       case 'footer-text':
         this.colorUpdateService.updateText(color, 'preview-doc-footer');
@@ -80,18 +87,7 @@ export class StylingComponent {
     }
   }
 
-  selectedFont: string = 'Arial'; 
+  selectedFont: string = ''; 
 
-  fontOptions: {key:string, value:string}[] = [
-    { key : 'Arial',value : "font-family:Arial, Helvetica, sans-serif"},
-    
-  ]
-
-  selectFont(event: Event): void {
-    const selectedFont = (event.target as HTMLSelectElement).value;
-    if (selectedFont) {
-      this.selectedFont = selectedFont;
-    }
-  }
 
 }
