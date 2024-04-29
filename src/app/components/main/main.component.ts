@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Main } from '../../../types';
+import { Calculatietabel, Main } from '../../../types';
 import { LoadContentService } from '../../services/load-content.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HttpClient } from '@angular/common/http';
@@ -15,6 +15,8 @@ import { HttpClient } from '@angular/common/http';
   encapsulation: ViewEncapsulation.None,
 })
 export class MainComponent {
+  @Input() selectedCalculatietabel: Calculatietabel | undefined;
+  @Input() selectedMain: Main | undefined;
   @Output() mainChange: EventEmitter<Main> = new EventEmitter<Main>();
 
   verkoopfactuurMains: Main[] = [];

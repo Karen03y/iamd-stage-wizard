@@ -126,83 +126,8 @@
     </tbody>
   </table>
 
-  <table class="factuur-items">
-    <thead>
-      <tr>
-        <th style="width: 39.2962%">Omschrijving</th>
-        <th style="width: 10.4517%">Prijs</th>
-        <th style="width: 6.6964%">Aantal</th>
-        <th style="width: 6.7043%">Eenh</th>
-        <th style="width: 12.7574%">Totaal Excl.</th>
-        <th style="width: 10.1733%">BTW</th>
-        <th style="text-align: right; width: 15.2049%">Totaal Incl.</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td colspan="7" style="padding-top: 20px">
-          <strong>[ITEM_TITEL]</strong>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="7">[ITEM_TEKST]</td>
-      </tr>
-      <tr class="item-omschr">
-        <td style="width: 50%">[ITEM_OMSCHRIJVING] [PARAMETERS]</td>
-        <td style="width: 10%">[&euro;PRIJS]</td>
-        <td style="width: 6%">[#]</td>
-        <td style="width: 6%">[EH]</td>
-        <td style="width: 10%">[&euro;TOTAAL]</td>
-        <td style="width: 6%">[BTW%]</td>
-        <td style="text-align: right; width: 12%">[&euro;TOTAAL_INCL]</td>
-      </tr>
-      <tr class="item-samenstelling">
-        <td colspan="7">
-          <ul>
-            <li>[ITEM_SAMENSTELLING]: [#] [EH]</li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="7">[ITEM_SAMENSTELLING_SUM_TITEL]Materiaal</td>
-      </tr>
-      <tr class="item-samenstelling">
-        <td colspan="7">
-          <ul>
-            <li>[ITEM_SAMENSTELLING_SUM] [#] [EH]</li>
-          </ul>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="calculatietabel"></div>
 
-  <table class="factuur-totaal">
-    <tbody>
-      <tr>
-        <td>BTW &percnt;</td>
-        <td>BTW excl.</td>
-        <td>BTW bedrag</td>
-        <td>BTW incl.</td>
-      </tr>
-      <tr>
-        <td>&percnt;<!--[BTW%]--></td>
-        <td>
-          &euro;
-          <!--[OFFERTE_TOTAAL_EXCL_BTW]-->
-        </td>
-        <td>
-          &euro;
-          <!--[BTW_ITEM_#]-->
-        </td>
-        <td class="totaal-incl">
-          <strong>
-            &euro;
-            <!--[OFFERTE_TOTAAL_INCL_BTW]-->
-          </strong>
-        </td>
-      </tr>
-    </tbody>
-  </table>
   <table>
     <tr>
       <td colspan="2">[OFFERTE_OPMERKING_BIJ_OFFERTE]</td>

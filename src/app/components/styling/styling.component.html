@@ -8,14 +8,20 @@
       ></app-color-picker-column>
 
       <app-color-picker-column
-        section="Footer"
-        [colors]="footerColors"
+        section="Main"
+        [colors]="mainColors"
         (updateColorPicker)="updateColor($event)"
       ></app-color-picker-column>
 
       <app-color-picker-column
-        section="Main"
-        [colors]="mainColors"
+        section="Calculatietabel"
+        [colors]="calculatietabelColors"
+        (updateColorPicker)="updateColor($event)"
+      ></app-color-picker-column>
+
+      <app-color-picker-column
+        section="Footer"
+        [colors]="footerColors"
         (updateColorPicker)="updateColor($event)"
       ></app-color-picker-column>
     </div>

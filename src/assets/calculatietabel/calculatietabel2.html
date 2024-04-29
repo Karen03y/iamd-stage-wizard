@@ -1,5 +1,5 @@
 <style>
-  #calculatietabel2 {
+  .calculatietabel2 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11px;
     text-align: left;
@@ -52,7 +52,7 @@
 </style>
 
 <table
-  id="calculatietabel2"
+  class="calculatietabel2"
   class="factuur-items"
   style="margin-right: calc(0%); width: 100%"
 >
@@ -104,6 +104,34 @@
       </td>
       <td>
         <br />
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="calculatietabel2" class="factuur-totaal">
+  <tbody>
+    <tr>
+      <td>Totaal excl. BTW</td>
+      <td style="text-align: right">
+        &euro;
+        <!--[VERKOOPFACTUUR_TOTAAL_EXCL_BTW]-->
+      </td>
+    </tr>
+    <tr>
+      <td>
+        &percnt;<!--[BTW_ITEM_%]-->
+        BTW
+      </td>
+      <td style="text-align: right">
+        &euro;
+        <!--[BTW_ITEM_#]-->
+      </td>
+    </tr>
+    <tr>
+      <td>Totaal incl. BTW</td>
+      <td style="text-align: right">
+        &euro;
+        <!--[VERKOOPFACTUUR_TOTAAL_INCL_BTW]-->
       </td>
     </tr>
   </tbody>

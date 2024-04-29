@@ -9,6 +9,12 @@
           [innerHTML]="main.content"
           (click)="onMainChange(main)"
         ></div>
+        <div
+          class="calculatietabel"
+          *ngIf="main === selectedMain && selectedCalculatietabel"
+        >
+          <div [innerHTML]="selectedCalculatietabel.content"></div>
+        </div>
       </div>
     </div>
   </mat-tab>

@@ -1,5 +1,5 @@
 import { Component, SecurityContext } from '@angular/core';
-import { Footer, Header, Main, Option } from '../types';
+import { Calculatietabel, Footer, Header, Main, Option } from '../types';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; 
@@ -37,7 +37,8 @@ export class AppComponent {
 
   selectedHeader:Header = {content:""};
   selectedMain:Main = {content:""};
-  selectedFooter:Footer = {content:""}
+  selectedCalculatietabel:Calculatietabel = {content:""};
+  selectedFooter:Footer = {content:""};
 
   constructor(private loadContentService: LoadContentService, private colorUpdateService: ColorUpdateService, private dialog: MatDialog, private sanitizer:DomSanitizer) {} 
 
@@ -56,10 +57,17 @@ export class AppComponent {
     });
   
     this.loadContentService.loadContent('main1.html', 'main_VF').subscribe((main: Main) => {
-      console.log('Default main content loaded:', main);
+      console.log('Default main loaded:', main);
       this.selectedMain = main;
     }, error => {
       console.error('Error loading default main content:', error);
+    });
+
+    this.loadContentService.loadContent('calculatietabel1.html', 'calculatietabel').subscribe((calculatietabel: Calculatietabel) => {
+      console.log('Default calculatietabel loaded:', calculatietabel);
+      this.selectedCalculatietabel = calculatietabel;
+    }, error => {
+      console.error('Error loading default calculatietabel:', error);
     });
   
     this.loadContentService.loadContent('footer1.html', 'footer').subscribe((footer:Footer)=>{
@@ -111,9 +119,16 @@ export class AppComponent {
   }
 
   /* MAIN */
-  onMainChange(main:Main) {
+  onMainChange(main: Main) {
     console.log('Main changed:', main);
     this.selectedMain = main;
+    }
+  
+  
+  /* CALCULATIETABEL */
+  onCalculatietabelChange(calculatietabel:Calculatietabel) {
+    console.log('Calculatietabel changed', calculatietabel);
+    this.selectedCalculatietabel = calculatietabel;
   }
 
   /* FOOTER */

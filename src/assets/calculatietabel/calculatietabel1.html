@@ -1,5 +1,5 @@
 <style>
-  #calculatietabel1 {
+  .calculatietabel1 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11px;
     text-align: left;
@@ -36,10 +36,31 @@
     .item-samenstelling ul {
       margin: 0 0 0 10px;
     }
+
+    .factuur-totaal {
+      margin-top: 20px;
+      break-inside: avoid;
+    }
+
+    .factuur-totaal th {
+      border-bottom: solid black 1px;
+      font-weight: 400;
+    }
+
+    .factuur-totaal td,
+    .factuur-totaal th {
+      padding: 10px 3px 10px 0;
+      border-top: solid black 1px;
+      text-align: right;
+    }
+
+    .factuur-totaal .totaal-incl {
+      font-size: 14px;
+    }
   }
 </style>
 
-<table id="calculatietabel1" class="factuur-items">
+<table class="calculatietabel1" class="factuur-items">
   <thead>
     <tr>
       <th style="width: 40%">Omschrijving</th>
@@ -84,6 +105,33 @@
         <ul>
           <li><!--[ITEM_SAMENSTELLING_SUM] [#] [EH]--></li>
         </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="calculatietabel1" class="factuur-totaal">
+  <tbody>
+    <tr>
+      <td>BTW &percnt;</td>
+      <td>BTW excl.</td>
+      <td>BTW bedrag</td>
+      <td>BTW incl.</td>
+    </tr>
+    <tr>
+      <td>&percnt;<!--[BTW%]--></td>
+      <td>
+        &euro;
+        <!--[VERKOOPFACTUUR_TOTAAL_EXCL_BTW]-->
+      </td>
+      <td>
+        &euro;
+        <!--[BTW_ITEM_#]-->
+      </td>
+      <td class="totaal-incl">
+        <strong>
+          &euro;
+          <!--[VERKOOPFACTUUR_TOTAAL_INCL_BTW]-->
+        </strong>
       </td>
     </tr>
   </tbody>

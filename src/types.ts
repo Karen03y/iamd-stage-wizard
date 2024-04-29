@@ -19,9 +19,10 @@ export interface Footer {
 }
 
 export interface Main {
+    calculatietabel?: Calculatietabel;
     content:SafeHtml
 }
 
 export interface Calculatietabel {
-    content: SafeHtml
+    content:SafeHtml
 }

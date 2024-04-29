@@ -27,10 +27,13 @@ export class StylingComponent {
     { id: "main-text", value: "#000000", label: "Tekst" },
     { id: "main-strong-text", value: "#000000", label: "Vetgedrukte tekst" },
     { id: "main-background", value: "#FFFFFF", label: "Achtergrond" },
-    { id: "main-borders", value: "#000000", label: "Tabel borders" },
-    { id: "main-titles-text", value: "#000000", label: "Tabel titels" },
-    { id: "main-titles-background", value: "#FFFFFF", label: "Tabel achtergrond " }
   ];
+
+  calculatietabelColors = [
+    { id: "calculatietabel-borders", value: "#000000", label: "Tabel borders" },
+    { id: "calculatietabel-titles-text", value: "#000000", label: "Tabel titels" },
+    { id: "calculatietabel-titles-background", value: "#FFFFFF", label: "Tabel achtergrond " }
+  ]
 
   footerColors = [
     { id: "footer-text", value: "#000000", label: "Tekst" },
@@ -61,14 +64,14 @@ export class StylingComponent {
       case 'main-background':
         this.colorUpdateService.updateBackground(color, "preview-doc-main");
         break;
-      case 'main-borders': 
-        this.colorUpdateService.updateTableBorder(color,"preview-doc-main");
+      case 'calculatietabel-borders': 
+        this.colorUpdateService.updateTableBorder(color,"preview-doc-calculatietabel");
       break;
-      case 'main-titles-background' :
-        this.colorUpdateService.updateTableTitlesBackground(color, "preview-doc-main");
+      case 'calculatietabel-titles-background' :
+        this.colorUpdateService.updateTableTitlesBackground(color, "preview-doc-calculatietabel");
         break;
-      case 'main-titles-text' : 
-        this.colorUpdateService.updateTableTitlesText(color, "preview-doc-main");
+      case 'calculatietabel-titles-text' : 
+        this.colorUpdateService.updateTableTitlesText(color, "preview-doc-calculatietabel");
         break;
       case 'footer-text':
         this.colorUpdateService.updateText(color, 'preview-doc-footer');
