@@ -49,5 +49,5 @@ export class ColorUpdateService {
 
   updateTableBorder(color: string, containerClass: string) {
     this.updateStyle(color, `.${containerClass} table`, StyleProperty.BorderColor);
-  }
+  } 
 }
