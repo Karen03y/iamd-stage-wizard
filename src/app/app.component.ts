@@ -34,8 +34,23 @@ export class AppComponent {
     { title: "Main", content: { type: "main" }},
     { title: "Calculatietabel", content: {type:"calculatietabel"}},
     { title: "Footer", content: { type: "footer" }},
-    { title: "Algemene Voorwaarden", content: {type: "alg-voorw"}}
+    { title: "Algemene Voorwaarden", content: {type: "algemene-voorwaarden"}}
   ];
+
+    /**
+   * Toggles the visibility of content based on its index.
+   * @method toggleContent
+   * @param {number} index - Index of the content to toggle.
+   */
+    selectedOptionIndex: number = -1;
+    toggleContent(index: number) {
+      console.log('Toggle content:', index);
+      if (this.selectedOptionIndex === index) {
+        this.selectedOptionIndex = -1; 
+      } else {
+        this.selectedOptionIndex = index; 
+      }
+    }
 
   selectedHeader:Header = {content:""};
   selectedMain:Main = {content:""};
@@ -52,10 +67,21 @@ export class AppComponent {
     });
   }
   
+    /**
+   * Sanitizes HTML content to prevent XSS attacks.
+   * @method sanitizeToString
+   * @param {SafeHtml} html - HTML content to be sanitized.
+   * @returns {string} Sanitized HTML content.
+   */
   sanitizeToString(html: SafeHtml): string {
     return this.sanitizer.sanitize(SecurityContext.HTML, html) || '';
   }
 
+  /***************************  ***************************/
+    /**
+   * Loads default content for the header, main, and footer sections.
+   * Logs loading and error messages.
+   */
   loadDefaultContent() {
     console.log('Loading default content...');
     this.loadContentService.loadContent('header1.html', 'header').subscribe((header: Header) => {
@@ -79,20 +105,16 @@ export class AppComponent {
       console.error('Error loading default footer content:', error)
     });
   }
+
+/*************************** LOGO ***************************/
+
+/**
+   * Handles the uploaded logo URL.
+   * Uploads the logo using the logo upload service.
+   * @method handleLogoUploaded
+   * @param {string} url - URL of the uploaded logo.
+   */
   
-  /* SHOW/HIDE CONTENT */
-  selectedOptionIndex: number = -1;
-
-  toggleContent(index: number) {
-    console.log('Toggle content:', index);
-    if (this.selectedOptionIndex === index) {
-      this.selectedOptionIndex = -1; 
-    } else {
-      this.selectedOptionIndex = index; 
-    }
-  }
-
-  /* LOGO UPLOAD */
   logoUrl: string = '';
 
   handleLogoUploaded(url: string): void {
@@ -108,82 +130,114 @@ export class AppComponent {
     }
   }
   
+/***************************  ***************************/
 
-  /* HEADER */
+  /**
+   * Event handlers for header/main/footer content change.
+   * Updates the selected content.
+   */
   onHeaderChange(header: Header) {
     console.log('Header changed:', header);
     this.selectedHeader = header;
   }
 
-  /* MAIN */
   onMainChange(main:Main) {
     console.log('Main changed:', main);
     this.selectedMain = main;
   }
 
-  /* FOOTER */
   onFooterChange(footer:Footer) {
     console.log('Footer changed:', footer);
     this.selectedFooter = footer;
   }
 
-  /* SHOW DIALOG TO COPY CODE */
-
-  showHTMLDialog() {
-    const fullHtml = this.generateFullHtml();
-    const css = this.generateCSS(fullHtml);
-    
-    const dialogRef = this.dialog.open(HtmlDialogComponent, {
-      data: {
-        headerHtml: this.generateHeaderHtml(),
-        mainHtml: this.generateMainHtml(),
-        footerHtml: this.generateFooterHtml(),
-        fullHtml: fullHtml, 
-        css: css 
-      }
-    });
+/*************************** COPY CODE ***************************/
+/**
+ * Displays an HTML dialog with dynamic content.
+ * @function showHTMLDialog
+ */
+showHTMLDialog() {
+  /** Generate full HTML content */
+  const fullHtml = this.generateFullHtml();
+  /** Generate CSS styles */
+  const css = this.generateCSS(fullHtml);
   
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-  
-
-  private generateHeaderHtml():string {
-    return this.selectedHeader.content.toString()
-  }
-
-  private generateMainHtml():string {
-    return this.selectedMain.content.toString()
-  }
-
-  private generateFooterHtml():string {
-    return this.selectedFooter.content.toString()
-  }
-
-  private generateFullHtml(): string {
-    return this.selectedHeader.content.toString() 
-    + this.selectedMain.content.toString() 
-    + this.selectedFooter.content.toString();
-  }
-
-  private generateCSS(html: string): string {
-    const startTag = '<style>';
-    const endTag = '</style>';
-    let css = '';
-  
-    let startIndex = html.indexOf(startTag);
-    while (startIndex !== -1) {
-      const endIndex = html.indexOf(endTag, startIndex);
-      if (endIndex !== -1) {
-        css += html.substring(startIndex + startTag.length, endIndex) + '\n'; 
-        startIndex = html.indexOf(startTag, endIndex + endTag.length); 
-      } else {
-        break; 
-      }
+  /** Open HTML dialog -> HtmlDialogComponent */
+  const dialogRef = this.dialog.open(HtmlDialogComponent, {
+    data: {
+      headerHtml: this.generateHeaderHtml(),
+      mainHtml: this.generateMainHtml(),
+      footerHtml: this.generateFooterHtml(),
+      fullHtml: fullHtml, 
+      css: css 
     }
-    return css.trim();
+  });
+
+  /** Log message when the dialog is closed */
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+  });
+}
+
+/**
+* Generates HTML content for the header of the dialog.
+* @private
+* @returns {string} HTML content for the header
+*/
+private generateHeaderHtml():string {
+  return this.selectedHeader.content.toString()
+}
+
+/**
+* Generates HTML content for the main section of the dialog.
+* @private
+* @returns {string} HTML content for the main section
+*/
+private generateMainHtml():string {
+  return this.selectedMain.content.toString()
+}
+
+/**
+* Generates HTML content for the footer of the dialog.
+* @private
+* @returns {string} HTML content for the footer
+*/
+private generateFooterHtml():string {
+  return this.selectedFooter.content.toString()
+}
+
+/**
+* Generates full HTML content by concatenating header, main, and footer HTML content.
+* @private
+* @returns {string} Full HTML content for the dialog
+*/
+private generateFullHtml(): string {
+  return this.selectedHeader.content.toString() 
+  + this.selectedMain.content.toString() 
+  + this.selectedFooter.content.toString();
+}
+
+/**
+* Extracts CSS styles from the provided HTML content.
+* @private
+* @param {string} html - HTML content
+* @returns {string} Extracted CSS styles
+*/
+private generateCSS(html: string): string {
+  const startTag = '<style>';
+  const endTag = '</style>';
+  let css = '';
+
+  let startIndex = html.indexOf(startTag);
+  while (startIndex !== -1) {
+    const endIndex = html.indexOf(endTag, startIndex);
+    if (endIndex !== -1) {
+      css += html.substring(startIndex + startTag.length, endIndex) + '\n'; 
+      startIndex = html.indexOf(startTag, endIndex + endTag.length); 
+    } else {
+      break; 
+    }
   }
-  
-  
+  return css.trim();
+}
 }
