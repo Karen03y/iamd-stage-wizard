@@ -1,17 +1,17 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class LogoService {
-
-  logoUploaded = new EventEmitter<string>(); 
+export class LogoUploadService {
+  private logoUrlSubject = new BehaviorSubject<string>('');
+  logoUrl$ = this.logoUrlSubject.asObservable();
 
   constructor() {}
 
   uploadLogo(url: string) {
-    this.logoUploaded.emit(url);
+    this.logoUrlSubject.next(url);
   }
 }
-  

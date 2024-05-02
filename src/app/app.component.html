@@ -10,7 +10,7 @@
   </section>
 
   <section class="center-container">
-    <h2 class="container-title" *ngIf="selectedOptionIndex != -1">
+    <h2 class="container-title" *ngIf="selectedOptionIndex !== -1">
       {{ options[selectedOptionIndex].title }}
     </h2>
     <div class="scrollable">
@@ -19,7 +19,7 @@
       </div>
       <article *ngFor="let option of options; let i = index">
         <div class="content" *ngIf="selectedOptionIndex === i">
-          <ng-container [ngSwitch]="options[selectedOptionIndex].content.type">
+          <ng-container [ngSwitch]="option.content.type">
             <ng-container *ngSwitchCase="'styling'">
               <app-styling></app-styling>
             </ng-container>

@@ -15,6 +15,7 @@ import { LogoUploadComponent } from "./components/logo-upload/logo-upload.compon
 import { DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import { OptionButtonComponent } from "./components/option-button/option-button.component";
 import { CalculatietabelComponent } from "./components/calculatietabel/calculatietabel.component";
+import { LogoUploadService } from './services/logo.service';
 
 @Component({
     selector: 'app-root',
@@ -39,11 +40,19 @@ export class AppComponent {
   selectedMain:Main = {content:""};
   selectedFooter:Footer = {content:""}
 
-  constructor(private loadContentService: LoadContentService, private colorUpdateService: ColorUpdateService, private dialog: MatDialog, private sanitizer:DomSanitizer) {} 
+  constructor(private loadContentService: LoadContentService, private colorUpdateService: ColorUpdateService, private dialog: MatDialog, private sanitizer:DomSanitizer, private logoUploadService:LogoUploadService) {} 
 
   ngOnInit() {
     console.log('AppComponent initialized');
     this.loadDefaultContent();
+    this.logoUploadService.logoUrl$.subscribe(url => {
+      this.logoUrl = url;
+      this.updatePreviewDocHeaderWithLogo(url);
+    });
+  }
+  
+  sanitizeToString(html: SafeHtml): string {
+    return this.sanitizer.sanitize(SecurityContext.HTML, html) || '';
   }
 
   loadDefaultContent() {
@@ -70,7 +79,6 @@ export class AppComponent {
     });
   }
   
-
   /* SHOW/HIDE CONTENT */
   selectedOptionIndex: number = -1;
 
@@ -86,24 +94,20 @@ export class AppComponent {
   /* LOGO UPLOAD */
   logoUrl: string = '';
 
-  sanitizeToString(html: SafeHtml): string {
-    return this.sanitizer.sanitize(SecurityContext.HTML, html) || '';
-  }
-  
   handleLogoUploaded(url: string): void {
     console.log('Logo uploaded:', url);
-    this.logoUrl = url;
-    const logoHtml = `<img src="${url}" alt="Logo" style="max-width: 100px; max-height: 100px;">`;
-  
-    // Sla de logo URL op in de lokale opslag
-    localStorage.setItem('logoUrl', url);
-  
-    // Vervang het oude logo in de header content door het nieuwe logo
-    const headerContentString = this.sanitizeToString(this.selectedHeader.content);
-    const updatedHeaderContentString = headerContentString.replace(/<div class="logo">.*?<\/div>/, `<div class="logo">${logoHtml}</div>`);
-    this.selectedHeader.content = this.sanitizer.bypassSecurityTrustHtml(updatedHeaderContentString);
+    this.logoUploadService.uploadLogo(url);
+  }
+
+  updatePreviewDocHeaderWithLogo(logoUrl: string): void {
+    const headerElement = document.querySelector('.preview-doc-header') as HTMLElement;
+    if (headerElement) {
+      let updatedContent = headerElement.innerHTML.replace(/<div class="logo">.*?<\/div>/, `<div class="logo"><img src="${logoUrl}" alt="Logo" style="max-width: 100px; max-height: 100px;"></div>`);
+      headerElement.innerHTML = updatedContent;
+    }
   }
   
+
   /* HEADER */
   onHeaderChange(header: Header) {
     console.log('Header changed:', header);
