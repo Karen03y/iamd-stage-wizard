@@ -23,11 +23,10 @@
   <mat-tab label="Fonts">
     <mat-form-field class="fontTab">
       <mat-label>Selecteer een font</mat-label>
-      <mat-select [(value)]="selectedFont">
-        <mat-option>Arial</mat-option>
-        <mat-option value="roboto">Roboto</mat-option>
-        <mat-option value="ubuntu">Ubuntu</mat-option>
-        <mat-option value="rubik">Rubik</mat-option>
+      <mat-select [(value)]="selectedFont" (selectionChange)="updateFont()">
+        <mat-option *ngFor="let font of fonts" [value]="font">{{
+          font
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
   </mat-tab>

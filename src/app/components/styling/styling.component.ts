@@ -6,17 +6,20 @@ import { ColorPickerColumnComponent } from "../color-picker-column/color-picker-
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-styling',
     standalone: true,
     templateUrl: './styling.component.html',
     styleUrls: ['./styling.component.css'],
-    imports: [CommonModule, FormsModule, ColorPickerColumnComponent, MatTabsModule, MatFormFieldModule, MatSelectModule]
+    imports: [CommonModule, FormsModule, ColorPickerColumnComponent, MatTabsModule, MatFormFieldModule, MatSelectModule],
 })
 
 export class StylingComponent {
+
+  constructor(private colorUpdateService: ColorUpdateService, private http:HttpClient) {}
+
   headerColors = [
     { id: "header-text", value: "#000000", label: "Tekst" },
     { id: "header-strong-text", value: "#000000", label: "Vetgedrukte tekst" },
@@ -37,8 +40,6 @@ export class StylingComponent {
     { id: "footer-strong-text", value: "#000000", label: "Vetgedrukte tekst" },
     { id: "footer-background", value: "#FFFFFF", label: "Achtergrond" },
   ];
-
-  constructor(private colorUpdateService: ColorUpdateService) {}
 
   updateColor(data: { color: string, id: string }) {
     const { color, id } = data; 
@@ -84,7 +85,25 @@ export class StylingComponent {
     }
   }
 
-  selectedFont: string = ''; 
+  /****************** FONT ********************/
 
+  fonts:string[]=[];
+  selectedFont:string='';
+  
+    ngOnInit(): void {
+      this.loadGoogleFonts();
+    }
+
+    loadGoogleFonts(): void {
+      const apiKey = 'AIzaSyA9S7DY0khhn9JYcfyRWb1F6Rd2rwtF_mA';
+      const url = `https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}`;
+      
+      this.http.get<any>(url).subscribe((data: { items: { family: string }[] }) => {
+        this.fonts = data.items.map(item => item.family);
+    });
+    }
+
+    updateFont(): void {
+    }
 
 }
