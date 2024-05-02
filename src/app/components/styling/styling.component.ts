@@ -10,6 +10,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input'
 import { HttpClient } from '@angular/common/http';
 import { Observable, debounceTime, of, switchMap, tap } from 'rxjs';
+import { FontService } from '../../services/font.service';
 
 @Component({
     selector: 'app-styling',
@@ -21,7 +22,9 @@ import { Observable, debounceTime, of, switchMap, tap } from 'rxjs';
 
 export class StylingComponent {
 
-  constructor(private colorUpdateService: ColorUpdateService, private http:HttpClient) {}
+  constructor(private colorUpdateService: ColorUpdateService, private http:HttpClient, private fontService:FontService) {}
+
+  /****************** COLOR ********************/
 
   headerColors = [
     { id: "header-text", value: "#000000", label: "Tekst" },
@@ -126,5 +129,9 @@ export class StylingComponent {
 
   displayFont(font: string): string {
     return font ? font : '';
+  }
+
+  updateFont() {
+    this.fontService.updateDocumentFont();
   }
 }

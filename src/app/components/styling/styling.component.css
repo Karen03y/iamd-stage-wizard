@@ -62,3 +62,23 @@ html {
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  width: 128px;
+  height: 36px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  background-color: var(--brand-primary);
+  background: var(--dark-blue-gradient);
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

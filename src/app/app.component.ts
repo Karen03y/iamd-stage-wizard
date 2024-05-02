@@ -16,6 +16,7 @@ import { DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import { OptionButtonComponent } from "./components/option-button/option-button.component";
 import { CalculatietabelComponent } from "./components/calculatietabel/calculatietabel.component";
 import { LogoUploadService } from './services/logo.service';
+import { FontService } from './services/font.service';
 
 @Component({
     selector: 'app-root',
@@ -56,7 +57,7 @@ export class AppComponent {
   selectedMain:Main = {content:""};
   selectedFooter:Footer = {content:""}
 
-  constructor(private loadContentService: LoadContentService, private colorUpdateService: ColorUpdateService, private dialog: MatDialog, private sanitizer:DomSanitizer, private logoUploadService:LogoUploadService) {} 
+  constructor(private loadContentService: LoadContentService, private colorUpdateService: ColorUpdateService, private dialog: MatDialog, private sanitizer:DomSanitizer, private logoUploadService:LogoUploadService, private fontService: FontService) {} 
 
   ngOnInit() {
     console.log('AppComponent initialized');
@@ -65,6 +66,7 @@ export class AppComponent {
       this.logoUrl = url;
       this.updatePreviewDocHeaderWithLogo(url);
     });
+    this.fontService.updateDocumentFont();
   }
   
     /**
@@ -139,16 +141,19 @@ export class AppComponent {
   onHeaderChange(header: Header) {
     console.log('Header changed:', header);
     this.selectedHeader = header;
+    this.fontService.updateDocumentFont();
   }
 
   onMainChange(main:Main) {
     console.log('Main changed:', main);
     this.selectedMain = main;
+    this.fontService.updateDocumentFont();
   }
 
   onFooterChange(footer:Footer) {
     console.log('Footer changed:', footer);
     this.selectedFooter = footer;
+    this.fontService.updateDocumentFont();
   }
 
 /*************************** COPY CODE ***************************/
