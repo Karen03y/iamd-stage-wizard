@@ -23,11 +23,17 @@
   <mat-tab label="Fonts">
     <mat-form-field class="fontTab">
       <mat-label>Selecteer een font</mat-label>
-      <mat-select [(value)]="selectedFont" (selectionChange)="updateFont()">
-        <mat-option *ngFor="let font of fonts" [value]="font">{{
-          font
-        }}</mat-option>
-      </mat-select>
+      <input
+        type="text"
+        matInput
+        [formControl]="fontControl"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFont">
+        <mat-option *ngFor="let font of filteredFonts" [value]="font">
+          {{ font }}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
   </mat-tab>
 </mat-tab-group>
