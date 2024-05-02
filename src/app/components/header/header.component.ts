@@ -1,9 +1,10 @@
-import { Component, EventEmitter, OnInit, Output, SecurityContext } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Header } from '../../../types';
 import { LoadContentService } from '../../services/load-content.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
+import { LogoUploadService } from '../../services/logo.service';
 
 @Component({
   selector: 'app-header',
@@ -13,11 +14,11 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     <h1>Kies een header</h1>
     <div class="header" *ngFor="let header of headers">
       <div class="header-content">
-        <div
-          class="header-preview"
-          [innerHTML]="header.content"
-          (click)="onHeaderChange(header)"
-        ></div>
+      <div class="header-preview" [innerHtml]="header.content" (click)="onHeaderChange(header)">
+          <div class="logo" *ngIf="logoUrl"> 
+            <img [src]="logoUrl" alt="Logo" style="max-width: 100px; max-height: 100px;">
+          </div>
+        </div>
       </div>
     </div>`,
   styleUrl: './header.component.css'
@@ -25,32 +26,34 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 export class HeaderComponent implements OnInit { 
   @Output() headerChange: EventEmitter<Header> = new EventEmitter<Header>();
-  @Output() logoUploaded = new EventEmitter<string>(); 
+  headers: Header[] = [];
+  logoUrl: string = '';
 
-  headers: Header[] = []; 
-
-  constructor(private loadContentService: LoadContentService, private sanitizer: DomSanitizer) {} 
+  constructor(private loadContentService: LoadContentService, private sanitizer: DomSanitizer, private logoUploadService: LogoUploadService) {}
 
   ngOnInit() {
     this.loadHeaderContent();
-    console.log("Header Component initialized")
+    this.subscribeToLogoChanges();
   }
 
   loadHeaderContent() {
-    const headerFileNames = ['header1.html', 'header2.html', 'header3.html']; 
-      headerFileNames.forEach(fileName => {
-      this.loadContentService.loadContent(fileName, 'header').subscribe((header: Header) => {        
+    const headerFileNames = ['header1.html', 'header2.html', 'header3.html'];
+    headerFileNames.forEach(fileName => {
+      this.loadContentService.loadContent(fileName, 'header').subscribe((header: Header) => {
         this.headers.push(header);
       }, error => {
         console.error(`Error loading header content from ${fileName}:`, error);
       });
     });
   }
-  
 
-  
   onHeaderChange(header: Header) {
-    // Emit event wanneer header wordt gewijzigd
     this.headerChange.emit(header);
+  }
+
+  subscribeToLogoChanges() {
+    this.logoUploadService.logoUrl$.subscribe(url => {
+      this.logoUrl = url;
+    });
   }
 }
