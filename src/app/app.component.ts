@@ -34,6 +34,7 @@ export class AppComponent {
     { title: "Main", content: { type: "main" }},
     { title: "Calculatietabel", content: {type:"calculatietabel"}},
     { title: "Footer", content: { type: "footer" }},
+    { title: "Algemene Voorwaarden", content: {type: "alg-voorw"}}
   ];
 
   selectedHeader:Header = {content:""};
