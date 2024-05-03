@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-enum StyleProperty {
+export enum StyleProperty {
   BackgroundColor = 'backgroundColor',
   Color = 'color',
   BorderColor = 'borderColor',

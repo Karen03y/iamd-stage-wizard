@@ -1,23 +1,17 @@
 <mat-tab-group animationDuration="0ms">
   <mat-tab label="Kleuren">
     <div class="color-pickers-container">
-      <app-color-picker-column
+      <app-color-picker
         section="Header"
         [colors]="headerColors"
-        (updateColorPicker)="updateColor($event)"
-      ></app-color-picker-column>
+      ></app-color-picker>
 
-      <app-color-picker-column
+      <app-color-picker
         section="Footer"
         [colors]="footerColors"
-        (updateColorPicker)="updateColor($event)"
-      ></app-color-picker-column>
+      ></app-color-picker>
 
-      <app-color-picker-column
-        section="Main"
-        [colors]="mainColors"
-        (updateColorPicker)="updateColor($event)"
-      ></app-color-picker-column>
+      <app-color-picker section="Main" [colors]="mainColors"></app-color-picker>
     </div>
   </mat-tab>
   <mat-tab label="Fonts">
