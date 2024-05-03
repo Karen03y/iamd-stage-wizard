@@ -1,0 +1,18 @@
+.algemene-voorwaarden-input {
+  width: 100%;
+}
+
+.algemene-voorwaarden-input textarea {
+  min-height: 300px;
+}
+
+.geformatteerde-voorwaarden {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.kolom {
+  flex: 1 0 33.33%; /* 33.33% breedte per kolom */
+  padding: 10px;
+  border: 1px solid #ccc;
+}

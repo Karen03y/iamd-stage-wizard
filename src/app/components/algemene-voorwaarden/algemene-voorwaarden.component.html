@@ -1,1 +1,16 @@
-<p>algemene-voorwaarden works!</p>
+<div class="algemene-voorwaarden-container">
+  <mat-form-field class="algemene-voorwaarden-input">
+    <mat-label>Plak hier de algemene voorwaarden</mat-label>
+    <textarea matInput [(ngModel)]="termsText"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="kolommen-keuze">
+    <mat-label for="kolommen">Kolommen:</mat-label>
+    <mat-select [(value)]="selectedColumns">
+      <mat-option value="1">1 kolom</mat-option>
+      <mat-option value="2">2 kolommen</mat-option>
+      <mat-option value="3">3 kolommen</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="geformatteerde-voorwaarden" [innerHTML]="formattedTerms"></div>
+</div>
