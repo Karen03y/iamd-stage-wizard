@@ -1,3 +1,9 @@
+h2 {
+  font-size: 18px;
+  margin: 8px 0;
+  color: var(--brand-primary);
+}
+
 input {
   -webkit-appearance: none;
   -moz-appearance: none;
