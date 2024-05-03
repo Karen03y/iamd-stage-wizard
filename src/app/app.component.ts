@@ -17,13 +17,14 @@ import { OptionButtonComponent } from "./components/option-button/option-button.
 import { CalculatietabelComponent } from "./components/calculatietabel/calculatietabel.component";
 import { LogoUploadService } from './services/logo.service';
 import { FontService } from './services/font.service';
+import { AlgemeneVoorwaardenComponent } from "./components/algemene-voorwaarden/algemene-voorwaarden.component";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent, OptionButtonComponent, CalculatietabelComponent]
+    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent, OptionButtonComponent, CalculatietabelComponent, AlgemeneVoorwaardenComponent]
 })
 export class AppComponent {
   title = 'iamd-document-wizard';
