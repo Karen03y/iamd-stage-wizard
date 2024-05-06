@@ -4,13 +4,30 @@
     <textarea matInput [(ngModel)]="termsText"></textarea>
   </mat-form-field>
 
-  <mat-form-field class="kolommen-keuze">
-    <mat-label for="kolommen">Kolommen:</mat-label>
-    <mat-select [(value)]="selectedColumns">
-      <mat-option value="1">1 kolom</mat-option>
-      <mat-option value="2">2 kolommen</mat-option>
-      <mat-option value="3">3 kolommen</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <div class="geformatteerde-voorwaarden" [innerHTML]="formattedTerms"></div>
+  <div class="select-and-button-container">
+    <mat-form-field class="kolommen-keuze">
+      <mat-label for="kolommen">Kolommen:</mat-label>
+      <mat-select [(value)]="selectedColumns">
+        <mat-option value="1">1 kolom</mat-option>
+        <mat-option value="2">2 kolommen</mat-option>
+        <mat-option value="3">3 kolommen</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button class="blue-btn" (click)="formatTerms()">Formatteer</button>
+  </div>
+
+  <div
+    *ngIf="formattedTerms"
+    class="geformatteerde-voorwaarden"
+    [innerHTML]="formattedTerms"
+  ></div>
+
+  <button
+    *ngIf="termsText.trim() && formattedTerms"
+    class="blue-btn"
+    id="copy-btn"
+    (click)="copyFormattedTerms()"
+  >
+    Kopieer
+  </button>
 </div>

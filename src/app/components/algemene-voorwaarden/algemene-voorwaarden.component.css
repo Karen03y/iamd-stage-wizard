@@ -7,12 +7,21 @@
 }
 
 .geformatteerde-voorwaarden {
-  display: flex;
-  flex-wrap: wrap;
+  margin: 16px 0;
+  border: solid black 1px;
 }
 
-.kolom {
-  flex: 1 0 33.33%; /* 33.33% breedte per kolom */
-  padding: 10px;
-  border: 1px solid #ccc;
+.select-and-button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.kolommen-keuze {
+  margin-right: 8px;
+}
+
+#copy-btn {
+  margin-left: auto;
 }

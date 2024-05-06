@@ -3,62 +3,63 @@
   import {MatFormFieldModule} from '@angular/material/form-field';
   import {MatSelectModule} from '@angular/material/select';
   import { FormsModule } from '@angular/forms';
+  import { CommonModule } from '@angular/common';
+  import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+  import {Clipboard, ClipboardModule} from '@angular/cdk/clipboard';
+
 
   @Component({
     selector: 'app-algemene-voorwaarden',
     standalone: true,
-    imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule],
+    imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, CommonModule, ClipboardModule
+    ],
     templateUrl: './algemene-voorwaarden.component.html',
     styleUrl: './algemene-voorwaarden.component.css'
   })
-  export class AlgemeneVoorwaardenComponent implements OnInit{
+  export class AlgemeneVoorwaardenComponent implements OnInit {
     termsText: string = '';
     selectedColumns: number = 1;
-    formattedTerms: string = '';
-
-    constructor() { }
-
+    formattedTerms: SafeHtml = '';
+  
+    constructor(private sanitizer: DomSanitizer, private clipboard:Clipboard) { }
+  
     ngOnInit(): void {
-      this.termsText = `## Algemene Voorwaarden
-
-      Dit zijn de algemene voorwaarden van [bedrijfsnaam].
-      
-      **Artikel 1: Definities**
-      
-      In deze voorwaarden hebben de volgende termen de volgende betekenis:
-      
-      * **Algemene Voorwaarden:** deze algemene voorwaarden;
-      * **Klant:** de natuurlijke of rechtspersoon die met [bedrijfsnaam] een overeenkomst aangaat;
-      * **Overeenkomst:** de overeenkomst tussen [bedrijfsnaam] en de Klant, waarop deze Algemene Voorwaarden van toepassing zijn;
-      * **Producten:** de producten en/of diensten die [bedrijfsnaam] aanbiedt;
-      * **Website:** de website van [bedrijfsnaam], te vinden op [websiteadres].
-      
-      **Artikel 2: Toepasselijkheid**
-      
-      Deze Algemene Voorwaarden zijn van toepassing op alle aanbiedingen, overeenkomsten en bestellingen van [bedrijfsnaam].`;
     }
-
+  
     formatTerms(): void {
-    // 1. Haal de tekst op uit termsText
-    const text = this.termsText;
-
-    // 2. Splits de tekst in paragrafen
-    const paragraphs = text.split('\n');
-
-    // 3. Genereer HTML-kolommen
-    let formattedHTML = '';
-      for (let i = 0; i < paragraphs.length; i++) 
-        {
-          if (i % this.selectedColumns === 0) 
-            
-              formattedHTML += '<div class="kolom">';
-            
-          formattedHTML += `<p>${paragraphs[i]}</p>`;
-          if ((i + 1) % this.selectedColumns === 0) 
-            
-              formattedHTML += '</div>';
-            
+      if (!this.termsText.trim()) {
+        alert('Geen tekst ingevuld.');
+        return;
+      }
+    
+      const paragraphs = this.termsText.split('\n\n');
+      const columns = this.selectedColumns;
+      const columnGap = '16px';
+      const fontSize = '11px';
+    
+      let formattedText = '';
+    
+      formattedText += `<div class="voorwaarden" style="column-count: ${columns}; column-gap: ${columnGap}; font-size: ${fontSize}; text-align: justify; padding:16px">`;
+    
+      for (let i = 0; i < paragraphs.length; i++) {
+        formattedText += `<li style="list-style-type:none">${paragraphs[i]}</li>`;
+        if (i !== paragraphs.length - 1) {
+          formattedText += '<br>'; 
         }
-        this.formattedTerms = formattedHTML;
-      }    
+      }
+    
+      formattedText += '</div>';
+    
+      this.formattedTerms = this.sanitizer.bypassSecurityTrustHtml(formattedText);
+    }
+    
+    
+    copyFormattedTerms(): void {
+      if (this.formattedTerms) {
+        const formattedText = this.formattedTerms.toString();
+        this.clipboard.copy(formattedText);
+        alert('De geformatteerde voorwaarden zijn gekopieerd naar het klembord.');
+      }
+    }
+    
   }
