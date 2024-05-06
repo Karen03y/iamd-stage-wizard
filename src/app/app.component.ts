@@ -128,7 +128,8 @@ export class AppComponent {
   updatePreviewDocHeaderWithLogo(logoUrl: string): void {
     const headerElement = document.querySelector('.preview-doc-header') as HTMLElement;
     if (headerElement) {
-      let updatedContent = headerElement.innerHTML.replace(/<div class="logo">.*?<\/div>/, `<div class="logo"><img src="${logoUrl}" alt="Logo" style="max-width: 100px; max-height: 100px;"></div>`);
+      let updatedContent = headerElement.innerHTML.replace(/<div class="logo">.*?<\/div>/, 
+      `<div class="logo"><img src="${logoUrl}" alt="Logo" style="max-width: 100px; max-height: 100px;"></div>`);
       headerElement.innerHTML = updatedContent;
     }
   }
@@ -191,7 +192,12 @@ showHTMLDialog() {
 * @returns {string} HTML content for the header
 */
 private generateHeaderHtml():string {
-  return this.selectedHeader.content.toString()
+  let headerHtml = this.selectedHeader.content.toString();
+  if (this.logoUrl) {
+    headerHtml = headerHtml.replace(/<div class="logo">.*?<\/div>/, `<div class="logo"><img src="${this.logoUrl}" alt="Logo" style="max-width: 100px; max-height: 100px;"></div>`);
+  }
+
+  return headerHtml;
 }
 
 /**
