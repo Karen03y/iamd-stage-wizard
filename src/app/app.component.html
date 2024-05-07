@@ -39,7 +39,9 @@
               <app-footer (footerChange)="onFooterChange($event)"></app-footer>
             </ng-container>
             <ng-container *ngSwitchCase="'algemene-voorwaarden'">
-              <app-algemene-voorwaarden></app-algemene-voorwaarden>
+              <app-algemene-voorwaarden
+                (formattedTermsChange)="onFormattedTermsChange($event)"
+              ></app-algemene-voorwaarden>
             </ng-container>
           </ng-container>
         </div>
@@ -51,7 +53,13 @@
     <h2 class="container-title">Preview</h2>
     <article class="preview-doc">
       <div class="scrollable">
-        <div class="preview-doc-wrapper">
+        <div
+          *ngIf="
+            options[selectedOptionIndex]?.content?.type !==
+            'algemene-voorwaarden'
+          "
+          class="preview-doc-wrapper"
+        >
           <div
             class="preview-doc-header"
             [innerHTML]="selectedHeader.content"
@@ -64,6 +72,17 @@
             class="preview-doc-footer"
             [innerHTML]="selectedFooter.content"
           ></div>
+        </div>
+        <div
+          *ngIf="
+            options[selectedOptionIndex]?.content?.type ===
+            'algemene-voorwaarden'
+          "
+          class="preview-algemene-voorwaarden-wrapper"
+        >
+          <app-geformatteerde-voorwaarden
+            [formattedTerms]="formattedTerms"
+          ></app-geformatteerde-voorwaarden>
         </div>
       </div>
       <div class="copy-code-button">

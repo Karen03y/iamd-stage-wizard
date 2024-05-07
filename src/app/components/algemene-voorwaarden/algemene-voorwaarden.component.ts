@@ -1,4 +1,4 @@
-  import { Component, OnInit } from '@angular/core';
+  import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   import {MatInputModule} from '@angular/material/input';
   import {MatFormFieldModule} from '@angular/material/form-field';
   import {MatSelectModule} from '@angular/material/select';
@@ -17,6 +17,7 @@
     styleUrl: './algemene-voorwaarden.component.css'
   })
   export class AlgemeneVoorwaardenComponent implements OnInit {
+    @Output() formattedTermsChange = new EventEmitter<string>();
     termsText: string = '';
     selectedColumns: number = 1;
     formattedTerms: SafeHtml = '';
@@ -39,21 +40,22 @@
     
       let formattedText = '';
     
-      formattedText += `<div class="voorwaarden" style="column-count: ${columns}; column-gap: ${columnGap}; font-size: ${fontSize}; text-align: justify; padding:16px">`;
-    
+      formattedText += `<div class="geformatteerde-voorwaarden">`; // Gebruik de juiste CSS-klasse
+      formattedText += `<div style="column-count: ${columns}; column-gap: ${columnGap}; font-size: ${fontSize}; text-align: justify; padding:16px">`; // Verplaats de inline CSS naar een stijlblad
       for (let i = 0; i < paragraphs.length; i++) {
         formattedText += `<li style="list-style-type:none">${paragraphs[i]}</li>`;
         if (i !== paragraphs.length - 1) {
           formattedText += '<br>'; 
         }
       }
-    
-      formattedText += '</div>';
+      formattedText += '</div></div>'; // Sluit de div's af
     
       this.formattedTerms = this.sanitizer.bypassSecurityTrustHtml(formattedText);
+      this.formattedTermsChange.emit(this.formattedTerms.toString()); // Converteer naar string voordat je emit
     }
     
     
+
     copyFormattedTerms(): void {
       if (this.formattedTerms) {
         const formattedText = this.formattedTerms.toString();

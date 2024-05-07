@@ -15,19 +15,4 @@
     </mat-form-field>
     <button class="blue-btn" (click)="formatTerms()">Formatteer</button>
   </div>
-
-  <div
-    *ngIf="formattedTerms"
-    class="geformatteerde-voorwaarden"
-    [innerHTML]="formattedTerms"
-  ></div>
-
-  <button
-    *ngIf="termsText.trim() && formattedTerms"
-    class="blue-btn"
-    id="copy-btn"
-    (click)="copyFormattedTerms()"
-  >
-    Kopieer
-  </button>
 </div>

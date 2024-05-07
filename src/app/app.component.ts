@@ -18,13 +18,14 @@ import { CalculatietabelComponent } from "./components/calculatietabel/calculati
 import { LogoUploadService } from './services/logo.service';
 import { FontService } from './services/font.service';
 import { AlgemeneVoorwaardenComponent } from "./components/algemene-voorwaarden/algemene-voorwaarden.component";
+import { GeformatteerdeVoorwaardenComponent } from "./components/geformatteerde-voorwaarden/geformatteerde-voorwaarden.component";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent, OptionButtonComponent, CalculatietabelComponent, AlgemeneVoorwaardenComponent]
+    imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent, OptionButtonComponent, CalculatietabelComponent, AlgemeneVoorwaardenComponent, GeformatteerdeVoorwaardenComponent]
 })
 export class AppComponent {
   title = 'iamd-document-wizard';
@@ -246,4 +247,12 @@ private generateCSS(html: string): string {
   }
   return css.trim();
 }
+
+/***************** ALGEMENE VOORWAARDEN ********************/
+formattedTerms: SafeHtml = '';
+
+onFormattedTermsChange(formattedTerms: SafeHtml) {
+  this.formattedTerms = this.sanitizer.bypassSecurityTrustHtml(formattedTerms.toString());
+}
+
 }
