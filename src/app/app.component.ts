@@ -163,7 +163,7 @@ export class AppComponent {
  * Displays an HTML dialog with dynamic content.
  * @function showHTMLDialog
  */
-showHTMLDialog() {
+showDialog() {
   /** Generate full HTML content */
   const fullHtml = this.generateFullHtml();
   /** Generate CSS styles */
