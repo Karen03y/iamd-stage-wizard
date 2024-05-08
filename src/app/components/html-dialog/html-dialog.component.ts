@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
       <button (click)="copyToClipboardWithoutCSS('header')">Header html</button>
       <button (click)="copyToClipboardWithoutCSS('main')">Main html</button>
       <button (click)="copyToClipboardWithoutCSS('footer')">Footer html</button>
+      <button (click)="copyToClipboardWithoutCSS('algemene-voorwaarden')">Algemene Voorwaarden html</button>
       <button id="cssOnly" (click)="copyToClipboard(css)">CSS</button>
       </div>
       
@@ -20,8 +21,6 @@ import { CommonModule } from '@angular/common';
         De code werd gekopieerd naar het klembord!
       </div>
     </div>
-
-
   `,
   styleUrls: ['./html-dialog.component.css'],
   standalone: true,
@@ -34,6 +33,7 @@ export class HtmlDialogComponent implements OnInit {
   mainHtml: string;
   footerHtml: string;
   fullHtml:string;
+  algemeneVoorwaardenHtml:string;
   css: string;
 
   constructor(
@@ -44,6 +44,7 @@ export class HtmlDialogComponent implements OnInit {
     this.mainHtml = data.mainHtml;
     this.footerHtml = data.footerHtml;
     this.fullHtml = data.fullHtml;
+    this.algemeneVoorwaardenHtml = data.algemeneVoorwaardenHtml;
     this.css = data.css;
   }
 
@@ -76,7 +77,6 @@ export class HtmlDialogComponent implements OnInit {
         break;
       }
     }
-  
     return htmlWithoutCSS.trim();
   }
 
@@ -92,7 +92,11 @@ export class HtmlDialogComponent implements OnInit {
       case 'footer':
         htmlWithoutCSS = this.generateHTMLWithoutCSS(this.footerHtml);
         break;
+      case 'algemene-voorwaarden':
+        htmlWithoutCSS = this.generateHTMLWithoutCSS(this.algemeneVoorwaardenHtml);
+        break;
     }
+    
     navigator.clipboard.writeText(htmlWithoutCSS).then(() => {
       this.copied = true;
       setTimeout(() => this.copied = false, 10000); 

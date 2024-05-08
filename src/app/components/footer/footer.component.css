@@ -5,7 +5,7 @@
 }
 
 .footer:hover {
-  border: solid rgb(74, 74, 74) 2px;
+  border: var(--hover-box-shadow) solid 2px;
 }
 
 .footer-content {
@@ -17,8 +17,8 @@
 }
 
 .footer-preview {
-  background: white;
-  border: black solid 1px;
+  background: var(--white-color);
+  border: var(--black-color) solid 1px;
   width: 100%;
   height: 100px;
   cursor: pointer;

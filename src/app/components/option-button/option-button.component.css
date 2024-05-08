@@ -9,27 +9,22 @@ p {
 }
 
 button {
-  border: none;
   width: 95%;
   height: 44px;
-  vertical-align: center;
   text-align: left;
-  text-transform: uppercase;
   background-color: var(--light-grey-color);
-  cursor: pointer;
   padding: 0 12px;
   margin: 4px;
-  color: #000;
+  color: var(--black-color);
 }
 
 button:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  color: #fff;
+  color: var(--white-color);
   background-color: var(--green-color);
 }
 
 .selected-title {
   background-color: var(--green-color) !important;
-  color: #fff !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: var(--white-color) !important;
+  box-shadow: var(--hover-box-shadow);
 }

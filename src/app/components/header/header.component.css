@@ -2,11 +2,10 @@
 .header {
   margin-top: 8px;
   height: 120px;
-  border: solid black 1px;
+  border: var(--black-color) solid 1px;
 }
 
 .header:hover {
-  border: solid var(--brand-accent) 2px;
   cursor: pointer;
 }
 
@@ -19,7 +18,7 @@
 }
 
 .header-preview {
-  background: white;
+  background: var(--white-color);
   width: 100%;
   align-items: center;
 }

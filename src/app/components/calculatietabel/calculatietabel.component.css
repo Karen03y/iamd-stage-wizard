@@ -11,8 +11,8 @@
 }
 
 .calculatietabel-preview {
-  background: white;
-  border: black solid 1px;
+  background: var(--white-color);
+  border: var(--black-color) solid 1px;
   width: 100%;
   cursor: pointer;
 }

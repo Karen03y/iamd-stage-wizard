@@ -7,7 +7,6 @@
   import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   import {Clipboard, ClipboardModule} from '@angular/cdk/clipboard';
 
-
   @Component({
     selector: 'app-algemene-voorwaarden',
     standalone: true,
@@ -16,6 +15,7 @@
     templateUrl: './algemene-voorwaarden.component.html',
     styleUrl: './algemene-voorwaarden.component.css'
   })
+
   export class AlgemeneVoorwaardenComponent implements OnInit {
     @Output() formattedTermsChange = new EventEmitter<string>();
     termsText: string = '';
@@ -27,6 +27,11 @@
     ngOnInit(): void {
     }
   
+/**
+ * formats terms input by user
+ * choice between different column numbers
+ * @returns formattedText
+ */
     formatTerms(): void {
       if (!this.termsText.trim()) {
         alert('Geen tekst ingevuld.');
@@ -54,6 +59,9 @@
       this.formattedTermsChange.emit(this.formattedTerms.toString()); 
     }
 
+    /**
+     * function to copy the formatted terms to clipboard
+     */
     copyFormattedTerms(): void {
       if (this.formattedTerms) {
         const formattedText = this.formattedTerms.toString();

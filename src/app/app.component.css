@@ -4,7 +4,7 @@ main {
   align-items: center;
   padding: 8px 24px;
   min-height: 100vh;
-  background-color: #f0f3f7;
+  background-color: var(--background-color);
 }
 
 /*********************** CONTAINERS ***********************/
@@ -33,7 +33,7 @@ main {
 }
 
 .button-wrapper {
-  background-color: #fff;
+  background-color: var(--white-color);
   padding: 8px;
   margin: 8px;
 }
@@ -41,7 +41,7 @@ main {
 /*********************** CENTER CONTAINER ***********************/
 
 .no-option-text {
-  color: #939393;
+  color: var(--middle-grey-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,14 +67,14 @@ main {
 /* Articles */
 article {
   border-radius: 3px;
-  background-color: #ffffff;
+  background-color: var(--white-color);
   margin: 8px;
   padding: 24px;
 }
 
 /* Content */
 article .content {
-  background-color: #ffffff;
+  background-color: var(--white-color);
   margin: 8px auto;
   padding: 32px;
 }
@@ -90,14 +90,14 @@ article .content {
 
 .preview-doc-wrapper,
 .preview-algemene-voorwaarden-wrapper {
-  background-color: #ffffff;
+  background-color: var(--white-color);
   margin: 8px 16px;
   display: flex;
   flex-direction: column;
 }
 
 .preview-doc-wrapper {
-  border: solid 1px #939393;
+  border: solid 1px var(--middle-grey-color);
 }
 
 .preview-doc-header {
@@ -129,21 +129,21 @@ button {
 
 .green-btn {
   background-color: var(--light-grey-color);
-  color: #000;
+  color: var(--black-color);
 }
 
 .green-btn:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  color: #fff;
+  box-shadow: var(--hover-box-shadow);
+  color: var(--white-color);
   background-color: var(--green-color);
 }
 
 .blue-btn {
   background-color: var(--brand-primary);
   background: var(--dark-blue-gradient);
-  color: #fff;
+  color: var(--white-color);
 }
 
 .blue-btn:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--hover-box-shadow);
 }

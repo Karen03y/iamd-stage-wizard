@@ -2,11 +2,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Calculatietabel } from '../../../types';
 import { LoadContentService } from '../../services/load-content.service';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 @Component({
   selector: 'app-calculatietabel',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatSlideToggleModule],
   template: `
   <h1>Kies een calculatietabel</h1>
     <div class="calculatietabel" *ngFor="let calculatietabel of calculatietabellen">
@@ -18,6 +20,9 @@ import { LoadContentService } from '../../services/load-content.service';
     ></div>
     </div>
     </div>
+   <form class="toggleTableWidths" >
+    <mat-slide-toggle color="green">Lock table widths</mat-slide-toggle>
+  </form>
   `,
   styleUrl: './calculatietabel.component.css'
 })

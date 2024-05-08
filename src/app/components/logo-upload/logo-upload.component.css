@@ -15,12 +15,12 @@
   text-transform: uppercase;
   background-color: var(--brand-primary);
   background: var(--dark-blue-gradient);
-  color: #fff;
+  color: var(--white-color);
   cursor: pointer;
 }
 
 .logo-upload .custom-file-input:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--hover-box-shadow);
 }
 
 .logo-upload input[type="file"] {
@@ -32,5 +32,5 @@
   max-height: 200px;
   margin-top: 20px;
   font-size: 14px;
-  color: #444444;
+  color: var(--dark-grey-color);
 }
