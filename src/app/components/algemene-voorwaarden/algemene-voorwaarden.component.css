@@ -5,14 +5,13 @@
 .algemene-voorwaarden-input textarea {
   min-height: 300px;
 }
-
-.geformatteerde-voorwaarden {
+.select-and-button-container {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
 }
 
-.kolom {
-  flex: 1 0 33.33%; /* 33.33% breedte per kolom */
-  padding: 10px;
-  border: 1px solid #ccc;
+.kolommen-keuze {
+  margin-right: 8px;
 }

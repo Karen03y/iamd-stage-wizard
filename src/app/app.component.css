@@ -88,20 +88,24 @@ article .content {
   max-height: 92vh;
 }
 
-.preview-doc-wrapper {
+.preview-doc-wrapper,
+.preview-algemene-voorwaarden-wrapper {
   background-color: #ffffff;
-  border: solid 1px #939393;
   margin: 8px 16px;
   display: flex;
   flex-direction: column;
 }
 
+.preview-doc-wrapper {
+  border: solid 1px #939393;
+}
+
 .preview-doc-header {
-  flex: 0 0 auto; /*neem enkel benodigde ruimte in*/
+  flex: 0 0 auto;
 }
 
 .preview-doc-footer {
-  margin-top: auto; /*duw naar onderkant*/
+  margin-top: auto;
 }
 
 .copy-code-button {
