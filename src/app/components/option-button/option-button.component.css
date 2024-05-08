@@ -16,6 +16,7 @@ button {
   padding: 0 12px;
   margin: 4px;
   color: var(--black-color);
+  text-transform: uppercase;
 }
 
 button:hover {
