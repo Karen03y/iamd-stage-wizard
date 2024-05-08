@@ -36,11 +36,11 @@
       const paragraphs = this.termsText.split('\n\n');
       const columns = this.selectedColumns;
       const columnGap = '16px';
-      const fontSize = '11px';
+      const fontSize = '12px';
     
       let formattedText = '';
     
-      formattedText += `<div class="geformatteerde-voorwaarden">`; // Gebruik de juiste CSS-klasse
+      formattedText += `<div class="geformatteerde-voorwaarden">`; 
       formattedText += `<div style="column-count: ${columns}; column-gap: ${columnGap}; font-size: ${fontSize}; text-align: justify; padding:16px">`; // Verplaats de inline CSS naar een stijlblad
       for (let i = 0; i < paragraphs.length; i++) {
         formattedText += `<li style="list-style-type:none">${paragraphs[i]}</li>`;
@@ -48,19 +48,16 @@
           formattedText += '<br>'; 
         }
       }
-      formattedText += '</div></div>'; // Sluit de div's af
+      formattedText += '</div></div>'; 
     
       this.formattedTerms = this.sanitizer.bypassSecurityTrustHtml(formattedText);
-      this.formattedTermsChange.emit(this.formattedTerms.toString()); // Converteer naar string voordat je emit
+      this.formattedTermsChange.emit(this.formattedTerms.toString()); 
     }
-    
-    
 
     copyFormattedTerms(): void {
       if (this.formattedTerms) {
         const formattedText = this.formattedTerms.toString();
         this.clipboard.copy(formattedText);
-        alert('De geformatteerde voorwaarden zijn gekopieerd naar het klembord.');
       }
     }
     
