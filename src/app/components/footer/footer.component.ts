@@ -36,15 +36,17 @@ export class FooterComponent {
   }
 
   loadFooterContent() {
-    const footerFileNames = ['footer1.html', 'footer2.html']; 
-    footerFileNames.forEach(fileName => {
-    this.loadContentService.loadContent(fileName, 'footer').subscribe((footer: Footer) => {
-      this.footers.push(footer);
-    }, error => {
-      console.error(`Error loading footer content from ${fileName}:`, error);
+    this.loadContentService.getFooterFileNames().subscribe((fileNames: string[]) => {
+      console.log(fileNames); 
+      fileNames.forEach(fileName => {
+        this.loadContentService.loadContent(fileName, 'footer').subscribe((footer: Footer) => {
+          this.footers.push(footer);
+        }, error => {
+          console.error(`Error loading footer content from ${fileName}:`, error);
+        });
+      });
     });
-  });
-}
+  }
 
   onFooterChange(footer:Footer) {
     this.footerChange.emit(footer)

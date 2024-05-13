@@ -1,12 +1,12 @@
 {
     "footers": [
       "footer1.html",
-      "footer2.html",
-      "footer3.html"
+      "footer2.html"
     ],
     "headers": [
       "header1.html",
-      "header2.html"
+      "header2.html",
+      "header3.html"
     ],
     "mains": {
       "VF": [

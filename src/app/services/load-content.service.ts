@@ -59,11 +59,12 @@ export class LoadContentService {
         })
       );
   }
+
   getHeaderFileNames(): Observable<string[]> {
     const fileNamesUrl = 'assets/fileNames.json';
     return this.http.get<any>(fileNamesUrl).pipe(
       map(data => {
-        return data['headers'] || []; // We halen alleen de array met bestandsnamen voor de headers op, of een lege array als het niet bestaat
+        return data['headers'] || []; 
       }),
       catchError(error => {
         console.error('Failed to load header file names:', error);
@@ -72,7 +73,18 @@ export class LoadContentService {
     );
   }
   
-
+  getFooterFileNames(): Observable<string[]> {
+    const fileNamesUrl = 'assets/fileNames.json';
+    return this.http.get<any>(fileNamesUrl).pipe(
+      map(data => {
+        return data['footers'] || []; 
+      }),
+      catchError(error => {
+        console.error('Failed to load footer file names:', error);
+        return throwError(new Error('Failed to load footer file names'));
+      })
+    );
+  }
   private sanitizeContent(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
