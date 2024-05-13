@@ -14,10 +14,12 @@ input {
   border: none;
   cursor: pointer;
 }
+
 input::-webkit-color-swatch {
   border-radius: 15%;
   border: 1px solid #666;
 }
+
 input::-moz-color-swatch {
   border-radius: 15%;
   border: 1px solid #666;

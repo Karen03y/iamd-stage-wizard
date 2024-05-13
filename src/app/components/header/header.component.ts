@@ -1,3 +1,4 @@
+// Header Component
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,7 @@ import { LogoUploadService } from '../../services/logo.service';
     <h1>Kies een header</h1>
     <div class="header" *ngFor="let header of headers">
       <div class="header-content">
-      <div class="header-preview" [innerHtml]="header.content" (click)="onHeaderChange(header)">
+        <div class="header-preview" [innerHtml]="header.content" (click)="onHeaderChange(header)">
           <div class="logo" *ngIf="logoUrl"> 
             <img [src]="logoUrl" alt="Logo" style="max-width: 100px; max-height: 100px;">
           </div>
@@ -33,27 +34,23 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.loadHeaderContent();
-    this.subscribeToLogoChanges();
   }
 
   loadHeaderContent() {
-    const headerFileNames = ['header1.html', 'header2.html', 'header3.html'];
-    headerFileNames.forEach(fileName => {
-      this.loadContentService.loadContent(fileName, 'header').subscribe((header: Header) => {
-        this.headers.push(header);
-      }, error => {
-        console.error(`Error loading header content from ${fileName}:`, error);
+    this.loadContentService.getHeaderFileNames().subscribe((fileNames: string[]) => {
+      console.log(fileNames); 
+      fileNames.forEach(fileName => {
+        this.loadContentService.loadContent(fileName, 'header').subscribe((header: Header) => {
+          this.headers.push(header);
+        }, error => {
+          console.error(`Error loading header content from ${fileName}:`, error);
+        });
       });
     });
   }
+  
 
   onHeaderChange(header: Header) {
     this.headerChange.emit(header);
-  }
-
-  subscribeToLogoChanges() {
-    this.logoUploadService.logoUrl$.subscribe(url => {
-      this.logoUrl = url;
-    });
   }
 }

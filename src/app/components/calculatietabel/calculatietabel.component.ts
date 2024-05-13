@@ -20,9 +20,6 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     ></div>
     </div>
     </div>
-   <form class="toggleTableWidths" >
-    <mat-slide-toggle color="green">Lock table widths</mat-slide-toggle>
-  </form>
   `,
   styleUrl: './calculatietabel.component.css'
 })

@@ -35,7 +35,7 @@ export class AppComponent {
     { title: "Logo", content: {type:"logo"}},
     { title: "Header", content: { type: "header" }},
     { title: "Main", content: { type: "main" }},
-    { title: "Calculatietabel", content: {type:"calculatietabel"}},
+   // { title: "Calculatietabel", content: {type:"calculatietabel"}},
     { title: "Footer", content: { type: "footer" }},
     { title: "Algemene Voorwaarden", content: {type: "algemene-voorwaarden"}}
   ];
@@ -165,20 +165,18 @@ export class AppComponent {
  * @function showHTMLDialog
  */
 showDialog() {
-  /** Generate full HTML content */
   const fullHtml = this.generateFullHtml();
-  /** Generate CSS styles */
   const css = this.generateCSS(fullHtml);
-  
+
   /** Open HTML dialog -> HtmlDialogComponent */
   const dialogRef = this.dialog.open(HtmlDialogComponent, {
     data: {
       headerHtml: this.generateHeaderHtml(),
       mainHtml: this.generateMainHtml(),
       footerHtml: this.generateFooterHtml(),
-      fullHtml: fullHtml, 
-      css: css 
-    }
+      fullHtml,
+      css,
+    },
   });
 
   /** Log message when the dialog is closed */
@@ -188,16 +186,15 @@ showDialog() {
 }
 
 /**
-* Generates HTML content for the header of the dialog.
-* @private
-* @returns {string} HTML content for the header
-*/
-private generateHeaderHtml():string {
+ * Generates HTML content for the header of the dialog.
+ * @private
+ * @returns {string} HTML content for the header
+ */
+private generateHeaderHtml(): string {
   let headerHtml = this.selectedHeader.content.toString();
   if (this.logoUrl) {
     headerHtml = headerHtml.replace(/<div class="logo">.*?<\/div>/, `<div class="logo"><img src="${this.logoUrl}" alt="Logo" style="max-width: 100px; max-height: 100px;"></div>`);
   }
-
   return headerHtml;
 }
 
@@ -220,22 +217,22 @@ private generateFooterHtml():string {
 }
 
 /**
-* Generates full HTML content by concatenating header, main, and footer HTML content.
-* @private
-* @returns {string} Full HTML content for the dialog
-*/
+ * Generates full HTML content by concatenating header, main, and footer HTML content.
+ * @private
+ * @returns {string} Full HTML content for the dialog
+ */
 private generateFullHtml(): string {
-  return this.selectedHeader.content.toString() 
-  + this.selectedMain.content.toString() 
-  + this.selectedFooter.content.toString();
+  return `${this.selectedHeader.content.toString()}
+          ${this.selectedMain.content.toString()}
+          ${this.selectedFooter.content.toString()}`;
 }
 
 /**
-* Extracts CSS styles from the provided HTML content.
-* @private
-* @param {string} html - HTML content
-* @returns {string} Extracted CSS styles
-*/
+ * Extracts CSS styles from the provided HTML content.
+ * @private
+ * @param {string} html - HTML content
+ * @returns {string} Extracted CSS styles
+ */
 private generateCSS(html: string): string {
   const startTag = '<style>';
   const endTag = '</style>';
@@ -245,10 +242,10 @@ private generateCSS(html: string): string {
   while (startIndex !== -1) {
     const endIndex = html.indexOf(endTag, startIndex);
     if (endIndex !== -1) {
-      css += html.substring(startIndex + startTag.length, endIndex) + '\n'; 
-      startIndex = html.indexOf(startTag, endIndex + endTag.length); 
+      css += html.substring(startIndex + startTag.length, endIndex) + '\n';
+      startIndex = html.indexOf(startTag, endIndex + endTag.length);
     } else {
-      break; 
+      break;
     }
   }
   return css.trim();
@@ -258,7 +255,8 @@ private generateCSS(html: string): string {
 formattedTerms: SafeHtml = '';
 
 onFormattedTermsChange(formattedTerms: SafeHtml) {
-  this.formattedTerms = this.sanitizer.bypassSecurityTrustHtml(formattedTerms.toString());
+  this.formattedTerms = formattedTerms; 
 }
+
 
 }

@@ -12,6 +12,8 @@ h2 {
 
 .buttons {
   margin: 16px 8px;
+  display: flex;
+  gap: 10px;
 }
 
 .confirmation-message {

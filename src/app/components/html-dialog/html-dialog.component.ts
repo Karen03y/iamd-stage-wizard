@@ -1,8 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-html-dialog',
@@ -10,21 +13,17 @@ import { CommonModule } from '@angular/common';
    <div class="html-dialog">
     <h2>Welke code wil je kopiëren?</h2>
       <div class="buttons">
-      <button (click)="copyToClipboardWithoutCSS('header')">Header html</button>
-      <button (click)="copyToClipboardWithoutCSS('main')">Main html</button>
-      <button (click)="copyToClipboardWithoutCSS('footer')">Footer html</button>
-      <button (click)="copyToClipboardWithoutCSS('algemene-voorwaarden')">Algemene Voorwaarden html</button>
-      <button id="cssOnly" (click)="copyToClipboard(css)">CSS</button>
+      <button class="blue-btn" (click)="copyToClipboard(headerHtml)">Header html</button>
+      <button class="blue-btn" (click)="copyToClipboard(mainHtml)">Main html</button>
+      <button class="blue-btn" (click)="copyToClipboard(footerHtml)">Footer html</button>
+      <button class="blue-btn" (click)="copyToClipboard(css)">CSS</button>
       </div>
-      
-      <div *ngIf="copied" class="confirmation-message">
-        De code werd gekopieerd naar het klembord!
-      </div>
+      <div *ngIf="copied" class="confirmation-message" [innerHTML]="copiedMessage"></div>
     </div>
   `,
   styleUrls: ['./html-dialog.component.css'],
   standalone: true,
-  imports:[MatButtonModule, MatIconModule, CommonModule]
+  imports: [MatButtonModule, MatIconModule, CommonModule, ClipboardModule]
 })
 
 export class HtmlDialogComponent implements OnInit {
@@ -32,83 +31,42 @@ export class HtmlDialogComponent implements OnInit {
   headerHtml: string;
   mainHtml: string;
   footerHtml: string;
-  fullHtml:string;
-  algemeneVoorwaardenHtml:string;
+  fullHtml: string;
   css: string;
+  copiedMessage: SafeHtml;
 
   constructor(
-    private dialogRef: MatDialogRef<HtmlDialogComponent>,
+    private sanitizer: DomSanitizer,
+    private clipboard: Clipboard,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { 
+  ) {
     this.headerHtml = data.headerHtml;
     this.mainHtml = data.mainHtml;
     this.footerHtml = data.footerHtml;
     this.fullHtml = data.fullHtml;
-    this.algemeneVoorwaardenHtml = data.algemeneVoorwaardenHtml;
     this.css = data.css;
+    this.copiedMessage = this.sanitizer.bypassSecurityTrustHtml(''); 
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  copyToClipboard(html: string) {
-    navigator.clipboard.writeText(html).then(() => {
+  async copyToClipboard(html: string) {
+    this.copiedMessage = this.sanitizer.bypassSecurityTrustHtml('De code werd gekopieerd naar het klembord!');
+
+    const htmlToCopy = this.removeCSS(html);
+
+    try {
+      await this.clipboard.copy(htmlToCopy);
       this.copied = true;
-      setTimeout(() => this.copied = false, 10000); 
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
+      console.log(`gekopieerd`)
+      setTimeout(() => (this.copied = false), 10000);
+    } catch (err) {
+      console.error('Failed to copy HTML: ', err);
+      this.copied = false;
+    }
   }
 
-  private generateHTMLWithoutCSS(html: string): string {
-    const startTag = '<style>';
-    const endTag = '</style>';
-    let htmlWithoutCSS = html;
-  
-    let startIndex = htmlWithoutCSS.indexOf(startTag);
-    while (startIndex !== -1) {
-      const endIndex = htmlWithoutCSS.indexOf(endTag, startIndex);
-  
-      if (endIndex !== -1) {
-        htmlWithoutCSS = htmlWithoutCSS.substring(0, startIndex) + htmlWithoutCSS.substring(endIndex + endTag.length);
-        startIndex = htmlWithoutCSS.indexOf(startTag, startIndex); 
-      } else {
-        htmlWithoutCSS = htmlWithoutCSS.substring(0, startIndex);
-        break;
-      }
-    }
-    return htmlWithoutCSS.trim();
+  removeCSS(html: string): string {
+    return html.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
   }
-
-  copyToClipboardWithoutCSS(section: string) {
-    let htmlWithoutCSS: string ='';
-    switch (section) {
-      case 'header':
-        htmlWithoutCSS = this.generateHTMLWithoutCSS(this.headerHtml);
-        break;
-      case 'main':
-        htmlWithoutCSS = this.generateHTMLWithoutCSS(this.mainHtml);
-        break;
-      case 'footer':
-        htmlWithoutCSS = this.generateHTMLWithoutCSS(this.footerHtml);
-        break;
-      case 'algemene-voorwaarden':
-        htmlWithoutCSS = this.generateHTMLWithoutCSS(this.algemeneVoorwaardenHtml);
-        break;
-    }
-    
-    navigator.clipboard.writeText(htmlWithoutCSS).then(() => {
-      this.copied = true;
-      setTimeout(() => this.copied = false, 10000); 
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
-  }
-  
-  
 }
-
-
-
-
-
