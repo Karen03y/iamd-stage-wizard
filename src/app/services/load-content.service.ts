@@ -60,6 +60,30 @@ export class LoadContentService {
       );
   }
 
+  loadAllMainContent(folderName: string): Observable<Main[]> {
+    const fileNamesUrl = `assets/fileNames.json`;
+
+    return this.http.get<any>(fileNamesUrl)
+      .pipe(
+        switchMap(data => {
+          const fileNames = data['mains'][folderName];
+          if (!fileNames) {
+            throw new Error('Folder not found');
+          }
+
+          const contentObservables: Observable<Main>[] = fileNames.map((fileName: string) => {
+            return this.loadContent(fileName, `main_${folderName}` as "main_VF" | "main_AF" | "main_Offertes");
+          });
+
+          return forkJoin(contentObservables);
+        }),
+        catchError(error => {
+          console.error('Failed to load all main content:', error);
+          return throwError(new Error('Failed to load all main content'));
+        })
+      );
+  }
+
   getHeaderFileNames(): Observable<string[]> {
     const fileNamesUrl = 'assets/fileNames.json';
     return this.http.get<any>(fileNamesUrl).pipe(

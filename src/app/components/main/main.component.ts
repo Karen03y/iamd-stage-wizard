@@ -45,19 +45,19 @@ export class MainComponent {
         default:
           return;
       }
+  
       if (folderName) {
-        const contentType = `main_${folderName}` as "main_VF" | "main_AF" | "main_Offertes"; // contentType expliciet casten
-        this.loadContentService.loadAllContent(folderName, contentType).subscribe(
+        this.loadContentService.loadAllMainContent(folderName).subscribe(
           (mains: Main[]) => {
             switch (label) {
               case 'Verkoopfactuur':
-                this.verkoopfactuurMains.push(...mains);
+                this.verkoopfactuurMains = mains;
                 break;
               case 'Aankoopfactuur':
-                this.aankoopfactuurMains.push(...mains);
+                this.aankoopfactuurMains = mains;
                 break;
               case 'Offerte':
-                this.offerteMains.push(...mains);
+                this.offerteMains = mains;
                 break;
             }
           },
@@ -68,6 +68,7 @@ export class MainComponent {
       }
     });
   }
+  
   
   onMainChange(main: Main) {
     this.mainChange.emit(main);
