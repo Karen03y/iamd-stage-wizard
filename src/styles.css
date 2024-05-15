@@ -12,6 +12,34 @@
   --brand-primary: #0d1636eb;
   --brand-accent: #008771;
   --background-color: #f0f3f7;
+
+  --header-text-color: #000000;
+  --header-strong-text-color: #000000;
+  --header-background-color: #ffffff;
+
+  --footer-text-color: #000000;
+  --footer-strong-text-color: #000000;
+  --footer-background-color: #ffffff;
+
+  --main-text-color: #000000;
+  --main-strong-text-color: #000000;
+  --main-background-color: #ffffff;
+
+  --main-table-border-color: #000000;
+  --main-table-title-color: #000000;
+  --main-table-title-background-color: #ffffff;
+}
+
+.header {
+  color: var(--header-text-color);
+  background-color: var(--header-background-color);
+}
+.header strong {
+  color: var(--header-strong-text-color);
+}
+.header table {
+  border-collapse: collapse;
+  border: 1px solid var(--header-table-border-color);
 }
 
 * {
