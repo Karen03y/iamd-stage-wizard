@@ -80,10 +80,9 @@
           "
           class="preview-algemene-voorwaarden-wrapper"
         >
-          <div
-            class="geformatteerde-voorwaarden"
-            [innerHTML]="sanitizeHtml(formattedTerms.toString())"
-          ></div>
+          <app-geformatteerde-voorwaarden
+            [formattedTerms]="formattedTerms"
+          ></app-geformatteerde-voorwaarden>
         </div>
       </div>
       <div class="copy-code-button">
