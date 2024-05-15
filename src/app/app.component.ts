@@ -68,8 +68,9 @@ export class AppComponent {
       this.logoUrl = url;
       this.updatePreviewDocHeaderWithLogo(url);
     });
-    this.fontService.updateDocumentFont();
-  }
+    this.fontService.fontUpdated$.subscribe(() => {
+      this.updatePreviewDocFonts();
+    });  }
   
     /**
    * Sanitizes HTML content to prevent XSS attacks.
@@ -263,5 +264,15 @@ onFormattedTermsChange(formattedTerms: SafeHtml) {
   this.formattedTerms = formattedTerms; 
 }
 
+/*********************  FONT **************************** */
+
+updatePreviewDocFonts() {
+  const elements = document.querySelectorAll('.preview-doc *');
+  elements.forEach(element => {
+    if (element instanceof HTMLElement) {
+      element.style.fontFamily = this.fontService.selectedFont;
+    }
+  });
+}
 
 }

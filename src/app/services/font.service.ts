@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class FontService {
 
   selectedFont: string = ''; 
+  fontUpdated$ = new Subject<void>();
 
   constructor() { }
 
@@ -23,7 +25,7 @@ export class FontService {
           element.style.fontFamily = font;
         }
       });
+      this.fontUpdated$.next(); 
     }
   }
-  
 }
