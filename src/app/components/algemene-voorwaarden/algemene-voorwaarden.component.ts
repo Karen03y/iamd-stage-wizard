@@ -32,32 +32,31 @@
  * choice between different column numbers
  * @returns formattedText
  */
-    formatTerms(): void {
-      if (!this.termsText.trim()) {
-        alert('Geen tekst ingevuld.');
-        return;
-      }
-    
-      const paragraphs = this.termsText.split('\n\n');
-      const columns = this.selectedColumns;
-      const columnGap = '16px';
-      const fontSize = '12px';
-    
-      let formattedText = '';
-    
-      formattedText += `<div class="geformatteerde-voorwaarden">`; 
-      formattedText += `<div style="column-count: ${columns}; column-gap: ${columnGap}; font-size: ${fontSize}; text-align: justify; padding:16px">`; // Verplaats de inline CSS naar een stijlblad
-      for (let i = 0; i < paragraphs.length; i++) {
-        formattedText += `<li style="list-style-type:none">${paragraphs[i]}</li>`;
-        if (i !== paragraphs.length - 1) {
-          formattedText += '<br>'; 
-        }
-      }
-      formattedText += '</div></div>'; 
-    
-      this.formattedTerms = this.sanitizer.bypassSecurityTrustHtml(formattedText);
-      this.formattedTermsChange.emit(this.formattedTerms.toString()); 
+formatTerms(): void {
+  if (!this.termsText.trim()) {
+    alert('Geen tekst ingevuld.');
+    return;
+  }
+
+  const paragraphs = this.termsText.split('\n\n');
+  const columns = this.selectedColumns;
+  const columnGap = '16px';
+  const fontSize = '12px';
+
+  let formattedText = '';
+
+  formattedText += `<div class="geformatteerde-voorwaarden" style="--columns: ${columns}; --column-gap: ${columnGap}; --font-size: ${fontSize};">`;
+  for (let i = 0; i < paragraphs.length; i++) {
+    formattedText += `<li>${paragraphs[i]}</li>`;
+    if (i !== paragraphs.length - 1) {
+      formattedText += '<br>';
     }
+  }
+  formattedText += '</div>';
+
+  this.formattedTerms = this.sanitizer.bypassSecurityTrustHtml(formattedText);
+  this.formattedTermsChange.emit(this.formattedTerms.toString());
+}
 
     /**
      * function to copy the formatted terms to clipboard

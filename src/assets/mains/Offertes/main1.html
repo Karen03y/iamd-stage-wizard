@@ -1,226 +1,521 @@
 <style>
-  .main1 {
-    font-family: Arial, Helvetica, sans-serif;
+  .main1-offerte {
     font-size: 11px;
-    text-align: left;
-    line-height: 1.2;
+    letter-spacing: 0pt;
+    font-weight: 400;
     width: 95%;
     margin: 20px auto;
-  }
 
-  .main1 h1 {
-    font-size: 14px;
-    margin: 10px 0 5px 0;
-  }
+    p {
+      margin: 0 0 0 0;
+    }
 
-  .main1 table {
-    border-collapse: collapse;
-    width: 95%;
-    margin: auto;
-  }
+    h1 {
+      font-size: 13px;
+      font-weight: 700;
+      margin: 4pt 0 4pt 0;
+    }
 
-  /* FACTUUR INFO */
-  .main1 .factuur-info {
-    margin: 20px 0;
-    border-collapse: collapse;
-  }
+    h2 {
+      font-size: 12px;
+      font-weight: 700;
+      margin: 0 0 8pt 0;
+    }
 
-  .main1 .factuur-info td {
-    width: 50%;
-  }
+    h3 {
+      font-size: 11px;
+      font-weight: 700;
+      margin: 4pt 0 4pt 0;
+    }
 
-  ul li {
-    list-style-type: none;
-  }
+    h4 {
+      font-size: 10px;
+      font-weight: 700;
+      margin: 0 0 8pt 0;
+    }
 
-  /* FACTUUR ITEMS */
+    body,
+    html,
+    table,
+    td {
+      font-family: "DM Sans", Sans-serif;
+      font-size: 9pt;
+      letter-spacing: 0pt;
+      font-weight: 400;
+    }
 
-  .main1 .factuur-items {
-    border: solid 2px transparent;
-  }
+    table {
+      border-collapse: collapse;
+    }
 
-  .main1 .factuur-items thead th {
-    background-color: #c9c9c9;
-    color: black;
-    font-weight: bolder;
-    text-align: left;
-    padding: 5px;
-  }
+    table {
+      page-break-inside: auto;
+    }
+    tr {
+      page-break-inside: avoid;
+      page-break-after: auto;
+    }
+    thead {
+      display: table-header-group;
+    }
+    tfoot {
+      display: table-footer-group;
+    }
 
-  .main1 .factuur-items .item-omschr {
-    border-top: solid 1px black;
-  }
+    table {
+      border-collapse: collapse;
+    }
 
-  .main1 .item-samenstelling ul {
-    margin: 0 0 0 10px;
-  }
+    table td {
+      padding: 3pt 4pt;
+      line-height: 12pt;
+    }
+    table th {
+      padding: 2pt 4pt;
+    }
 
-  /* BTW BEREKENING EN FACTUUR TOTAAL */
-  .main1 .factuur-totaal {
-    margin-top: 20px;
-    break-inside: avoid;
-  }
+    /** ITEMS **/
+    table.table-items {
+      border: 1pt solid #000000;
+    }
 
-  .main1 .factuur-totaal th {
-    border-bottom: solid black 1px;
-    font-weight: 400;
-  }
+    table.table-items td {
+      border-left: 1pt solid #000000;
+    }
 
-  .main1 .factuur-totaal td,
-  .main1 .factuur-totaal th {
-    padding: 10px 3px 10px 0;
-    border-top: solid black 1px;
-    text-align: right;
-  }
+    table.table-items thead th {
+      border: 1pt solid #000000;
+    }
 
-  .main1 .factuur-totaal .totaal-incl {
-    font-size: 14px;
-  }
+    /*table.table-items tbody tr:nth-child(even) {
+        background-color: #f6f1ed;
+      }*/
 
-  /* BETALING */
+    table.table-items tbody tr.title-row {
+      border: 1pt solid #000000;
+    }
 
-  .main1 .betaling {
-    width: 60%;
-    text-align: left;
-    padding: 10px;
-    margin: 20px 0 30px 0;
-    position: relative;
-    border-radius: 10px;
-    break-inside: avoid;
+    table.table-items tbody tr.title-row td {
+      padding-top: 4pt;
+      border: 1pt solid #000000;
+    }
+
+    table.table-items tbody tr.text-row td {
+      border: 1pt solid #000000;
+    }
+
+    table.table-items tbody tr.row-composition {
+      font-size: 9pt;
+      border-top: none;
+    }
+    table.table-items tbody tr.row-composition td {
+      padding-top: 2pt;
+      border-left: 1pt solid #000000;
+    }
+    .row-composition ul {
+      margin: 0 0 0 8pt;
+    }
+
+    table tr.optional-row td {
+      border-left: 1pt solid #000000;
+      color: #767171;
+    }
+
+    .product-img {
+      max-height: 90pt;
+      width: auto;
+    }
+    /* ------------------------------- */
+    table.table-total {
+      width: 60%;
+      margin-top: 15pt;
+      border: 1pt solid #000000;
+    }
+
+    table.table-total th {
+      padding: 38pt 2pt 2pt 0;
+    }
+
+    table.table-total td {
+      line-height: 9pt;
+    }
+
+    table.btw-table {
+      /* float:left;
+        margin-left: 0pt;
+        margin-right: auto;*/
+      width: 100%;
+    }
+
+    table.btw-table td {
+      border: solid 1pt #000000;
+    }
+
+    table.btw-table th {
+      border: solid 1pt #000000;
+      font-weight: bold;
+    }
+
+    table.btw-table thead {
+      background-color: #fff;
+    }
+    /* ------------------------------- */
+    table.simple-table {
+      width: 100%;
+      margin-bottom: 15pt;
+      margin-top: 0;
+      border-collapse: collapse;
+    }
+    table.simple-table thead th {
+      text-align: left;
+      line-height: 11pt;
+      padding-bottom: 23pt;
+      font-weight: 400;
+    }
+
+    .small-text {
+      margin-top: 15pt;
+      font-size: 8pt;
+    }
+
+    .img-handtekening {
+      max-width: 90pt;
+      max-height: auto;
+      padding: 11pt 4pt;
+    }
+    /* ----------------------------------
+
+      /*----------------------------------*/
+    table.table-footer {
+      margin-bottom: 8pt;
+    }
+
+    table.table-footer td {
+      font-size: 8pt;
+      line-height: 14pt;
+    }
+
+    .header {
+      position: relative;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .footer {
+      margin: 8pt 36pt 11pt 36pt;
+      font-size: 8pt;
+    }
+    .fr-fil.fr-dib.header-full-img {
+      width: 450pt;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      object-fit: contain;
+    }
+    .table-header {
+      width: 100%;
+      background: #464980;
+      margin-bottom: 23pt;
+    }
+
+    .table-header td {
+      border-left: 1pt solid #fff;
+      font-size: 11pt;
+      color: #fff;
+    }
+    /*------------------------------------------*/
+
+    .no-break {
+      break-inside: avoid;
+      margin-top: 15pt;
+    }
   }
 </style>
 
-<main class="main1">
-  <table class="factuur-info">
-    <tbody>
+<main class="main1-offerte">
+  <table class="simple-table" style="width: 100%">
+    <thead>
       <tr>
-        <td style="width: 55%">
-          <table>
-            <tbody>
-              <tr>
-                <td><strong>Uw referentie:</strong></td>
-                <td><!--[OFFERTE_PONUMMER]--></td>
-              </tr>
-              <tr>
-                <td><strong>Klant Nr.:</strong></td>
-                <td><!--[KLANT_NUMMER]--></td>
-              </tr>
-              <tr>
-                <td><strong>Datum:</strong></td>
-                <td><!--[VERSIE_DATUM]--></td>
-              </tr>
-              <tr>
-                <td><strong>Vervaldag:</strong></td>
-                <td><!--[VERSIE_VERVALDATUM]--></td>
-              </tr>
-            </tbody>
-          </table>
+        <th colspan="2" style="vertical-align: top">
+          <br />
+        </th>
+        <th colspan="2" style="width: 40%; vertical-align: top">
+          <div><strong>[KLANT_NAAM]</strong></div>
+          <div>[OFFERTE_TER_ATTENTIE_VAN]</div>
+          <div>[KLANT_ADRESREGEL]</div>
+          <div>[KLANT_POSTCODE] [KLANT_PLAATS]</div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        style="border-top: 1px solid #000000; border-bottom: 1px solid #000000"
+      >
+        <td colspan="4" style="vertical-align: top">
+          <h3>OFFERTE <span style="color: #767171">[OFFERTE_NUMMER]</span></h3>
         </td>
-        <td style="vertical-align: center; width: 45%">
-          [OFFERTE_KLANTNAAM]
-          <br />[OFFERTE_ADRESREGEL] <br />[OFFERTE_POSTCODE] [OFFERTE_STAD]
-          <br />[OFFERTE_BTWNUMMER]
+      </tr>
+      <tr>
+        <td style="width: 20%; vertical-align: top; padding-top: 10px">
+          Datum:
+        </td>
+        <td style="width: 40%; vertical-align: top; padding-top: 10px">
+          [VERSIE_DATUM]
+        </td>
+        <td style="width: 10%; vertical-align: top; padding-top: 10px">
+          Vervaldatum:
+        </td>
+        <td style="width: 30%; vertical-align: top; padding-top: 10px">
+          [VERSIE_VERVALDATUM]
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 20%; vertical-align: top">Versie:</td>
+        <td style="width: 40%; vertical-align: top">[VERSIE_NAAM]</td>
+        <td rowspan="2" style="width: 10%; vertical-align: top">
+          Project info:
+        </td>
+        <td rowspan="2" style="width: 30%; vertical-align: top">
+          [OFFERTE_KORTE_OMSCHRIJVING]
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ------------------------------------------- -->
+
+  <table class="table-items" style="width: 100%">
+    <thead>
+      <tr>
+        <th style="width: 45%; text-align: left; vertical-align: top">
+          Omschrijving
+        </th>
+        <th style="width: 7%; text-align: right; vertical-align: top">
+          Aantal
+        </th>
+        <th style="width: 8%; text-align: left; vertical-align: top">
+          Eenheid
+        </th>
+        <th style="width: 10%; text-align: right; vertical-align: top">
+          BTW-%
+        </th>
+        <th style="text-align: right; vertical-align: top">[K%?]</th>
+        <th style="width: 12%; text-align: right; vertical-align: top">
+          Totaal excl.
+        </th>
+        <th style="width: 13%; text-align: right; vertical-align: top">
+          Totaal incl.
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="title-row">
+        <td colspan="5" style="vertical-align: top">
+          <strong>[ITEM_TITEL]</strong>
+        </td>
+        <td style="width: 12%; text-align: right; vertical-align: top">
+          <strong>[&euro;cmTOTAAL]</strong>
+        </td>
+        <td style="width: 13%; text-align: right; vertical-align: top">
+          <strong>[&euro;cmTOTAAL_INCL]</strong>
+        </td>
+      </tr>
+      <tr class="optional-row" style="border-bottom: 1px solid #000000">
+        <td colspan="5" style="vertical-align: top">
+          <strong><em>[ITEM_OPT_TITEL] (optioneel)</em></strong>
+        </td>
+        <td style="width: 12%; text-align: right; vertical-align: top">
+          <strong><em>[&euro;cmTOTAAL]</em></strong>
+        </td>
+        <td style="width: 13%; text-align: right; vertical-align: top">
+          <strong><em>[&euro;cmTOTAAL_INCL]</em></strong>
+        </td>
+      </tr>
+      <tr class="text-row">
+        <td colspan="7" style="vertical-align: top">[ITEM_TEKST]</td>
+      </tr>
+      <tr>
+        <td style="width: 45%; vertical-align: top">[ITEM_OMSCHRIJVING]</td>
+        <td style="width: 7%; text-align: right; vertical-align: top">[#]</td>
+        <td style="width: 8%; text-align: left; vertical-align: top">[EH]</td>
+        <td style="width: 10%; text-align: right; vertical-align: top">
+          [BTW%]
+        </td>
+        <td style="text-align: right; vertical-align: top">[K%]</td>
+        <td style="width: 12%; text-align: right; vertical-align: top">
+          [&euro;cmTOTAAL]
+        </td>
+        <td style="width: 13%; text-align: right; vertical-align: top">
+          [&euro;cmTOTAAL_INCL]
+        </td>
+      </tr>
+      <tr class="optional-row">
+        <td style="width: 45%; vertical-align: top">
+          <em>[ITEM_OPT_OMSCHRIJVING] (niet inbegrepen in totaal)</em>
+        </td>
+        <td style="width: 7%; text-align: right; vertical-align: top">
+          <em>[#]</em>
+        </td>
+        <td style="width: 8%; text-align: left; vertical-align: top">
+          <em>[EH]</em>
+        </td>
+        <td style="width: 10%; text-align: right; vertical-align: top">
+          <em>[BTW%]</em>
+        </td>
+        <td style="text-align: right; vertical-align: top"><em>[K%]</em></td>
+        <td style="width: 12%; text-align: right; vertical-align: top">
+          <em>[&euro;cmTOTAAL]</em>
+        </td>
+        <td style="width: 13%; text-align: right; vertical-align: top">
+          <em>[&euro;cmTOTAAL_INCL]</em>
+        </td>
+      </tr>
+      <tr class="row-composition">
+        <td style="width: 45%; vertical-align: top">
+          <ul>
+            <li>[ITEM_SAMENSTELLING]</li>
+          </ul>
+        </td>
+        <td style="width: 7%; text-align: right; vertical-align: top">[#]</td>
+        <td style="width: 8%; text-align: left; vertical-align: top">[EH]</td>
+        <td style="width: 10%; text-align: right; vertical-align: top">
+          <br />
+        </td>
+        <td style="text-align: right; vertical-align: top">
+          <br />
+        </td>
+        <td style="width: 12%; text-align: right; vertical-align: top">
+          <br />
+        </td>
+        <td style="width: 13%; text-align: right; vertical-align: top">
+          <br />
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 45%; vertical-align: top">
+          [ITEM_SAMENSTELLING_SUM_TITEL]Materiaal
+        </td>
+        <td style="width: 7%; text-align: right; vertical-align: top">
+          <br />
+        </td>
+        <td style="width: 8%; text-align: left; vertical-align: top">
+          <br />
+        </td>
+        <td style="width: 10%; text-align: right; vertical-align: top">
+          <br />
+        </td>
+        <td style="text-align: right; vertical-align: top">
+          <br />
+        </td>
+        <td style="width: 12%; text-align: right; vertical-align: top">
+          <br />
+        </td>
+        <td style="width: 13%; text-align: right; vertical-align: top">
+          <br />
+        </td>
+      </tr>
+      <tr class="row-composition">
+        <td style="width: 45%; vertical-align: top">
+          <ul>
+            <li>[ITEM_SAMENSTELLING_SUM] [#] [EH]</li>
+          </ul>
+        </td>
+        <td style="width: 7%; text-align: right; vertical-align: top">[#]</td>
+        <td style="width: 8%; text-align: left; vertical-align: top">[EH]</td>
+        <td style="width: 10%; text-align: right; vertical-align: top">
+          <br />
+        </td>
+        <td style="text-align: right; vertical-align: top">
+          <br />
+        </td>
+        <td style="width: 12%; text-align: right; vertical-align: top">
+          <br />
+        </td>
+        <td style="width: 13%; text-align: right; vertical-align: top">
           <br />
         </td>
       </tr>
     </tbody>
   </table>
+  <div class="no-break">
+    <table class="btw-table">
+      <thead>
+        <tr>
+          <th style="width: 30%; vertical-align: top; text-align: left">
+            BTW-%
+          </th>
+          <th style="width: 19%; vertical-align: top; text-align: right">
+            Excl. BTW
+          </th>
+          <th style="width: 25.6%; vertical-align: top; text-align: right">
+            BTW
+          </th>
+          <th style="width: 24.4%; vertical-align: top; text-align: right">
+            Incl. BTW
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 30%; vertical-align: top; text-align: left">
+            [BTW_ITEM_%]
+          </td>
+          <td style="width: 19%; vertical-align: top; text-align: right">
+            &euro; [cmBTW_ITEM_EXCL]
+          </td>
+          <td style="width: 25.6%; vertical-align: top; text-align: right">
+            &euro; [cmBTW_ITEM_#]
+          </td>
+          <td style="width: 24.4%; vertical-align: top; text-align: right">
+            &euro; [cmBTW_ITEM_INCL]
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" style="text-align: right; vertical-align: top">
+            <strong>Totaal incl.</strong>
+          </td>
+          <td style="width: 24.4%; vertical-align: top; text-align: right">
+            <strong>&euro; [OFFERTE_TOTAAL_INCL_BTW_INCL_COMM]</strong>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-  <table class="factuur-items">
-    <thead>
-      <tr>
-        <th style="width: 39.2962%">Omschrijving</th>
-        <th style="width: 10.4517%">Prijs</th>
-        <th style="width: 6.6964%">Aantal</th>
-        <th style="width: 6.7043%">Eenh</th>
-        <th style="width: 12.7574%">Totaal Excl.</th>
-        <th style="width: 10.1733%">BTW</th>
-        <th style="text-align: right; width: 15.2049%">Totaal Incl.</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td colspan="7" style="padding-top: 20px">
-          <strong>[ITEM_TITEL]</strong>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="7">[ITEM_TEKST]</td>
-      </tr>
-      <tr class="item-omschr">
-        <td style="width: 50%">[ITEM_OMSCHRIJVING] [PARAMETERS]</td>
-        <td style="width: 10%">[&euro;PRIJS]</td>
-        <td style="width: 6%">[#]</td>
-        <td style="width: 6%">[EH]</td>
-        <td style="width: 10%">[&euro;TOTAAL]</td>
-        <td style="width: 6%">[BTW%]</td>
-        <td style="text-align: right; width: 12%">[&euro;TOTAAL_INCL]</td>
-      </tr>
-      <tr class="item-samenstelling">
-        <td colspan="7">
-          <ul>
-            <li>[ITEM_SAMENSTELLING]: [#] [EH]</li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="7">[ITEM_SAMENSTELLING_SUM_TITEL]Materiaal</td>
-      </tr>
-      <tr class="item-samenstelling">
-        <td colspan="7">
-          <ul>
-            <li>[ITEM_SAMENSTELLING_SUM] [#] [EH]</li>
-          </ul>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <table style="width: 100%; border: 1px solid #000000; margin: 20px 0">
+      <tbody>
+        <tr>
+          <td style="width: 100%; vertical-align: top">
+            Opmerking: [OFFERTE_OPMERKING]
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-  <table class="factuur-totaal">
-    <tbody>
-      <tr>
-        <td>BTW &percnt;</td>
-        <td>BTW excl.</td>
-        <td>BTW bedrag</td>
-        <td>BTW incl.</td>
-      </tr>
-      <tr>
-        <td>&percnt;<!--[BTW%]--></td>
-        <td>
-          &euro;
-          <!--[OFFERTE_TOTAAL_EXCL_BTW]-->
-        </td>
-        <td>
-          &euro;
-          <!--[BTW_ITEM_#]-->
-        </td>
-        <td class="totaal-incl">
-          <strong>
-            &euro;
-            <!--[OFFERTE_TOTAAL_INCL_BTW]-->
-          </strong>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <table>
-    <tr>
-      <td colspan="2">[OFFERTE_OPMERKING_BIJ_OFFERTE]</td>
-    </tr>
-    <tr>
-      <td colspan="2" style="height: 60px; vertical-align: top">
-        Voor akkoord,
-      </td>
-    </tr>
-    <tr>
-      <td>
-        [OFFERTE_KLANTNAAM]<br />
-        Datum, naam en handtekening
-      </td>
-      <td>
-        Demo bedrijf<br />
-        Naam en handtekening
-      </td>
-    </tr>
-  </table>
+    <table style="width: 100%; border: 1px solid #000000; margin: 20px 0">
+      <tbody>
+        <tr>
+          <td colspan="2">
+            <p>Voor akkoord,</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 50%">
+            <br />
+            <br />
+          </td>
+          <td style="width: 50%">
+            <br />
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 50%">
+            <p>[KLANT_NAAM] <br />Datum, naam en handtekening</p>
+          </td>
+          <td style="width: 50%; text-align: right">
+            <p><br />Naam en handtekening</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </main>

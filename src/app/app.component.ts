@@ -81,6 +81,11 @@ export class AppComponent {
     return this.sanitizer.sanitize(SecurityContext.HTML, html) || '';
   }
 
+
+sanitizeHtml(html: string): SafeHtml {
+  return this.sanitizer.bypassSecurityTrustHtml(html);
+}
+
   /***************************  ***************************/
     /**
    * Loads default content for the header, main, and footer sections.

@@ -15,3 +15,15 @@
 .kolommen-keuze {
   margin-right: 8px;
 }
+
+.geformatteerde-voorwaarden {
+  column-count: var(--columns, 1);
+  column-gap: var(--column-gap, 16px);
+  font-size: var(--font-size, 12px);
+  text-align: justify;
+  padding: 16px;
+}
+
+.geformatteerde-voorwaarden li {
+  list-style-type: none;
+}
