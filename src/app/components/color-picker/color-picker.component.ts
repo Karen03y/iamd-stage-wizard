@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ColorUpdateService, StyleProperty } from '../../services/color-update.service';
+import { ColorUpdateService } from '../../services/color-update.service';
 import { ColorOption } from '../../../types';
 
 @Component({
@@ -9,15 +9,15 @@ import { ColorOption } from '../../../types';
   selector: 'app-color-picker',
   template: `
     <h2>{{ section }}</h2>
-    <div *ngFor="let color of colors">
+    <div *ngFor="let colorOption of colors">
       <div class="color-picker">
         <input
           type="color"
-          [id]="color.id"
-          [(ngModel)]="color.value"
-          (change)="handleColorChange(color)"
+          [id]="colorOption.id"
+          [(ngModel)]="colorOption.value" 
+          (ngModelChange)="handleColorChange(colorOption)"
         />
-        <label for="{{color.id}}">{{ color.label }}</label>
+        <label for="{{ colorOption.id }}">{{ colorOption.label }}</label>
       </div>
     </div>
   `,
@@ -27,12 +27,10 @@ import { ColorOption } from '../../../types';
 export class ColorPickerComponent {
   @Input() section: string = '';
   @Input() colors: ColorOption[] = [];
-  @Output() updateColorPicker = new EventEmitter<any>();
 
   constructor(private colorUpdateService: ColorUpdateService) {}
 
   handleColorChange(colorOption: ColorOption) {
-    this.colorUpdateService.updateStyle(colorOption); 
+    this.colorUpdateService.updateStyle(colorOption);
   }
-  
 }

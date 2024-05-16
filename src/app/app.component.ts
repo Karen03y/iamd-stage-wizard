@@ -64,12 +64,12 @@ export class AppComponent {
       { id: "footer-strong-text-color", variable: "--footer-strong-text-color", value: "#000000", label: "Vetgedrukte tekst", selector: '.footer strong', styleProperty: StyleProperty.Color },
       { id: "footer-background-color", variable: "--footer-background-color", value: "#FFFFFF", label: "Achtergrond", selector: '.footer', styleProperty: StyleProperty.BackgroundColor },
 
-      { id: "main-text-color", variable: "--main-text-color", value: "#000000", label: "Tekstkleur", selector: '.main-doc', styleProperty: StyleProperty.Color },
-      { id: "main-strong-text-color", variable: "--main-strong-text-color", value: "#000000", label: "Kleur vetgedrukte tekst", selector: '.main-doc strong', styleProperty: StyleProperty.Color },
-      { id: "main-background-color", variable: "--main-background-color", value: "#FFFFFF", label: "Achtergrondkleur", selector: '.main-doc', styleProperty: StyleProperty.BackgroundColor },
-      { id: "main-table-border-color", variable: "--main-table-border-color", value: "#000000", label: "Tabelrandkleur", selector: '.main-doc table', styleProperty: StyleProperty.BorderColor },
-      { id: "main-table-title-text-color", variable: "--main-table-title-text-color", value: "#000000", label: "Tabeltitel tekstkleur", selector: '.main-doc th', styleProperty: StyleProperty.Color },
-      { id: "main-table-title-background-color", variable: "--main-table-title-background-color", value: "#FFFFFF", label: "Tabeltitel achtergrondkleur", selector: '.main-doc th', styleProperty: StyleProperty.BackgroundColor },    ];
+      { id: "main-text-color", variable: "--main-text-color", value: "#000000", label: "Tekst", selector: '.main-doc', styleProperty: StyleProperty.Color },
+      { id: "main-strong-text-color", variable: "--main-strong-text-color", value: "#000000", label: "Vetgedrukte tekst", selector: '.main-doc strong', styleProperty: StyleProperty.Color },
+      { id: "main-background-color", variable: "--main-background-color", value: "#FFFFFF", label: "Achtergrond", selector: '.main-doc', styleProperty: StyleProperty.BackgroundColor },
+      { id: "main-table-border-color", variable: "--main-table-border-color", value: "#000000", label: "Borders", selector: '.main-doc table', styleProperty: StyleProperty.BorderColor },
+      { id: "main-table-title-text-color", variable: "--main-table-title-text-color", value: "#000000", label: "Titels tekst", selector: '.main-doc th', styleProperty: StyleProperty.Color },
+      { id: "main-table-title-background-color", variable: "--main-table-title-background-color", value: "#FFFFFF", label: "Titels achtergrond", selector: '.main-doc th', styleProperty: StyleProperty.BackgroundColor },    ];
   
 
   selectedHeader:Header = {content:""};
@@ -91,6 +91,10 @@ export class AppComponent {
     this.colorUpdateService.colorChanges$.subscribe(colorOption => {
       if (colorOption) {
         document.documentElement.style.setProperty(colorOption.variable, colorOption.value);
+
+        this.colorOptions = this.colorOptions.map(c => {
+          return c.id === colorOption.id ? colorOption : c;
+        });
       }});
   }
   updateCssVariable(selector: string, styleProperty: StyleProperty, color: string) {
