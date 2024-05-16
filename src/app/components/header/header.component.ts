@@ -48,7 +48,6 @@ export class HeaderComponent implements OnInit {
       });
     });
   }
-  
 
   onHeaderChange(header: Header) {
     this.headerChange.emit(header);

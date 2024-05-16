@@ -53,16 +53,15 @@
   </section>
 
   <section class="right-container">
-    <h2 class="container-title">Preview</h2>
+    <h2>Preview</h2>
     <article class="preview-doc">
-      <div class="scrollable">
-        <div
-          *ngIf="
-            options[selectedOptionIndex]?.content?.type !==
-            'algemene-voorwaarden'
-          "
-          class="preview-doc-wrapper"
-        >
+      <div
+        *ngIf="
+          options[selectedOptionIndex]?.content?.type !== 'algemene-voorwaarden'
+        "
+        class="preview-doc-wrapper"
+      >
+        <div class="scrollable">
           <div
             class="preview-doc-header"
             [innerHTML]="selectedHeader.content"
@@ -76,6 +75,8 @@
             [innerHTML]="selectedFooter.content"
           ></div>
         </div>
+      </div>
+      <div class="copy-code-button">
         <div
           *ngIf="
             options[selectedOptionIndex]?.content?.type ===
@@ -87,8 +88,6 @@
             [formattedTerms]="formattedTerms"
           ></app-geformatteerde-voorwaarden>
         </div>
-      </div>
-      <div class="copy-code-button">
         <button class="blue-btn" (click)="showDialog()">Kopieer code</button>
       </div>
     </article>

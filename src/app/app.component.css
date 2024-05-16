@@ -1,6 +1,6 @@
 main {
   display: grid;
-  grid-template-columns: 1fr 4fr 4fr;
+  grid-template-columns: 1fr 3fr 3fr;
   grid-gap: 8px;
   justify-content: center;
   align-items: top;
@@ -20,6 +20,8 @@ main {
 
 .right-container {
   grid-column: 3;
+  display: flex;
+  flex-direction: column;
 }
 
 .container-title {
@@ -27,7 +29,7 @@ main {
 }
 
 .scrollable {
-  height: 93vh;
+  max-height: 93vh;
   overflow-y: auto;
 }
 
@@ -51,6 +53,7 @@ main {
 .center-container article {
   padding: 0;
 }
+
 .center-container article.show-content {
   padding: 24px;
 }
@@ -76,11 +79,9 @@ article .content {
 
 /* PREVIEW DOCUMENT STYLING */
 .preview-doc {
-  flex: 1;
   display: flex;
   flex-direction: column;
   padding: 8px;
-  max-height: 92vh;
 }
 
 .preview-doc-wrapper,
@@ -89,6 +90,10 @@ article .content {
   margin: 8px 16px;
   display: flex;
   flex-direction: column;
+  max-height: calc(100% - 16px);
+  overflow-y: auto;
+  padding: 16px;
+  margin-bottom: 8px;
 }
 
 .preview-doc-wrapper {
@@ -105,10 +110,12 @@ article .content {
 /* BUTTON STYLING */
 .copy-code-button {
   z-index: 1;
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  position: static;
+  align-self: center;
   margin-bottom: 8px;
 }
 

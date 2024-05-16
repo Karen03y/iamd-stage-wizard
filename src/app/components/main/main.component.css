@@ -1,5 +1,3 @@
-/* aangepaste styles tabs */
-
 html {
   --mdc-tab-indicator-active-indicator-height: 2px;
   --mdc-tab-indicator-active-indicator-shape: 0;
@@ -54,7 +52,6 @@ html {
 
 /* Mains */
 .mains {
-  padding: 8px;
   margin: 8px auto;
 }
 

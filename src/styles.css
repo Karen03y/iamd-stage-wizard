@@ -28,25 +28,32 @@
   --main-table-border-color: #000000;
   --main-table-title-color: #000000;
   --main-table-title-background-color: #ffffff;
+
+  --font-family: Arial, Helvetica, sans-serif;
+}
+
+.header-doc,
+.main-doc,
+.footer-doc {
+  font-family: var(--font-family);
 }
 
 .header-doc {
   color: var(--header-text-color);
   background-color: var(--header-background-color);
-}
-.header-doc strong {
-  color: var(--header-strong-text-color);
+  font-size: 11px;
+  width: 100%;
 }
 
-.header-doc table {
-  border-collapse: collapse;
-  border: 1px solid var(--header-table-border-color);
+.header-doc strong {
+  color: var(--header-strong-text-color);
 }
 
 .footer-doc {
   color: var(--footer-text-color);
   background-color: var(--footer-background-color);
 }
+
 .footer-doc strong {
   color: var(--footer-strong-text-color);
 }
