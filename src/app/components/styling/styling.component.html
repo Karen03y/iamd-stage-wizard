@@ -12,5 +12,20 @@
       <app-color-picker section="Main" [colors]="mainColors"></app-color-picker>
     </div>
   </mat-tab>
-  <mat-tab label="Fonts"> </mat-tab>
+  <mat-tab label="Fonts">
+    <div class="font-container">
+      <mat-form-field appearance="outline" class="font-dropdown">
+        <mat-label>Selecteer een font</mat-label>
+        <mat-select
+          [(value)]="selectedFont"
+          (selectionChange)="onFontSelectionChange($event.value)"
+        >
+          <mat-option *ngFor="let font of fontList" [value]="font">{{
+            font
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button class="blue-btn" (click)="updateFontFamily()">Update Font</button>
+    </div>
+  </mat-tab>
 </mat-tab-group>
