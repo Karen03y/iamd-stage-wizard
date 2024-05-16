@@ -7,6 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 export class FontUpdateService {
   private _fontFamily = 'Arial'; 
   fontFamily$ = new BehaviorSubject<string>(this._fontFamily); 
+  googleFontUrl: string | null = null; 
+
 
   constructor() {
   }

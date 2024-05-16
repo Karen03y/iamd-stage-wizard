@@ -34,6 +34,8 @@ export class HtmlDialogComponent implements OnInit {
   fullHtml: string;
   css: string;
   copiedMessage: SafeHtml;
+  googleFontUrl: string | null = null;
+
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -47,30 +49,31 @@ export class HtmlDialogComponent implements OnInit {
     this.fullHtml = data.fullHtml;
     this.css = this.getCssWithVariables();
     this.copiedMessage = this.sanitizer.bypassSecurityTrustHtml('');
+    this.googleFontUrl = data.googleFontUrl;
   }
 
   ngOnInit(): void { }
 
   getCssWithVariables(): string {
     let variablesCss = ':root {\n';
-
+  
     const fontFamily = this.fontUpdateService.fontFamily; 
-
+  
     for (const color of this.data.colorOptions) {
       variablesCss += `  ${color.variable}: ${color.value};\n`;
     }
-
+  
     variablesCss += `  --font-family: ${fontFamily};\n`; 
-    variablesCss += '}\n\n'; 
-
-    const globalStylesCss = `
+    variablesCss += '}\n\n';
+  
+    let globalStylesCss = `
     .header-doc,
     .main-doc,
     .footer-doc {
       font-family: var(--font-family);
     }
 
-  .header-doc {
+    .header-doc {
     color: var(--header-text-color);
     background-color: var(--header-background-color);
   }
@@ -109,8 +112,8 @@ export class HtmlDialogComponent implements OnInit {
     color: var(--main-table-title-color);
   }
     `;
-
-    return variablesCss + globalStylesCss + this.data.css;
+  return variablesCss + globalStylesCss + this.data.css;
+  
   }
 
 

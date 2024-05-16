@@ -16,16 +16,21 @@
     <div class="font-container">
       <mat-form-field appearance="outline" class="font-dropdown">
         <mat-label>Selecteer een font</mat-label>
-        <mat-select
-          [(value)]="selectedFont"
-          (selectionChange)="onFontSelectionChange($event.value)"
-        >
+        <mat-select [(ngModel)]="selectedFont">
           <mat-option *ngFor="let font of fontList" [value]="font">{{
             font
           }}</mat-option>
         </mat-select>
       </mat-form-field>
+
+      <!--mat-form-field appearance="outline" class="google-font-input">
+        <mat-label>Voeg Google Font toe (URL)</mat-label>
+        <input matInput [(ngModel)]="googleFontUrl" />
+        <mat-error *ngIf="fontInputError">{{ fontInputError }}</mat-error>
+      </mat-form-field-->
       <button class="blue-btn" (click)="updateFontFamily()">Update Font</button>
+
+      <!--button class="blue-btn" (click)="addGoogleFont()">Voeg Font Toe</button-->
     </div>
   </mat-tab>
 </mat-tab-group>

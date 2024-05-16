@@ -222,13 +222,14 @@ showDialog() {
   /** Open HTML dialog -> HtmlDialogComponent */
   const dialogRef = this.dialog.open(HtmlDialogComponent, {
     data: {
-      headerHtml: this.generateHeaderHtml(),
-      mainHtml: this.generateMainHtml(),
-      footerHtml: this.generateFooterHtml(),
-      fullHtml,
-      css,
+      headerHtml: this.selectedHeader.content,
+      mainHtml: this.selectedMain.content,
+      footerHtml: this.selectedFooter.content,
+      fullHtml: `${this.selectedHeader.content}${this.selectedMain.content}${this.selectedFooter.content}`,
       colorOptions: this.colorOptions,
-    },
+      css,
+      googleFontUrl: this.fontUpdateService.googleFontUrl 
+    }
   });
 
   /** Log message when the dialog is closed */

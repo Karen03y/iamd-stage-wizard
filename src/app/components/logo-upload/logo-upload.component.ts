@@ -20,7 +20,6 @@ import { LogoUploadService } from '../../services/logo.service';
   imports:[CommonModule]
 })
 
-
 export class LogoUploadComponent {
   imageUrl: string | null = null;
 
