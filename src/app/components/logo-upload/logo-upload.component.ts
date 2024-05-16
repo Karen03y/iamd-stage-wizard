@@ -19,20 +19,30 @@ import { LogoUploadService } from '../../services/logo.service';
   standalone: true,
   imports:[CommonModule]
 })
+
+
 export class LogoUploadComponent {
-  imageUrl: string = '';
+  imageUrl: string | null = null;
 
-  constructor(private logoUploadService: LogoUploadService) {}
-
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.imageUrl = e.target.result;
-        this.logoUploadService.uploadLogo(this.imageUrl);
-      };
-      reader.readAsDataURL(file);
-    }
+  constructor(private logoUploadService: LogoUploadService) {
+    this.logoUploadService.logoUrl$.subscribe(url => this.imageUrl = url);
   }
+
+ onFileSelected(event: any) {
+  const file: File = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.imageUrl = e.target.result;
+
+      if (this.imageUrl) {
+        this.logoUploadService.uploadLogo(this.imageUrl); 
+      } else {
+        console.error('Error: imageUrl is null'); 
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
 }
