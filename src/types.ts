@@ -1,4 +1,5 @@
 import { SafeHtml } from "@angular/platform-browser";
+import { StyleProperty } from "./app/services/color-update.service";
 
 export interface Option {
     title: string;
@@ -25,3 +26,12 @@ export interface Main {
 export interface Calculatietabel {
     content: SafeHtml
 }
+
+export interface ColorOption {
+    id: string;
+    variable: string;
+    value: string;
+    label: string;
+    selector: string;
+    styleProperty: StyleProperty; 
+  }

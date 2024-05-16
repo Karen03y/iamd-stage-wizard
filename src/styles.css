@@ -30,16 +30,43 @@
   --main-table-title-background-color: #ffffff;
 }
 
-.header {
+.header-doc {
   color: var(--header-text-color);
   background-color: var(--header-background-color);
 }
-.header strong {
+.header-doc strong {
   color: var(--header-strong-text-color);
 }
-.header table {
+
+.header-doc table {
   border-collapse: collapse;
   border: 1px solid var(--header-table-border-color);
+}
+
+.footer-doc {
+  color: var(--footer-text-color);
+  background-color: var(--footer-background-color);
+}
+.footer-doc strong {
+  color: var(--footer-strong-text-color);
+}
+
+.main-doc {
+  color: var(--main-text-color);
+  background-color: var(--main-background-color);
+}
+
+.main-doc strong {
+  color: var(--main-strong-text-color);
+}
+
+.main-doc table {
+  border: var(--main-table-border-color);
+}
+
+.main-doc table th {
+  background-color: var(--main-table-title-background-color);
+  color: var(--main-table-title-color);
 }
 
 * {

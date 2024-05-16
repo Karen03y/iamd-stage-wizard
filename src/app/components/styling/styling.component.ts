@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ColorUpdateService } from '../../services/color-update.service';
@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpClient } from '@angular/common/http';
 import { Observable, debounceTime, of, switchMap, tap } from 'rxjs';
 import { FontService } from '../../services/font.service';
+import { ColorOption, Header } from '../../../types';
 
 @Component({
   selector: 'app-styling',
@@ -19,63 +20,22 @@ import { FontService } from '../../services/font.service';
   styleUrls: ['./styling.component.css'],
   imports: [CommonModule, FormsModule, ColorPickerComponent, MatTabsModule, MatFormFieldModule, MatSelectModule, MatAutocompleteModule, ReactiveFormsModule, MatInputModule],
 })
-export class StylingComponent implements OnInit{
+export class StylingComponent implements OnInit {
+  @Input() selectedHeader: Header | null = null;
+  @Output() updateColorPicker = new EventEmitter<any>();
+  @Input() colorOptions: ColorOption[] = [];
 
-  constructor(private colorUpdateService: ColorUpdateService, private http: HttpClient, private fontService: FontService) {}
+  headerColors: ColorOption[] = [];
+  mainColors: ColorOption[] = [];
+  footerColors: ColorOption[] = [];
 
-  /****************** COLOR ********************/
-
-  headerColors = [
-    { id: "header-text", value: "#000000", label: "Tekst" },
-    { id: "header-strong-text", value: "#000000", label: "Vetgedrukte tekst" },
-    { id: "header-background", value: "#FFFFFF", label: "Achtergrond" }
-  ];
-
-  mainColors = [
-    { id: "main-text", value: "#000000", label: "Tekst" },
-    { id: "main-strong-text", value: "#000000", label: "Vetgedrukte tekst" },
-    { id: "main-background", value: "#FFFFFF", label: "Achtergrond" },
-    { id: "main-borders", value: "#000000", label: "Tabel borders" },
-    { id: "main-titles-text", value: "#000000", label: "Tabel titels" },
-    { id: "main-titles-background", value: "#FFFFFF", label: "Tabel achtergrond " }
-  ];
-
-  footerColors = [
-    { id: "footer-text", value: "#000000", label: "Tekst" },
-    { id: "footer-strong-text", value: "#000000", label: "Vetgedrukte tekst" },
-    { id: "footer-background", value: "#FFFFFF", label: "Achtergrond" },
-  ];
-
-
-  /****************** FONT ********************/
-  fontControl = new FormControl();
-  fontList: string[] = [
-    'Arial',
-    'Verdana',
-    'Helvetica',
-    'Times New Roman',
-    'Courier New',
-    'Georgia',
-    'Palatino',
-    'Garamond',
-    'Tahoma',
-    'Trebuchet MS',
-    'Open Sans',
-    'Montserrat',
-    'Lato',
-    'Roboto Condensed',
-    'Source Sans Pro',
-    'Arial Black',
-    'Courier',
-    'Comic Sans MS',
-    'Impact'
-  ];
-  
-  ngOnInit(): void {
-    this.fontList.sort((a, b) => a.localeCompare(b));
+  ngOnInit() {
+    this.filterColorOptions();
   }
 
-  updateFont(font: string) {
-    this.fontService.setSelectedFont(font);
+  filterColorOptions() {
+    this.headerColors = this.colorOptions.filter(c => c.id.startsWith('header-'));
+    this.mainColors = this.colorOptions.filter(c => c.id.startsWith('main-'));
+    this.footerColors = this.colorOptions.filter(c => c.id.startsWith('footer-'));
   }
 }

@@ -1,5 +1,5 @@
 import { Component, SecurityContext } from '@angular/core';
-import { Footer, Header, Main, Option } from '../types';
+import { ColorOption, Footer, Header, Main, Option } from '../types';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; 
@@ -8,7 +8,7 @@ import { MainComponent } from "./components/main/main.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { LoadContentService } from './services/load-content.service';
 import { StylingComponent } from './components/styling/styling.component';
-import { ColorUpdateService } from './services/color-update.service';
+import { ColorUpdateService, StyleProperty } from './services/color-update.service';
 import { HtmlDialogComponent } from './components/html-dialog/html-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoUploadComponent } from "./components/logo-upload/logo-upload.component"; 
@@ -55,6 +55,25 @@ export class AppComponent {
       }
     }
 
+    colorOptions: ColorOption[] = [
+      { id: "header-text-color", variable: "--header-text-color", value: "#000000", label: "Tekst", selector: '.header', styleProperty: StyleProperty.Color },
+      { id: "header-strong-text-color", variable: "--header-strong-text-color", value: "#000000", label: "Vetgedrukte tekst", selector: '.header strong', styleProperty: StyleProperty.Color },
+      { id: "header-background-color", variable: "--header-background-color", value: "#FFFFFF", label: "Achtergrond", selector: '.header', styleProperty: StyleProperty.BackgroundColor },
+      
+      { id: "footer-text-color", variable: "--footer-text-color", value: "#000000", label: "Tekst", selector: '.footer', styleProperty: StyleProperty.Color },
+      { id: "footer-strong-text-color", variable: "--footer-strong-text-color", value: "#000000", label: "Vetgedrukte tekst", selector: '.footer strong', styleProperty: StyleProperty.Color },
+      { id: "footer-background-color", variable: "--footer-background-color", value: "#FFFFFF", label: "Achtergrond", selector: '.footer', styleProperty: StyleProperty.BackgroundColor },
+
+      { id: "main-text-color", variable: "--main-text-color", value: "#000000", label: "Tekst", selector: '.main', styleProperty: StyleProperty.Color },
+      { id: "main-strong-text-color", variable: "--main-strong-text-color", value: "#000000", label: "Vetgedrukte tekst", selector: '.main strong', styleProperty: StyleProperty.Color },
+      { id: "main-background-color", variable: "--main-background-color", value: "#FFFFFF", label: "Achtergrond", selector: '.main', styleProperty: StyleProperty.BackgroundColor },
+
+      { id: "main-table-border-color", variable: "--main-table-border-color", value: "#000000", label: "Borders", selector: '.main', styleProperty: StyleProperty.Color },
+      { id: "main-table-title-color", variable: "--main-table-title-color", value: "#000000", label: "Titels tekst", selector: '.main', styleProperty: StyleProperty.Color },
+      { id: "main-table-title-background-color", variable: "--main-table-title-background-color", value: "#FFFFFF", label: "Achtergrond titels", selector: '.main', styleProperty: StyleProperty.BackgroundColor },
+    ];
+  
+
   selectedHeader:Header = {content:""};
   selectedMain:Main = {content:""};
   selectedFooter:Footer = {content:""}
@@ -70,7 +89,26 @@ export class AppComponent {
     });
     this.fontService.fontUpdated$.subscribe(() => {
       this.updatePreviewDocFonts();
-    });  }
+    });  
+    this.colorUpdateService.colorChanges$.subscribe(colorOption => {
+      if (colorOption) {
+        document.documentElement.style.setProperty(colorOption.variable, colorOption.value);
+      }});
+  }
+  updateCssVariable(selector: string, styleProperty: StyleProperty, color: string) {
+    const variableName = this.getCssVariableName(selector, styleProperty);
+    if (variableName) {
+      document.documentElement.style.setProperty(variableName, color);
+    }
+  }
+  getCssVariableName(selector: string, styleProperty: StyleProperty): string | null {
+    for (const colorOption of this.colorOptions) {
+      if (colorOption.selector === selector && colorOption.styleProperty === styleProperty) {
+        return colorOption.variable;
+      }
+    }
+    return null; // Or throw an error if you prefer
+  }
   
     /**
    * Sanitizes HTML content to prevent XSS attacks.
@@ -182,6 +220,7 @@ showDialog() {
       footerHtml: this.generateFooterHtml(),
       fullHtml,
       css,
+      colorOptions: this.colorOptions,
     },
   });
 

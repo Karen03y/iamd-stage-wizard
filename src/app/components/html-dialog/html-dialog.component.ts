@@ -44,11 +44,24 @@ export class HtmlDialogComponent implements OnInit {
     this.mainHtml = data.mainHtml;
     this.footerHtml = data.footerHtml;
     this.fullHtml = data.fullHtml;
-    this.css = data.css;
+    this.css = this.getCssWithVariables(data.css);
     this.copiedMessage = this.sanitizer.bypassSecurityTrustHtml(''); 
   }
 
   ngOnInit(): void { }
+
+   getCssWithVariables(originalCss: string): string {
+    let variablesCss = ':root {\n';
+
+    for (const color of this.data.colorOptions) {
+      variablesCss += `  ${color.variable}: ${color.value};\n`; // Use the value directly from the colorOption
+    }
+
+    variablesCss += '}\n\n';
+
+    return variablesCss + originalCss;
+  }
+  
 
   async copyToClipboard(html: string) {
     this.copiedMessage = this.sanitizer.bypassSecurityTrustHtml('De code werd gekopieerd naar het klembord!');

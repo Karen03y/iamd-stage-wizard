@@ -21,7 +21,10 @@
         <div class="content" *ngIf="selectedOptionIndex === i">
           <ng-container [ngSwitch]="option.content.type">
             <ng-container *ngSwitchCase="'styling'">
-              <app-styling></app-styling>
+              <app-styling
+                [selectedHeader]="selectedHeader"
+                [colorOptions]="colorOptions"
+              ></app-styling>
             </ng-container>
             <ng-container *ngSwitchCase="'logo'">
               <app-logo-upload></app-logo-upload>
