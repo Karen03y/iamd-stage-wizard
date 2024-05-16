@@ -1,22 +1,29 @@
 import { Component, SecurityContext } from '@angular/core';
-import { ColorOption, Footer, Header, Main, Option } from '../types';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
+// Types
+import { ColorOption, Footer, Header, Main, Option } from '../types';
+import { StyleProperty } from './services/color-update.service';
+
+// Services
+import { LoadContentService } from './services/load-content.service';
+import { ColorUpdateService } from './services/color-update.service';
+import { LogoUploadService } from './services/logo.service';
+import { FontUpdateService } from './services/font-update.service';
+
+// Components
 import { HeaderComponent } from "./components/header/header.component";
 import { MainComponent } from "./components/main/main.component";
 import { FooterComponent } from "./components/footer/footer.component";
-import { LoadContentService } from './services/load-content.service';
 import { StylingComponent } from './components/styling/styling.component';
-import { ColorUpdateService, StyleProperty } from './services/color-update.service';
 import { HtmlDialogComponent } from './components/html-dialog/html-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
-import { LogoUploadComponent } from "./components/logo-upload/logo-upload.component"; 
-import { DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import { LogoUploadComponent } from "./components/logo-upload/logo-upload.component";
 import { OptionButtonComponent } from "./components/option-button/option-button.component";
 import { CalculatietabelComponent } from "./components/calculatietabel/calculatietabel.component";
-import { LogoUploadService } from './services/logo.service';
-import { FontService } from './services/font.service';
 import { AlgemeneVoorwaardenComponent } from "./components/algemene-voorwaarden/algemene-voorwaarden.component";
 import { GeformatteerdeVoorwaardenComponent } from "./components/geformatteerde-voorwaarden/geformatteerde-voorwaarden.component";
 
@@ -27,6 +34,7 @@ import { GeformatteerdeVoorwaardenComponent } from "./components/geformatteerde-
     standalone: true,
     imports: [CommonModule, FormsModule, HeaderComponent, StylingComponent, MainComponent, FooterComponent, HttpClientModule, HtmlDialogComponent, LogoUploadComponent, OptionButtonComponent, CalculatietabelComponent, AlgemeneVoorwaardenComponent, GeformatteerdeVoorwaardenComponent]
 })
+
 export class AppComponent {
   title = 'iamd-document-wizard';
 
@@ -35,68 +43,70 @@ export class AppComponent {
     { title: "Logo", content: {type:"logo"}},
     { title: "Header", content: { type: "header" }},
     { title: "Main", content: { type: "main" }},
-   // { title: "Calculatietabel", content: {type:"calculatietabel"}},
     { title: "Footer", content: { type: "footer" }},
     { title: "Algemene Voorwaarden", content: {type: "algemene-voorwaarden"}}
   ];
 
-    /**
-   * Toggles the visibility of content based on its index.
-   * @method toggleContent
-   * @param {number} index - Index of the content to toggle.
-   */
-    selectedOptionIndex: number = -1;
-    toggleContent(index: number) {
-      console.log('Toggle content:', index);
-      if (this.selectedOptionIndex === index) {
-        this.selectedOptionIndex = -1; 
-      } else {
-        this.selectedOptionIndex = index; 
-      }
-    }
+  colorOptions: ColorOption[] = [
+    { id: "header-text-color", variable: "--header-text-color", value: "#000000", label: "Tekst", selector: '.header', styleProperty: StyleProperty.Color },
+    { id: "header-strong-text-color", variable: "--header-strong-text-color", value: "#000000", label: "Vetgedrukte tekst", selector: '.header strong', styleProperty: StyleProperty.Color },
+    { id: "header-background-color", variable: "--header-background-color", value: "#FFFFFF", label: "Achtergrond", selector: '.header', styleProperty: StyleProperty.BackgroundColor },
+    
+    { id: "footer-text-color", variable: "--footer-text-color", value: "#000000", label: "Tekst", selector: '.footer', styleProperty: StyleProperty.Color },
+    { id: "footer-strong-text-color", variable: "--footer-strong-text-color", value: "#000000", label: "Vetgedrukte tekst", selector: '.footer strong', styleProperty: StyleProperty.Color },
+    { id: "footer-background-color", variable: "--footer-background-color", value: "#FFFFFF", label: "Achtergrond", selector: '.footer', styleProperty: StyleProperty.BackgroundColor },
 
-    colorOptions: ColorOption[] = [
-      { id: "header-text-color", variable: "--header-text-color", value: "#000000", label: "Tekst", selector: '.header', styleProperty: StyleProperty.Color },
-      { id: "header-strong-text-color", variable: "--header-strong-text-color", value: "#000000", label: "Vetgedrukte tekst", selector: '.header strong', styleProperty: StyleProperty.Color },
-      { id: "header-background-color", variable: "--header-background-color", value: "#FFFFFF", label: "Achtergrond", selector: '.header', styleProperty: StyleProperty.BackgroundColor },
-      
-      { id: "footer-text-color", variable: "--footer-text-color", value: "#000000", label: "Tekst", selector: '.footer', styleProperty: StyleProperty.Color },
-      { id: "footer-strong-text-color", variable: "--footer-strong-text-color", value: "#000000", label: "Vetgedrukte tekst", selector: '.footer strong', styleProperty: StyleProperty.Color },
-      { id: "footer-background-color", variable: "--footer-background-color", value: "#FFFFFF", label: "Achtergrond", selector: '.footer', styleProperty: StyleProperty.BackgroundColor },
+    { id: "main-text-color", variable: "--main-text-color", value: "#000000", label: "Tekst", selector: '.main-doc', styleProperty: StyleProperty.Color },
+    { id: "main-strong-text-color", variable: "--main-strong-text-color", value: "#000000", label: "Vetgedrukte tekst", selector: '.main-doc strong', styleProperty: StyleProperty.Color },
+    { id: "main-background-color", variable: "--main-background-color", value: "#FFFFFF", label: "Achtergrond", selector: '.main-doc', styleProperty: StyleProperty.BackgroundColor },
+    { id: "main-table-border-color", variable: "--main-table-border-color", value: "#000000", label: "Borders", selector: '.main-doc table', styleProperty: StyleProperty.BorderColor },
+    { id: "main-table-title-text-color", variable: "--main-table-title-text-color", value: "#000000", label: "Titels tekst", selector: '.main-doc th', styleProperty: StyleProperty.Color },
+    { id: "main-table-title-background-color", variable: "--main-table-title-background-color", value: "#FFFFFF", label: "Titels achtergrond", selector: '.main-doc th', styleProperty: StyleProperty.BackgroundColor },    ];
 
-      { id: "main-text-color", variable: "--main-text-color", value: "#000000", label: "Tekst", selector: '.main-doc', styleProperty: StyleProperty.Color },
-      { id: "main-strong-text-color", variable: "--main-strong-text-color", value: "#000000", label: "Vetgedrukte tekst", selector: '.main-doc strong', styleProperty: StyleProperty.Color },
-      { id: "main-background-color", variable: "--main-background-color", value: "#FFFFFF", label: "Achtergrond", selector: '.main-doc', styleProperty: StyleProperty.BackgroundColor },
-      { id: "main-table-border-color", variable: "--main-table-border-color", value: "#000000", label: "Borders", selector: '.main-doc table', styleProperty: StyleProperty.BorderColor },
-      { id: "main-table-title-text-color", variable: "--main-table-title-text-color", value: "#000000", label: "Titels tekst", selector: '.main-doc th', styleProperty: StyleProperty.Color },
-      { id: "main-table-title-background-color", variable: "--main-table-title-background-color", value: "#FFFFFF", label: "Titels achtergrond", selector: '.main-doc th', styleProperty: StyleProperty.BackgroundColor },    ];
-  
+    selectedHeader: Header = { content: "" };
+    selectedMain: Main = { content: "" };
+    selectedFooter: Footer = { content: "" };
+    logoUrl: string = '';
+    formattedTerms: SafeHtml = '';
+    selectedOptionIndex: number = -1;  
 
-  selectedHeader:Header = {content:""};
-  selectedMain:Main = {content:""};
-  selectedFooter:Footer = {content:""}
+    constructor(
+      private loadContentService: LoadContentService,
+      private colorUpdateService: ColorUpdateService,
+      private dialog: MatDialog,
+      private sanitizer: DomSanitizer,
+      private logoUploadService: LogoUploadService,
+      private fontUpdateService: FontUpdateService
+    ) {}
 
-  constructor(private loadContentService: LoadContentService, private colorUpdateService: ColorUpdateService, private dialog: MatDialog, private sanitizer:DomSanitizer, private logoUploadService:LogoUploadService, private fontService: FontService) {} 
 
   ngOnInit() {
     console.log('AppComponent initialized');
     this.loadDefaultContent();
     this.logoUploadService.logoUrl$.subscribe(url => {
-      this.logoUrl = url;
-      this.updatePreviewDocHeaderWithLogo(url);
-    });
-    this.fontService.fontUpdated$.subscribe(() => {
-      this.updatePreviewDocFonts();
-    });  
+        this.logoUrl = url;
+        this.updatePreviewDocHeaderWithLogo(url);
+      });
+    this.fontUpdateService.fontFamily$.subscribe(font => {
+      document.documentElement.style.setProperty('--font-family', font);      
+      });
+  
     this.colorUpdateService.colorChanges$.subscribe(colorOption => {
       if (colorOption) {
         document.documentElement.style.setProperty(colorOption.variable, colorOption.value);
-
         this.colorOptions = this.colorOptions.map(c => {
           return c.id === colorOption.id ? colorOption : c;
-        });
-      }});
+          });
+        }});
   }
+
+/**
+ * Toggles the visibility of content based on its index.
+ */
+  toggleContent(index: number) {
+    this.selectedOptionIndex = (this.selectedOptionIndex === index) ? -1 : index;
+  }
+
   updateCssVariable(selector: string, styleProperty: StyleProperty, color: string) {
     const variableName = this.getCssVariableName(selector, styleProperty);
     if (variableName) {
@@ -109,23 +119,19 @@ export class AppComponent {
         return colorOption.variable;
       }
     }
-    return null; // Or throw an error if you prefer
+    return null; 
   }
   
     /**
    * Sanitizes HTML content to prevent XSS attacks.
-   * @method sanitizeToString
-   * @param {SafeHtml} html - HTML content to be sanitized.
-   * @returns {string} Sanitized HTML content.
    */
-  sanitizeToString(html: SafeHtml): string {
-    return this.sanitizer.sanitize(SecurityContext.HTML, html) || '';
-  }
+    sanitizeToString(html: SafeHtml): string {
+      return this.sanitizer.sanitize(SecurityContext.HTML, html) || '';
+    }
+    sanitizeHtml(html: string): SafeHtml {
+      return this.sanitizer.bypassSecurityTrustHtml(html);
+    }
 
-
-sanitizeHtml(html: string): SafeHtml {
-  return this.sanitizer.bypassSecurityTrustHtml(html);
-}
 
   /***************************  ***************************/
     /**
@@ -165,7 +171,6 @@ sanitizeHtml(html: string): SafeHtml {
    * @param {string} url - URL of the uploaded logo.
    */
   
-  logoUrl: string = '';
 
   handleLogoUploaded(url: string): void {
     console.log('Logo uploaded:', url);
@@ -190,19 +195,19 @@ sanitizeHtml(html: string): SafeHtml {
   onHeaderChange(header: Header) {
     console.log('Header changed:', header);
     this.selectedHeader = header;
-    this.fontService.updateDocumentFont();
+    this.fontUpdateService.fontFamily = this.fontUpdateService.fontFamily; 
   }
 
   onMainChange(main:Main) {
     console.log('Main changed:', main);
     this.selectedMain = main;
-    this.fontService.updateDocumentFont();
+    this.fontUpdateService.fontFamily = this.fontUpdateService.fontFamily; 
   }
 
   onFooterChange(footer:Footer) {
     console.log('Footer changed:', footer);
     this.selectedFooter = footer;
-    this.fontService.updateDocumentFont();
+    this.fontUpdateService.fontFamily = this.fontUpdateService.fontFamily; 
   }
 
 /*************************** COPY CODE ***************************/
@@ -276,9 +281,6 @@ private generateFullHtml(): string {
 
 /**
  * Extracts CSS styles from the provided HTML content.
- * @private
- * @param {string} html - HTML content
- * @returns {string} Extracted CSS styles
  */
 private generateCSS(html: string): string {
   const startTag = '<style>';
@@ -299,21 +301,13 @@ private generateCSS(html: string): string {
 }
 
 /***************** ALGEMENE VOORWAARDEN ********************/
-formattedTerms: SafeHtml = '';
 
 onFormattedTermsChange(formattedTerms: SafeHtml) {
-  this.formattedTerms = formattedTerms; 
+  this.formattedTerms = formattedTerms;
 }
 
 /*********************  FONT **************************** */
 
-updatePreviewDocFonts() {
-  const elements = document.querySelectorAll('.preview-doc *');
-  elements.forEach(element => {
-    if (element instanceof HTMLElement) {
-      element.style.fontFamily = this.fontService.selectedFont;
-    }
-  });
-}
+
 
 }
