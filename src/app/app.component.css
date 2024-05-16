@@ -1,20 +1,25 @@
 main {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 4fr 4fr;
+  grid-gap: 8px;
   justify-content: center;
-  align-items: center;
-  padding: 8px 24px;
+  align-items: top;
   min-height: 100vh;
+  padding: 24px;
   background-color: var(--background-color);
 }
 
-/*********************** CONTAINERS ***********************/
-.left-container,
-.right-container,
+/* CONTAINERS */
+.left-container {
+  grid-column: 1;
+}
+
 .center-container {
-  width: 42.5%;
-  opacity: 1;
-  height: 95vh;
-  overflow: hidden;
+  grid-column: 2;
+}
+
+.right-container {
+  grid-column: 3;
 }
 
 .container-title {
@@ -26,20 +31,14 @@ main {
   overflow-y: auto;
 }
 
-/*********************** LEFT CONTAINER ***********************/
-
-.left-container {
-  width: 16%;
-}
-
+/* LEFT CONTAINER STYLING */
 .button-wrapper {
   background-color: var(--white-color);
   padding: 8px;
   margin: 8px;
 }
 
-/*********************** CENTER CONTAINER ***********************/
-
+/* CENTER CONTAINER STYLING */
 .no-option-text {
   color: var(--middle-grey-color);
   display: flex;
@@ -52,34 +51,30 @@ main {
 .center-container article {
   padding: 0;
 }
-
 .center-container article.show-content {
   padding: 24px;
 }
 
-/*********************** RIGHT CONTAINER ***********************/
-
+/* RIGHT CONTAINER & ARTICLE STYLING */
 .right-container {
   display: flex;
   flex-direction: column;
 }
 
-/* Articles */
 article {
-  border-radius: 3px;
   background-color: var(--white-color);
   margin: 8px;
   padding: 24px;
+  border-radius: 3px;
 }
 
-/* Content */
 article .content {
   background-color: var(--white-color);
   margin: 8px auto;
   padding: 32px;
 }
 
-/* Preview Document */
+/* PREVIEW DOCUMENT STYLING */
 .preview-doc {
   flex: 1;
   display: flex;
@@ -97,17 +92,17 @@ article .content {
 }
 
 .preview-doc-wrapper {
-  border: solid 1px var(--middle-grey-color);
+  border: 1px solid var(--middle-grey-color);
 }
 
 .preview-doc-header {
   flex: 0 0 auto;
 }
-
 .preview-doc-footer {
   margin-top: auto;
 }
 
+/* BUTTON STYLING */
 .copy-code-button {
   z-index: 1;
   position: relative;
@@ -131,7 +126,6 @@ button {
   background-color: var(--light-grey-color);
   color: var(--black-color);
 }
-
 .green-btn:hover {
   box-shadow: var(--hover-box-shadow);
   color: var(--white-color);
@@ -139,11 +133,9 @@ button {
 }
 
 .blue-btn {
-  background-color: var(--brand-primary);
   background: var(--dark-blue-gradient);
   color: var(--white-color);
 }
-
 .blue-btn:hover {
   box-shadow: var(--hover-box-shadow);
 }
