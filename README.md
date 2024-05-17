@@ -34,6 +34,27 @@ De IAMD Document Wizard is een Angular-applicatie waarmee je eenvoudig documente
 - **HtmlDialogComponent** : geeft een dialoogvenster weer voor het kopiëren van de gegenereerde HTML- en CSS-code.
 - **OptionButtonComponent** : zorgt voor knoppen om door de verschillende opties te navigeren.
 
+## Services
+
+- **LogoUploadService** : beheert het uploaden en opslaan van het logo.
+  Functionaliteit : slaat logo op in `localStorage`;
+  biedt een observable (`logoUrl$`) om de huidige logo URL uit te zenden naar de componenten die het nodig hebben ;
+  verwerkt uploadproces en werkt `logoUrl$`observable bij.
+
+-**LoadContentService** : laadt inhoud van externe HTML-bestanden.
+Functionaliteit : leest de lijst met beschikbare bestanden uit `fileNames.json` ;
+haalt HTML-inhoud op uit de bestanden in de map `assets` ;
+zuivert geladen HTML-inhoud om veiligheidsrisico's te voorkomen ;
+biedt methoden om individuele bestanden te laden (`loadContent`) of alle bestanden binnen een map (`loadAllContent`, `loadAllMainContent`,...).
+
+-**FontUpdateService** : beheert het geselecteerde font en werkt het documentsjabloon bij.
+Functionaliteit : slaat het geselecteerte font op in een `BehaviorSubject` (`fontFamily$`) ;
+biedt een observable (`fontFamily$`) om componenten op de hoogte te stellen van font wijziging ;
+
+-**GoogleFontService** :
+
+-**ColorUpdateService** :
+
 ## Aanvullende opmerkingen
 
 - Deze applicatie maakt gebruik van CSS-variabelen (`--header-text-color`, etc) om de stijl van het gegenereerde document te beheren.
